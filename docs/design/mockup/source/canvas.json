@@ -1,0 +1,172 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Chain.dc.html": {
+      "h": 844,
+      "title": "S04 プレイ（連鎖カード・危険域）",
+      "w": 390,
+      "x": 0,
+      "y": 1224
+    },
+    "Main.dc.html": {
+      "h": 844,
+      "title": "S01 タイトル",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "Name.dc.html": {
+      "h": 844,
+      "title": "S02 会社名入力",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "Play.dc.html": {
+      "h": 844,
+      "title": "S04 プレイ（通常）",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "PlayDrag.dc.html": {
+      "h": 844,
+      "title": "S04 プレイ（ドラッグ中・予兆ドット）",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "PlayPC.dc.html": {
+      "h": 800,
+      "title": "S04 プレイ（PC 1280×800）",
+      "w": 1280,
+      "x": 0,
+      "y": 3064
+    },
+    "ResultClear.dc.html": {
+      "h": 1460,
+      "title": "S05 リザルト（クリア・スマホ）",
+      "w": 390,
+      "x": 1410,
+      "y": 1224
+    },
+    "ResultOver.dc.html": {
+      "h": 1460,
+      "title": "S05 リザルト（倒産・スマホ）",
+      "w": 390,
+      "x": 940,
+      "y": 1224
+    },
+    "ResultPC.dc.html": {
+      "h": 900,
+      "title": "S05 リザルト（PC 1280×900）",
+      "w": 1280,
+      "x": 1360,
+      "y": 3064
+    },
+    "ResultPage.dc.html": {
+      "h": 844,
+      "title": "P01 結末紹介ページ（/results/dev-zero/）",
+      "w": 390,
+      "x": 2350,
+      "y": 1224
+    },
+    "Style.dc.html": {
+      "h": 844,
+      "title": "S03 経営スタイル選択",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "Tokens.dc.html": {
+      "h": 860,
+      "title": "配色・文字・部品",
+      "w": 1200,
+      "x": 0,
+      "y": 4344
+    },
+    "Trump.dc.html": {
+      "h": 844,
+      "title": "S04 プレイ（切り札の確認中）",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    },
+    "Tutorial.dc.html": {
+      "h": 844,
+      "title": "S04 プレイ（初回の導入カード）",
+      "w": 390,
+      "x": 470,
+      "y": 1224
+    },
+    "Zukan.dc.html": {
+      "h": 844,
+      "title": "M01 図鑑（モーダル）",
+      "w": 390,
+      "x": 1880,
+      "y": 1224
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-31T13:50:57Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "row1": {
+      "kind": "title1",
+      "maxW": 2740,
+      "text": "基本の流れ（スマホ 390×844）",
+      "w": 240,
+      "x": 0,
+      "y": -260
+    },
+    "row2": {
+      "kind": "title1",
+      "maxW": 2740,
+      "text": "プレイの状態・リザルト・図鑑（スマホ）",
+      "w": 240,
+      "x": 0,
+      "y": 964
+    },
+    "row3": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "PC（1280 幅）",
+      "w": 240,
+      "x": 0,
+      "y": 2804
+    },
+    "row4": {
+      "kind": "title1",
+      "maxW": 1200,
+      "text": "UIデザイン仕様（03）の見本",
+      "w": 240,
+      "x": 0,
+      "y": 4084
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Name.dc.html",
+    "Style.dc.html",
+    "Play.dc.html",
+    "PlayDrag.dc.html",
+    "Trump.dc.html",
+    "Chain.dc.html",
+    "Tutorial.dc.html",
+    "ResultOver.dc.html",
+    "ResultClear.dc.html",
+    "Zukan.dc.html",
+    "ResultPage.dc.html",
+    "PlayPC.dc.html",
+    "ResultPC.dc.html",
+    "Tokens.dc.html"
+  ],
+  "pages": [],
+  "title": "限界SES社長 静的モックアップ"
+}

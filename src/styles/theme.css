@@ -1,0 +1,45 @@
+@import 'tailwindcss';
+
+/* docs/design/03_ui_design_spec.md 2.1 の色トークン */
+@theme {
+  --color-bg: #1e1f22;
+  --color-surface: #2b2d31;
+  --color-card: #313338;
+  --color-border: #3f4147;
+  --color-border-strong: #4e5058;
+  --color-text: #f2f3f5;
+  --color-text-muted: #b5bac1;
+  --color-text-subtle: #949ba4;
+  --color-primary: #22c55e;
+  --color-on-primary: #0b1a10;
+  --color-danger: #ef4444;
+  --color-danger-text: #f87171;
+  --color-accent: #f59e0b;
+  --color-on-accent: #1e1f22;
+  --color-focus: #60a5fa;
+  /* フォント（GenkaiMono のサブセット化は Phase 1-B。09 検証2） */
+  --font-mono: 'GenkaiMono', ui-monospace, 'Hiragino Sans', 'Noto Sans JP', monospace;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+}
+
+/* ドット絵をぼかさない */
+.pixelated {
+  image-rendering: pixelated;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
