@@ -49,14 +49,28 @@
 ### 1.2 ビルド回数の節約（08 の 6.1。無料枠はアカウント全体で月500回）
 作成後に、**Settings › Builds** で次を設定します。
 
-1. **ブランチの制御（Branch control）**
-   - 本番ブランチ：`develop`
-   - プレビューのブランチ：**カスタム（Custom branches）** にして、対象（Include）に `preview/*` を入れる
+設定する画面は2つあります。**ブランチ名を入れる画面と、ファイルのパスを入れる画面を取り違えやすい**ので注意してください。
+
+1. **Branch control**（どのブランチをデプロイするか。ブランチ名を入れる）
+
+| 項目 | 値 |
+|---|---|
+| Production branch | `develop` |
+| Enable automatic production branch deployments | **チェックを入れる**（外すと、マージしても本番が更新されない） |
+| Preview branch | **Custom branches** |
+| Include Preview branches | `preview/*` だけ |
+| Exclude Preview branches | 空 |
+
    - これで、`feature/〇〇` ブランチやプルリクエストではビルドされず、確認したいときだけ `preview/〇〇` ブランチを使います。
-2. **ビルドの対象パス（Build watch paths）**
-   - 対象（Include）：`src/*`、`public/*`、`tools/*`、`index.html`、`package.json`、`package-lock.json`、`vite.config.ts`
-   - 除外（Exclude）：`docs/*`
-   - ※ 入力欄のワイルドカードの書き方（`*` か `**` か）は、画面の説明に合わせてください。
+
+2. **Build watch paths**（どのファイルが変わったらビルドするか。ファイルのパスを入れる）
+
+| 項目 | 値 |
+|---|---|
+| Include paths | `src/*`、`public/*`、`tools/*`、`index.html`、`package.json`、`package-lock.json`、`vite.config.ts`、`tsconfig.json` |
+| Exclude paths | `docs/*` |
+
+   - ワイルドカードの意味は、画面の「View wildcard examples」で確認できます。
 
 ### 1.3 オリジンのカスタムドメイン（Phase 1-C の 1C-4。今やっても可）
 - プロジェクト › **Custom domains** › **Set up a custom domain** › `genkai-ses-origin.promptlab-games.com`。
