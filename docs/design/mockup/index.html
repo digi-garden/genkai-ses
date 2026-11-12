@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><title>限界SES社長 静的モックアップ</title>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#B5BAC1}a:hover{color:#F2F3F5} body{background:#111214;font-family:'M PLUS 1 Code',ui-monospace,monospace}</style>
+</head><body>
+<main style="padding:40px;display:flex;flex-direction:column;gap:64px;width:max-content">
+<header><h1 style="margin:0 0 8px;font-size:28px;color:#F2F3F5">限界SES社長 静的モックアップ</h1><p style="margin:0;font-size:13px;color:#B5BAC1">docs/design/10_mockup.md 参照。元データは source/（デザインキャンバス用）。画像は screens/。</p></header>
+<section style="display:flex;flex-direction:column;gap:16px"><h2 style="margin:0;font-size:22px;color:#F2F3F5">基本の流れ（スマホ 390×844）</h2><div style="display:flex;gap:40px;align-items:flex-start"><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">S01 タイトル</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:390px;height:844px;box-sizing:border-box;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:flex;flex-direction:column;overflow:hidden">
+<div style="display:flex;justify-content:flex-end;padding:12px 16px 0">
+<button type="button" aria-label="効果音をオンにする（現在オフ）" style="width:44px;height:44px;background:transparent;border:1px solid #3F4147;border-radius:10px;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B5BAC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4.7a.7.7 0 0 0-1.2-.5L6.4 7.6A1.4 1.4 0 0 1 5.4 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.4a1.4 1.4 0 0 1 1 .4l3.4 3.4a.7.7 0 0 0 1.2-.5Z"></path><path d="m22 9-6 6"></path><path d="m16 9 6 6"></path></svg></button>
+</div>
+<main style="flex-grow:1;padding:0 24px;display:flex;flex-direction:column;justify-content:center;gap:28px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="margin:0;font-size:12px;color:#22C55E">$ ./start_company.sh</p>
+<h1 style="margin:0;font-size:36px;line-height:1.25;font-weight:700">限界SES社長</h1>
+<p style="margin:0;font-size:15px;color:#B5BAC1">〜人月ピラミッドの頂点へ〜</p>
+</div>
+<p style="margin:0;font-size:18px;line-height:1.7;border-top:1px solid #3F4147;border-bottom:1px solid #3F4147;padding:16px 0">今期も、誰も<br>バックれませんように。</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<button type="button" style="min-height:52px;box-sizing:border-box;padding:12px 16px;background:#22C55E;border:0;border-radius:10px;color:#0B1A10;font-family:inherit;font-size:16px;font-weight:700">経営を始める</button>
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">続きから再開（第12週）</button>
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">図鑑</button>
+</div>
+</main>
+<footer style="padding:16px 24px 24px;display:flex;flex-direction:column;gap:12px">
+<p style="margin:0;font-size:12px;line-height:1.6;color:#949BA4">本作はフィクションであり、実在の人物・企業・団体・事件とは一切関係ありません。また、作中に登場する法令違反・不当な労働行為を推奨・助長する意図は一切ございません。</p>
+<nav style="display:flex;flex-wrap:wrap;gap:16px;font-size:12px">
+<a href="#howto">遊び方</a><a href="#terms">規約・プライバシー・免責</a><a href="#contact">お問い合わせ</a>
+</nav>
+</footer></div></div></figure><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">S02 会社名入力</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:390px;height:844px;box-sizing:border-box;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:flex;flex-direction:column;overflow:hidden">
+<main style="flex-grow:1;padding:48px 24px;display:flex;flex-direction:column;gap:24px">
+<p style="margin:0;font-size:12px;color:#949BA4">STEP 1 / 2</p>
+<h1 style="margin:0;font-size:20px;line-height:1.4">あなたの会社名を<br>決めてください</h1>
+<div style="display:flex;flex-direction:column;gap:8px">
+<label for="company" style="font-size:13px;font-weight:700">会社名（15文字まで）</label>
+<input id="company" type="text" value="@genkai_ses" maxlength="15" aria-invalid="true" aria-describedby="company-err" style="min-height:52px;box-sizing:border-box;padding:12px 14px;background:#313338;border:2px solid #EF4444;border-radius:6px;color:#F2F3F5;font-family:inherit;font-size:16px">
+<p id="company-err" style="margin:0;font-size:13px;color:#F87171">記号（@ #）や URL は使えません</p>
+<p style="margin:0;font-size:12px;line-height:1.6;color:#B5BAC1">実在の企業名は使えません。会社名は架空のものとして結果画像に印字されます。空欄のときは「限界SES株式会社」になります。</p>
+</div>
+</main>
+<footer style="padding:16px 24px 32px;display:flex;flex-direction:column;gap:12px">
+<button type="button" style="min-height:52px;box-sizing:border-box;padding:12px 16px;background:#22C55E;border:0;border-radius:10px;color:#0B1A10;font-family:inherit;font-size:16px;font-weight:700">次へ</button>
+</footer></div></div></figure><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">S03 経営スタイル選択</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:390px;height:844px;box-sizing:border-box;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:flex;flex-direction:column;overflow:hidden">
+<main style="flex-grow:1;padding:32px 16px 8px;display:flex;flex-direction:column;gap:14px">
+<p style="margin:0;font-size:12px;color:#949BA4">STEP 2 / 2</p>
+<h1 style="margin:0;font-size:20px;line-height:1.4">経営スタイルを選んでください</h1>
+<button type="button" aria-pressed="true" style="box-sizing:border-box;width:100%;text-align:left;background:#313338;border:2px solid #22C55E;border-radius:16px;padding:14px 16px;color:#F2F3F5;font-family:inherit;display:flex;flex-direction:column;gap:6px">
+<span style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:16px;font-weight:700">体育会系SES</span><span style="font-size:12px;font-weight:700;color:#22C55E">選択中</span></span>
+<span style="font-size:13px;line-height:1.5;color:#B5BAC1">気合いと根性で、現場は意外と折れない。</span>
+<span style="font-size:13px;line-height:1.5">現場メンタルが減りにくい／コンプラの傷が深い</span>
+<span style="font-size:13px;line-height:1.5;color:#F59E0B">切り札『精神論チャージ』現場メンタルを大きく回復。コンプラが下がる</span>
+</button>
+<button type="button" aria-pressed="false" style="box-sizing:border-box;width:100%;text-align:left;background:#313338;border:1px solid #3F4147;border-radius:16px;padding:14px 16px;color:#F2F3F5;font-family:inherit;display:flex;flex-direction:column;gap:6px">
+<span style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:16px;font-weight:700">グレー派遣ブローカー</span></span>
+<span style="font-size:13px;line-height:1.5;color:#B5BAC1">商流の奥で、利ざやを抜く。</span>
+<span style="font-size:13px;line-height:1.5">入る資金が増える／コンプラの傷が深い</span>
+<span style="font-size:13px;line-height:1.5;color:#F59E0B">切り札『多重商流ブースト』資金が大きく増える。コンプラが下がり、後日ツケが回る</span>
+</button>
+<button type="button" aria-pressed="false" style="box-sizing:border-box;width:100%;text-align:left;background:#313338;border:1px solid #3F4147;border-radius:16px;padding:14px 16px;color:#F2F3F5;font-family:inherit;display:flex;flex-direction:column;gap:6px">
+<span style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:16px;font-weight:700">技術至上主義SES</span></span>
+<span style="font-size:13px;line-height:1.5;color:#B5BAC1">売上より、美しいコード。</span>
+<span style="font-size:13px;line-height:1.5">現場メンタルがかなり減りにくい／入る資金が減る</span>
+<span style="font-size:13px;line-height:1.5;color:#F59E0B">切り札『超絶リファクタリング』現場と顧客が回復。資金が大きく減る</span>
+</button>
+</main>
+<footer style="padding:12px 16px 24px;display:flex;flex-direction:column;gap:12px;align-items:stretch">
+<button type="button" style="min-height:52px;box-sizing:border-box;padding:12px 16px;background:#22C55E;border:0;border-radius:10px;color:#0B1A10;font-family:inherit;font-size:16px;font-weight:700">この会社で始める</button>
+<a href="#back" style="align-self:center;font-size:13px">戻る</a>
+</footer></div></div></figure><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">S04 プレイ（通常）</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:390px;height:844px;box-sizing:border-box;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:flex;flex-direction:column;overflow:hidden"><header style="background:#2B2D31;border-bottom:1px solid #3F4147;padding:12px 16px 10px;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span style="font-size:13px;font-weight:700">限界SES社長</span>
+<span style="font-size:13px;font-weight:700;color:#22C55E">Week 12/52</span>
+</div>
+<div style="display:flex;justify-content:space-around"><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="資金" aria-valuetext="普通" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:55%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">資金</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="顧客" aria-valuetext="やや低い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:38%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">顧客</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="現場" aria-valuetext="やや高い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:62%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">現場</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="コンプラ" aria-valuetext="普通" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:47%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">コンプラ</span>
+</div></div>
+</header><main style="flex-grow:1;padding:20px 16px 8px;display:flex;flex-direction:column;justify-content:center"><div style="position:relative;width:100%;box-sizing:border-box;background:#313338;border:1px solid #3F4147;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+
+<div style="display:flex;gap:12px;align-items:center;">
+<div role="img" aria-label="話者アイコン（仮素材）" style="width:64px;height:64px;flex-shrink:0;box-sizing:border-box;border-radius:8px;border:1px dashed #4E5058;background:#2B2D31;display:flex;align-items:center;justify-content:center;font-size:11px;line-height:1.3;color:#B5BAC1;text-align:center">元請けPM<br>仮</div>
+<span style="font-size:13px;font-weight:700;line-height:1.5">元請けPM 鬼塚</span>
+</div>
+<p style="margin:0;font-size:17px;line-height:1.7">来週から要件が変わります。納期はそのままで。あ、追加の単価の話は、また今度ということで。</p>
+
+</div></main><footer style="padding:12px 16px 20px;display:flex;flex-direction:column;gap:10px">
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<button type="button" style="min-height:56px;padding:8px 12px;box-sizing:border-box;background:#313338;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px;line-height:1.4;text-align:center">← 現場に頭を下げて対応</button>
+<button type="button" style="min-height:56px;padding:8px 12px;box-sizing:border-box;background:#313338;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px;line-height:1.4;text-align:center">追加費用を請求する →</button>
+</div>
+<button type="button" style="min-height:48px;box-sizing:border-box;background:transparent;border:1px solid #F59E0B;border-radius:10px;color:#F59E0B;font-family:inherit;font-size:15px;font-weight:700">社長の切り札（残り1回）</button>
+
+</footer></div></div></figure><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">S04 プレイ（ドラッグ中・予兆ドット）</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:390px;height:844px;box-sizing:border-box;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:flex;flex-direction:column;overflow:hidden"><header style="background:#2B2D31;border-bottom:1px solid #3F4147;padding:12px 16px 10px;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span style="font-size:13px;font-weight:700">限界SES社長</span>
+<span style="font-size:13px;font-weight:700;color:#22C55E">Week 12/52</span>
+</div>
+<div style="display:flex;justify-content:space-around"><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:50%;background:#F2F3F5"></span></div>
+<div role="meter" aria-label="資金" aria-valuetext="普通" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:55%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">資金</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:50%;background:#F2F3F5"></span></div>
+<div role="meter" aria-label="顧客" aria-valuetext="やや低い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:38%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">顧客</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"><span style="width:6px;height:6px;border-radius:50%;background:#F2F3F5"></span></div>
+<div role="meter" aria-label="現場" aria-valuetext="やや高い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:62%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">現場</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="コンプラ" aria-valuetext="普通" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:47%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">コンプラ</span>
+</div></div>
+</header><main style="flex-grow:1;padding:20px 16px 8px;display:flex;flex-direction:column;justify-content:center"><div style="position:relative;width:100%;box-sizing:border-box;transform:rotate(6deg) translateX(36px);background:#313338;border:1px solid #3F4147;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+<div style="position:absolute;top:0;left:0;right:0;padding:14px 16px;border-radius:16px 16px 0 0;background:rgba(30,31,34,0.92);font-size:15px;font-weight:700;text-align:right;border-bottom:1px solid #3F4147">追加費用を請求する →</div>
+<div style="display:flex;gap:12px;align-items:center;margin-top:36px;">
+<div role="img" aria-label="話者アイコン（仮素材）" style="width:64px;height:64px;flex-shrink:0;box-sizing:border-box;border-radius:8px;border:1px dashed #4E5058;background:#2B2D31;display:flex;align-items:center;justify-content:center;font-size:11px;line-height:1.3;color:#B5BAC1;text-align:center">元請けPM<br>仮</div>
+<span style="font-size:13px;font-weight:700;line-height:1.5">元請けPM 鬼塚</span>
+</div>
+<p style="margin:0;font-size:17px;line-height:1.7">来週から要件が変わります。納期はそのままで。あ、追加の単価の話は、また今度ということで。</p>
+
+</div></main><footer style="padding:12px 16px 20px;display:flex;flex-direction:column;gap:10px">
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<button type="button" style="min-height:56px;padding:8px 12px;box-sizing:border-box;background:#313338;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px;line-height:1.4;text-align:center">← 現場に頭を下げて対応</button>
+<button type="button" style="min-height:56px;padding:8px 12px;box-sizing:border-box;background:#313338;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px;line-height:1.4;text-align:center;border:2px solid #22C55E">追加費用を請求する →</button>
+</div>
+<button type="button" style="min-height:48px;box-sizing:border-box;background:transparent;border:1px solid #F59E0B;border-radius:10px;color:#F59E0B;font-family:inherit;font-size:15px;font-weight:700">社長の切り札（残り1回）</button>
+
+</footer></div></div></figure><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">S04 プレイ（切り札の確認中）</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:390px;height:844px;box-sizing:border-box;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:flex;flex-direction:column;overflow:hidden"><header style="background:#2B2D31;border-bottom:1px solid #3F4147;padding:12px 16px 10px;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span style="font-size:13px;font-weight:700">限界SES社長</span>
+<span style="font-size:13px;font-weight:700;color:#22C55E">Week 12/52</span>
+</div>
+<div style="display:flex;justify-content:space-around"><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="資金" aria-valuetext="普通" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:55%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">資金</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="顧客" aria-valuetext="やや低い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:38%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">顧客</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:50%;background:#F2F3F5"></span></div>
+<div role="meter" aria-label="現場" aria-valuetext="やや高い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:62%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">現場</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:50%;background:#F2F3F5"></span></div>
+<div role="meter" aria-label="コンプラ" aria-valuetext="普通" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:47%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">コンプラ</span>
+</div></div>
+</header><main style="flex-grow:1;padding:20px 16px 8px;display:flex;flex-direction:column;justify-content:center"><div style="position:relative;width:100%;box-sizing:border-box;background:#313338;border:1px solid #3F4147;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+
+<div style="display:flex;gap:12px;align-items:center;">
+<div role="img" aria-label="話者アイコン（仮素材）" style="width:64px;height:64px;flex-shrink:0;box-sizing:border-box;border-radius:8px;border:1px dashed #4E5058;background:#2B2D31;display:flex;align-items:center;justify-content:center;font-size:11px;line-height:1.3;color:#B5BAC1;text-align:center">元請けPM<br>仮</div>
+<span style="font-size:13px;font-weight:700;line-height:1.5">元請けPM 鬼塚</span>
+</div>
+<p style="margin:0;font-size:17px;line-height:1.7">来週から要件が変わります。納期はそのままで。あ、追加の単価の話は、また今度ということで。</p>
+
+</div></main><footer style="padding:12px 16px 20px;display:flex;flex-direction:column;gap:10px">
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<button type="button" style="min-height:56px;padding:8px 12px;box-sizing:border-box;background:#313338;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px;line-height:1.4;text-align:center">← 現場に頭を下げて対応</button>
+<button type="button" style="min-height:56px;padding:8px 12px;box-sizing:border-box;background:#313338;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px;line-height:1.4;text-align:center">追加費用を請求する →</button>
+</div>
+<div style="position:relative;display:flex;flex-direction:column;gap:8px">
+<div role="status" style="align-self:center;background:#2B2D31;border:1px solid #F59E0B;border-radius:10px;padding:8px 12px;font-size:13px;line-height:1.5;color:#F2F3F5;text-align:center">この決断は取り返しがつきません。<br>もう一度押すと実行</div>
+<button type="button" style="min-height:48px;box-sizing:border-box;background:#F59E0B;border:2px solid #F59E0B;border-radius:10px;color:#1E1F22;font-family:inherit;font-size:15px;font-weight:700;box-shadow:0 0 0 4px rgba(245,158,11,0.25)">精神論チャージ ― もう一度押して実行</button>
+</div>
+
+</footer></div></div></figure></div></section><section style="display:flex;flex-direction:column;gap:16px"><h2 style="margin:0;font-size:22px;color:#F2F3F5">プレイの状態・リザルト・図鑑（スマホ）</h2><div style="display:flex;gap:40px;align-items:flex-start"><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">S04 プレイ（連鎖カード・危険域）</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:390px;height:844px;box-sizing:border-box;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:flex;flex-direction:column;overflow:hidden"><header style="background:#2B2D31;border-bottom:1px solid #3F4147;padding:12px 16px 10px;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span style="font-size:13px;font-weight:700">限界SES社長</span>
+<span style="font-size:13px;font-weight:700;color:#22C55E">Week 19/52</span>
+</div>
+<div style="display:flex;justify-content:space-around"><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="資金" aria-valuetext="普通" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:48%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">資金</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="顧客" aria-valuetext="危険なほど低い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:2px solid #EF4444;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:12%;background:rgba(239,68,68,0.55)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#F87171">顧客</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="現場" aria-valuetext="やや低い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:30%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">現場</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="コンプラ" aria-valuetext="危険なほど高い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:2px solid #EF4444;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:88%;background:rgba(239,68,68,0.55)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#F87171">コンプラ</span>
+</div></div>
+</header><main style="flex-grow:1;padding:20px 16px 8px;display:flex;flex-direction:column;justify-content:center"><div style="position:relative;width:100%;box-sizing:border-box;background:#313338;border:2px solid #F59E0B;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+<span style="position:absolute;top:-12px;left:16px;background:#F59E0B;color:#1E1F22;font-size:13px;font-weight:700;padding:2px 10px;border-radius:6px">【因果応報】</span>
+<div style="display:flex;gap:12px;align-items:center;">
+<div role="img" aria-label="話者アイコン（仮素材）" style="width:64px;height:64px;flex-shrink:0;box-sizing:border-box;border-radius:8px;border:1px dashed #4E5058;background:#2B2D31;display:flex;align-items:center;justify-content:center;font-size:11px;line-height:1.3;color:#B5BAC1;text-align:center">元請けPM<br>仮</div>
+<span style="font-size:13px;font-weight:700;line-height:1.5">元請けPM 鬼塚</span>
+</div>
+<p style="margin:0;font-size:17px;line-height:1.7">（あの時、経歴を盛った新人が……）御社の山田さん、Javaのインターフェースを知らないんですが？ 契約、見直させてもらいますよ。</p>
+
+</div></main><footer style="padding:12px 16px 20px;display:flex;flex-direction:column;gap:10px">
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<button type="button" style="min-height:56px;padding:8px 12px;box-sizing:border-box;background:#313338;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px;line-height:1.4;text-align:center">← 平謝りして単価を下げる</button>
+<button type="button" style="min-height:56px;padding:8px 12px;box-sizing:border-box;background:#313338;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px;line-height:1.4;text-align:center">本人の自己申告ですと突っぱねる →</button>
+</div>
+<button type="button" disabled="" style="min-height:48px;box-sizing:border-box;background:transparent;border:1px solid #F59E0B;border-radius:10px;color:#F59E0B;font-family:inherit;font-size:15px;font-weight:700;opacity:0.4">社長の切り札（使用済み）</button>
+
+</footer></div></div></figure><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">S04 プレイ（初回の導入カード）</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:390px;height:844px;box-sizing:border-box;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:flex;flex-direction:column;overflow:hidden"><header style="background:#2B2D31;border-bottom:1px solid #3F4147;padding:12px 16px 10px;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span style="font-size:13px;font-weight:700">限界SES社長</span>
+<span style="font-size:13px;font-weight:700;color:#22C55E">Week 1/52</span>
+</div>
+<div style="display:flex;justify-content:space-around"><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="資金" aria-valuetext="普通" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:50%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">資金</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="顧客" aria-valuetext="普通" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:50%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">顧客</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="現場" aria-valuetext="普通" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:50%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">現場</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="コンプラ" aria-valuetext="普通" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:50%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">コンプラ</span>
+</div></div>
+</header><main style="flex-grow:1;padding:20px 16px 8px;display:flex;flex-direction:column;justify-content:center"><div style="position:relative;width:100%;box-sizing:border-box;background:#313338;border:1px solid #3F4147;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+
+<div style="display:flex;gap:12px;align-items:center;">
+<div role="img" aria-label="話者アイコン（仮素材）" style="width:64px;height:64px;flex-shrink:0;box-sizing:border-box;border-radius:8px;border:1px dashed #4E5058;background:#2B2D31;display:flex;align-items:center;justify-content:center;font-size:11px;line-height:1.3;color:#B5BAC1;text-align:center">秘書<br>仮</div>
+<span style="font-size:13px;font-weight:700;line-height:1.5">秘書 真田</span>
+</div>
+<p style="margin:0;font-size:17px;line-height:1.7">社長、就任おめでとうございます。決断は左右どちらかで。4つの数字は、0になっても100になりすぎても即倒産です。</p>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+<div style="border:1px solid #3F4147;border-radius:8px;padding:8px;text-align:center;font-size:12px;line-height:1.5;color:#B5BAC1">← → に<br>スワイプ</div>
+<div style="border:1px solid #3F4147;border-radius:8px;padding:8px;text-align:center;font-size:12px;line-height:1.5;color:#B5BAC1">← → キー</div>
+<div style="border:1px solid #3F4147;border-radius:8px;padding:8px;text-align:center;font-size:12px;line-height:1.5;color:#B5BAC1">下のボタン</div>
+</div>
+</div></main><footer style="padding:12px 16px 20px;display:flex;flex-direction:column;gap:10px">
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<button type="button" style="min-height:56px;padding:8px 12px;box-sizing:border-box;background:#313338;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px;line-height:1.4;text-align:center">← 肝に銘じる</button>
+<button type="button" style="min-height:56px;padding:8px 12px;box-sizing:border-box;background:#313338;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px;line-height:1.4;text-align:center">たぶん大丈夫 →</button>
+</div>
+<button type="button" style="min-height:48px;box-sizing:border-box;background:transparent;border:1px solid #F59E0B;border-radius:10px;color:#F59E0B;font-family:inherit;font-size:15px;font-weight:700">社長の切り札（残り1回）</button>
+
+</footer></div></div></figure><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">S05 リザルト（倒産・スマホ）</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:390px;height:1460px;box-sizing:border-box;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:flex;flex-direction:column;overflow:hidden">
+<main style="padding:20px 16px 32px;display:flex;flex-direction:column;gap:16px">
+<section aria-label="倒産報告書" style="width:358px;box-sizing:border-box;background:#2B2D31;border:1px solid #3F4147;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:15px;font-weight:700;color:#22C55E">倒産報告書</h2><span style="font-size:12px;color:#949BA4">FY2026</span></div>
+<div role="img" aria-label="結末の一枚絵（仮素材）" style="width:100%;aspect-ratio:16 / 9;box-sizing:border-box;border:1px dashed #4E5058;border-radius:8px;background:#313338;display:flex;align-items:center;justify-content:center;font-size:12px;color:#B5BAC1">end_dev_zero.webp（仮素材）</div>
+<div style="display:flex;flex-direction:column;gap:2px"><p style="margin:0;font-size:24px;font-weight:700;line-height:1.3">全員蒸発エンド</p><p style="margin:0;font-size:13px;color:#B5BAC1">退職代行から、一斉に連絡が来た。</p></div>
+<div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">会社名</span><span style="text-align:right">漆黒ソリューションズ株式会社</span></div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">結末</span><span style="text-align:right">第24週に倒産</span></div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">経営スタイル</span><span style="text-align:right">体育会系SES</span></div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">最終売上</span><span style="text-align:right">2,800万円</span></div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">獲得称号</span><span style="text-align:right">なし</span></div></div>
+<p style="margin:0;padding:10px 12px;border:1px solid #F59E0B;border-radius:6px;font-size:13px;line-height:1.6;color:#F2F3F5"><span style="color:#F59E0B;font-weight:700">敗因</span>：第5週『新人の経歴をJava歴3年に盛った』</p>
+<div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#B5BAC1"><span style="font-weight:700;color:#F2F3F5">限界SES社長</span><span>genkai-ses.pages.dev</span></div>
+<p style="margin:0;font-size:12px;line-height:1.5;color:#949BA4">※会社名はプレイヤーが入力した架空の名称です。本作はフィクションです。</p>
+</section>
+<div style="display:flex;flex-direction:column;gap:8px;padding:12px;border:1px solid #3F4147;border-radius:10px">
+<p style="margin:0;font-size:13px;line-height:1.5">現場メンタルが <span style="color:#F87171;font-weight:700">0 に落ちて</span> 倒産</p>
+<div style="display:flex;justify-content:space-around"><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+<div style="position:relative;width:36px;height:36px;box-sizing:border-box;border:1px solid #4E5058;border-radius:8px;overflow:hidden;background:#2B2D31"><div style="position:absolute;left:0;right:0;bottom:0;height:41%;background:rgba(34,197,94,0.40)"></div><div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg></div></div>
+<span style="font-size:12px;color:#B5BAC1">資金</span><span style="font-size:12px;color:transparent">-</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+<div style="position:relative;width:36px;height:36px;box-sizing:border-box;border:1px solid #4E5058;border-radius:8px;overflow:hidden;background:#2B2D31"><div style="position:absolute;left:0;right:0;bottom:0;height:57%;background:rgba(34,197,94,0.40)"></div><div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path></svg></div></div>
+<span style="font-size:12px;color:#B5BAC1">顧客</span><span style="font-size:12px;color:transparent">-</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+<div style="position:relative;width:36px;height:36px;box-sizing:border-box;border:2px solid #EF4444;border-radius:8px;overflow:hidden;background:#2B2D31"><div style="position:absolute;left:0;right:0;bottom:0;height:0%;background:rgba(34,197,94,0.40)"></div><div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div></div>
+<span style="font-size:12px;color:#F87171">現場</span><span style="display:flex;align-items:center;gap:2px;font-size:12px;font-weight:700;color:#F87171"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>0</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+<div style="position:relative;width:36px;height:36px;box-sizing:border-box;border:1px solid #4E5058;border-radius:8px;overflow:hidden;background:#2B2D31"><div style="position:absolute;left:0;right:0;bottom:0;height:33%;background:rgba(34,197,94,0.40)"></div><div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg></div></div>
+<span style="font-size:12px;color:#B5BAC1">コンプラ</span><span style="font-size:12px;color:transparent">-</span></div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="margin:0;font-size:13px;font-weight:700;color:#B5BAC1">末路を晒す</p>
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:2px solid #22C55E;border-radius:10px;color:#22C55E;font-family:inherit;font-size:15px;font-weight:700">Xでポスト</button>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">画像付きでシェア</button>
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">画像を保存</button>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;padding-top:8px;border-top:1px solid #3F4147">
+<button type="button" style="min-height:52px;box-sizing:border-box;padding:12px 16px;background:#22C55E;border:0;border-radius:10px;color:#0B1A10;font-family:inherit;font-size:16px;font-weight:700;min-height:60px;font-size:18px">もう1期挑む</button>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">図鑑</button>
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">タイトルへ</button>
+</div>
+</div>
+</main></div></div></figure><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">S05 リザルト（クリア・スマホ）</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:390px;height:1460px;box-sizing:border-box;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:flex;flex-direction:column;overflow:hidden">
+<main style="padding:20px 16px 32px;display:flex;flex-direction:column;gap:16px">
+<section aria-label="決算通知書" style="width:358px;box-sizing:border-box;background:#2B2D31;border:1px solid #3F4147;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:15px;font-weight:700;color:#22C55E">決算通知書</h2><span style="font-size:12px;color:#949BA4">FY2026</span></div>
+<div role="img" aria-label="結末の一枚絵（仮素材）" style="width:100%;aspect-ratio:16 / 9;box-sizing:border-box;border:1px dashed #4E5058;border-radius:8px;background:#313338;display:flex;align-items:center;justify-content:center;font-size:12px;color:#B5BAC1">end_clear.webp（仮素材）</div>
+<div style="display:flex;flex-direction:column;gap:2px"><p style="margin:0;font-size:24px;font-weight:700;line-height:1.3">1期完走</p><p style="margin:0;font-size:13px;color:#B5BAC1">札束と、疲れ切った笑顔。</p></div>
+<div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">会社名</span><span style="text-align:right">漆黒ソリューションズ株式会社</span></div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">結末</span><span style="text-align:right">52週を完走</span></div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">経営スタイル</span><span style="text-align:right">技術至上主義SES</span></div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">最終売上</span><span style="text-align:right">12,350万円</span></div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">獲得称号</span><span style="text-align:right"><span style="color:#F59E0B;font-weight:700">ホワイト企業の鑑</span> ほか2件</span></div></div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#B5BAC1"><span style="font-weight:700;color:#F2F3F5">限界SES社長</span><span>genkai-ses.pages.dev</span></div>
+<p style="margin:0;font-size:12px;line-height:1.5;color:#949BA4">※会社名はプレイヤーが入力した架空の名称です。本作はフィクションです。</p>
+</section>
+<p style="margin:0;font-size:13px;color:#F59E0B;font-weight:700">NEW 称号を3つ獲得　自己ベスト更新</p>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="margin:0;font-size:13px;font-weight:700;color:#B5BAC1">末路を晒す</p>
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:2px solid #22C55E;border-radius:10px;color:#22C55E;font-family:inherit;font-size:15px;font-weight:700">Xでポスト</button>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">画像付きでシェア</button>
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">画像を保存</button>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;padding-top:8px;border-top:1px solid #3F4147">
+<button type="button" style="min-height:52px;box-sizing:border-box;padding:12px 16px;background:#22C55E;border:0;border-radius:10px;color:#0B1A10;font-family:inherit;font-size:16px;font-weight:700;min-height:60px;font-size:18px">もう1期挑む</button>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">図鑑</button>
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">タイトルへ</button>
+</div>
+</div>
+</main></div></div></figure><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">M01 図鑑（モーダル）</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:390px;height:844px;box-sizing:border-box;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:flex;flex-direction:column;overflow:hidden">
+<div aria-hidden="true" style="height:72px;background:rgba(30,31,34,0.7)"></div>
+<section role="dialog" aria-label="図鑑" style="flex-grow:1;background:#2B2D31;border-radius:16px 16px 0 0;border-top:1px solid #3F4147;padding:16px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0;font-size:20px">図鑑</h2>
+<button type="button" aria-label="閉じる" style="width:44px;height:44px;background:transparent;border:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;font-size:12px;line-height:1.5;color:#B5BAC1">
+<div style="border:1px solid #3F4147;border-radius:8px;padding:8px">最長生存<br><span style="font-size:15px;font-weight:700;color:#F2F3F5">第31週</span></div>
+<div style="border:1px solid #3F4147;border-radius:8px;padding:8px">最高売上<br><span style="font-size:15px;font-weight:700;color:#F2F3F5">4,150万円</span></div>
+<div style="border:1px solid #3F4147;border-radius:8px;padding:8px">プレイ回数<br><span style="font-size:15px;font-weight:700;color:#F2F3F5">7回</span></div>
+</div>
+<div role="tablist" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid #4E5058;border-radius:10px;overflow:hidden">
+<button type="button" role="tab" aria-selected="true" style="min-height:44px;background:#313338;border:0;color:#F2F3F5;font-family:inherit;font-size:14px;font-weight:700">結末（3/9）</button>
+<button type="button" role="tab" aria-selected="false" style="min-height:44px;background:transparent;border:0;color:#B5BAC1;font-family:inherit;font-size:14px">称号（1/6）</button>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px"><div style="display:flex;flex-direction:column;gap:4px"><div role="img" aria-label="黒字倒産の一枚絵（仮素材）" style="aspect-ratio:16 / 9;box-sizing:border-box;border:1px dashed #4E5058;border-radius:6px;background:#313338"></div><span style="font-size:12px;line-height:1.4">黒字倒産</span></div><div style="display:flex;flex-direction:column;gap:4px"><div role="img" aria-label="全員蒸発の一枚絵（仮素材）" style="aspect-ratio:16 / 9;box-sizing:border-box;border:1px dashed #4E5058;border-radius:6px;background:#313338"></div><span style="font-size:12px;line-height:1.4">全員蒸発</span></div><div style="display:flex;flex-direction:column;gap:4px"><div role="img" aria-label="監査局突入の一枚絵（仮素材）" style="aspect-ratio:16 / 9;box-sizing:border-box;border:1px dashed #4E5058;border-radius:6px;background:#313338"></div><span style="font-size:12px;line-height:1.4">監査局突入</span></div><div style="display:flex;flex-direction:column;gap:4px"><div aria-hidden="true" style="aspect-ratio:16 / 9;box-sizing:border-box;border:1px solid #3F4147;border-radius:6px;background:#111214;display:flex;align-items:center;justify-content:center;font-size:12px;color:#949BA4">？？？</div><span style="font-size:12px;line-height:1.4;color:#949BA4">？？？</span></div><div style="display:flex;flex-direction:column;gap:4px"><div aria-hidden="true" style="aspect-ratio:16 / 9;box-sizing:border-box;border:1px solid #3F4147;border-radius:6px;background:#111214;display:flex;align-items:center;justify-content:center;font-size:12px;color:#949BA4">？？？</div><span style="font-size:12px;line-height:1.4;color:#949BA4">？？？</span></div><div style="display:flex;flex-direction:column;gap:4px"><div aria-hidden="true" style="aspect-ratio:16 / 9;box-sizing:border-box;border:1px solid #3F4147;border-radius:6px;background:#111214;display:flex;align-items:center;justify-content:center;font-size:12px;color:#949BA4">？？？</div><span style="font-size:12px;line-height:1.4;color:#949BA4">？？？</span></div><div style="display:flex;flex-direction:column;gap:4px"><div aria-hidden="true" style="aspect-ratio:16 / 9;box-sizing:border-box;border:1px solid #3F4147;border-radius:6px;background:#111214;display:flex;align-items:center;justify-content:center;font-size:12px;color:#949BA4">？？？</div><span style="font-size:12px;line-height:1.4;color:#949BA4">？？？</span></div><div style="display:flex;flex-direction:column;gap:4px"><div aria-hidden="true" style="aspect-ratio:16 / 9;box-sizing:border-box;border:1px solid #3F4147;border-radius:6px;background:#111214;display:flex;align-items:center;justify-content:center;font-size:12px;color:#949BA4">？？？</div><span style="font-size:12px;line-height:1.4;color:#949BA4">？？？</span></div><div style="display:flex;flex-direction:column;gap:4px"><div aria-hidden="true" style="aspect-ratio:16 / 9;box-sizing:border-box;border:1px solid #3F4147;border-radius:6px;background:#111214;display:flex;align-items:center;justify-content:center;font-size:12px;color:#949BA4">？？？</div><span style="font-size:12px;line-height:1.4;color:#949BA4">？？？</span></div></div>
+</section></div></div></figure><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">P01 結末紹介ページ（/results/dev-zero/）</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:390px;height:844px;box-sizing:border-box;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:flex;flex-direction:column;overflow:hidden">
+<main style="flex-grow:1;padding:32px 20px;display:flex;flex-direction:column;gap:18px">
+<p style="margin:0;font-size:13px;font-weight:700;color:#22C55E">限界SES社長</p>
+<div role="img" aria-label="全員蒸発エンドの一枚絵（仮素材）" style="width:100%;aspect-ratio:16 / 9;box-sizing:border-box;border:1px dashed #4E5058;border-radius:8px;background:#313338;display:flex;align-items:center;justify-content:center;font-size:12px;color:#B5BAC1">end_dev_zero.webp（仮素材）</div>
+<h1 style="margin:0;font-size:28px;line-height:1.3">全員蒸発エンド</h1>
+<p style="margin:0;font-size:15px;line-height:1.7;color:#B5BAC1">退職代行から、一斉に連絡が来た。オフィスには、誰もいない。</p>
+<p style="margin:0;font-size:16px;line-height:1.7">誰かこのブラック業界で<br>1年間（52週）生き残ってみてくれ。</p>
+<a href="#play" style="display:flex;align-items:center;justify-content:center;min-height:52px;box-sizing:border-box;background:#22C55E;border-radius:10px;color:#0B1A10;font-size:16px;font-weight:700;text-decoration:none">このブラック業界に挑む</a>
+</main>
+<footer style="padding:16px 20px 24px"><p style="margin:0;font-size:12px;line-height:1.6;color:#949BA4">本作はフィクションであり、実在の人物・企業・団体・事件とは一切関係ありません。また、作中に登場する法令違反・不当な労働行為を推奨・助長する意図は一切ございません。</p></footer></div></div></figure></div></section><section style="display:flex;flex-direction:column;gap:16px"><h2 style="margin:0;font-size:22px;color:#F2F3F5">PC（1280 幅）</h2><div style="display:flex;gap:40px;align-items:flex-start"><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">S04 プレイ（PC 1280×800）</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:1280px;height:800px;box-sizing:border-box;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:flex;justify-content:center;overflow:hidden"><div style="width:480px;height:800px;display:flex;flex-direction:column;border-left:1px solid #3F4147;border-right:1px solid #3F4147">
+<header style="background:#2B2D31;border-bottom:1px solid #3F4147;padding:12px 16px 10px;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span style="font-size:13px;font-weight:700">限界SES社長</span>
+<span style="font-size:13px;font-weight:700;color:#22C55E">Week 12/52</span>
+</div>
+<div style="display:flex;justify-content:space-around"><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="資金" aria-valuetext="普通" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:55%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">資金</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="顧客" aria-valuetext="やや低い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:38%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">顧客</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="現場" aria-valuetext="やや高い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:62%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">現場</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="コンプラ" aria-valuetext="普通" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:47%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">コンプラ</span>
+</div></div>
+</header>
+<main style="flex-grow:1;padding:24px 20px 8px;display:flex;flex-direction:column;justify-content:center"><div style="position:relative;width:100%;box-sizing:border-box;background:#313338;border:1px solid #3F4147;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px">
+
+<div style="display:flex;gap:12px;align-items:center;">
+<div role="img" aria-label="話者アイコン（仮素材）" style="width:64px;height:64px;flex-shrink:0;box-sizing:border-box;border-radius:8px;border:1px dashed #4E5058;background:#2B2D31;display:flex;align-items:center;justify-content:center;font-size:11px;line-height:1.3;color:#B5BAC1;text-align:center">元請けPM<br>仮</div>
+<span style="font-size:13px;font-weight:700;line-height:1.5">元請けPM 鬼塚</span>
+</div>
+<p style="margin:0;font-size:18px;line-height:1.7">来週から要件が変わります。納期はそのままで。あ、追加の単価の話は、また今度ということで。</p>
+
+</div></main>
+<footer style="padding:12px 16px 20px;display:flex;flex-direction:column;gap:10px">
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<button type="button" style="min-height:56px;padding:8px 12px;box-sizing:border-box;background:#313338;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px;line-height:1.4;text-align:center">← 現場に頭を下げて対応</button>
+<button type="button" style="min-height:56px;padding:8px 12px;box-sizing:border-box;background:#313338;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px;line-height:1.4;text-align:center">追加費用を請求する →</button>
+</div>
+<button type="button" style="min-height:48px;box-sizing:border-box;background:transparent;border:1px solid #F59E0B;border-radius:10px;color:#F59E0B;font-family:inherit;font-size:15px;font-weight:700">社長の切り札（残り1回）</button>
+<p style="margin:0;text-align:center;font-size:12px;color:#949BA4">← / → で選択　Space で切り札</p>
+</footer>
+</div></div></div></figure><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">S05 リザルト（PC 1280×900）</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:1280px;height:900px;box-sizing:border-box;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:flex;justify-content:center;overflow:hidden"><main style="width:960px;padding:48px 0;display:grid;grid-template-columns:600px minmax(0,1fr);gap:40px;align-items:start">
+<section aria-label="倒産報告書" style="width:600px;box-sizing:border-box;background:#2B2D31;border:1px solid #3F4147;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-size:15px;font-weight:700;color:#22C55E">倒産報告書</h2><span style="font-size:12px;color:#949BA4">FY2026</span></div>
+<div role="img" aria-label="結末の一枚絵（仮素材）" style="width:100%;aspect-ratio:16 / 9;box-sizing:border-box;border:1px dashed #4E5058;border-radius:8px;background:#313338;display:flex;align-items:center;justify-content:center;font-size:12px;color:#B5BAC1">end_dev_zero.webp（仮素材）</div>
+<div style="display:flex;flex-direction:column;gap:2px"><p style="margin:0;font-size:24px;font-weight:700;line-height:1.3">全員蒸発エンド</p><p style="margin:0;font-size:13px;color:#B5BAC1">退職代行から、一斉に連絡が来た。</p></div>
+<div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">会社名</span><span style="text-align:right">漆黒ソリューションズ株式会社</span></div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">結末</span><span style="text-align:right">第24週に倒産</span></div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">経営スタイル</span><span style="text-align:right">体育会系SES</span></div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">最終売上</span><span style="text-align:right">2,800万円</span></div><div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #3F4147;font-size:13px;line-height:1.5"><span style="color:#B5BAC1;flex-shrink:0">獲得称号</span><span style="text-align:right">なし</span></div></div>
+<p style="margin:0;padding:10px 12px;border:1px solid #F59E0B;border-radius:6px;font-size:13px;line-height:1.6;color:#F2F3F5"><span style="color:#F59E0B;font-weight:700">敗因</span>：第5週『新人の経歴をJava歴3年に盛った』</p>
+<div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#B5BAC1"><span style="font-weight:700;color:#F2F3F5">限界SES社長</span><span>genkai-ses.pages.dev</span></div>
+<p style="margin:0;font-size:12px;line-height:1.5;color:#949BA4">※会社名はプレイヤーが入力した架空の名称です。本作はフィクションです。</p>
+</section>
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-direction:column;gap:8px;padding:12px;border:1px solid #3F4147;border-radius:10px">
+<p style="margin:0;font-size:13px;line-height:1.5">現場メンタルが <span style="color:#F87171;font-weight:700">0 に落ちて</span> 倒産</p>
+<div style="display:flex;justify-content:space-around"><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+<div style="position:relative;width:36px;height:36px;box-sizing:border-box;border:1px solid #4E5058;border-radius:8px;overflow:hidden;background:#2B2D31"><div style="position:absolute;left:0;right:0;bottom:0;height:41%;background:rgba(34,197,94,0.40)"></div><div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg></div></div>
+<span style="font-size:12px;color:#B5BAC1">資金</span><span style="font-size:12px;color:transparent">-</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+<div style="position:relative;width:36px;height:36px;box-sizing:border-box;border:1px solid #4E5058;border-radius:8px;overflow:hidden;background:#2B2D31"><div style="position:absolute;left:0;right:0;bottom:0;height:57%;background:rgba(34,197,94,0.40)"></div><div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path></svg></div></div>
+<span style="font-size:12px;color:#B5BAC1">顧客</span><span style="font-size:12px;color:transparent">-</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+<div style="position:relative;width:36px;height:36px;box-sizing:border-box;border:2px solid #EF4444;border-radius:8px;overflow:hidden;background:#2B2D31"><div style="position:absolute;left:0;right:0;bottom:0;height:0%;background:rgba(34,197,94,0.40)"></div><div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div></div>
+<span style="font-size:12px;color:#F87171">現場</span><span style="display:flex;align-items:center;gap:2px;font-size:12px;font-weight:700;color:#F87171"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>0</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+<div style="position:relative;width:36px;height:36px;box-sizing:border-box;border:1px solid #4E5058;border-radius:8px;overflow:hidden;background:#2B2D31"><div style="position:absolute;left:0;right:0;bottom:0;height:33%;background:rgba(34,197,94,0.40)"></div><div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg></div></div>
+<span style="font-size:12px;color:#B5BAC1">コンプラ</span><span style="font-size:12px;color:transparent">-</span></div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="margin:0;font-size:13px;font-weight:700;color:#B5BAC1">末路を晒す</p>
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:2px solid #22C55E;border-radius:10px;color:#22C55E;font-family:inherit;font-size:15px;font-weight:700">Xでポスト</button>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">画像をコピー</button>
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">画像を保存</button>
+</div>
+<p style="margin:0;font-size:12px;line-height:1.6;color:#B5BAC1">報告書の画像を貼るともっと自慢できます。</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid #3F4147">
+<button type="button" style="min-height:52px;box-sizing:border-box;padding:12px 16px;background:#22C55E;border:0;border-radius:10px;color:#0B1A10;font-family:inherit;font-size:16px;font-weight:700;min-height:60px;font-size:18px">もう1期挑む</button>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">図鑑</button>
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">タイトルへ</button>
+</div>
+</div>
+</div>
+</main></div></div></figure></div></section><section style="display:flex;flex-direction:column;gap:16px"><h2 style="margin:0;font-size:22px;color:#F2F3F5">UIデザイン仕様（03）の見本</h2><div style="display:flex;gap:40px;align-items:flex-start"><figure style="margin:0;display:flex;flex-direction:column;gap:8px"><figcaption style="font-size:13px;color:#B5BAC1">配色・文字・部品</figcaption><div style="box-shadow:0 0 0 1px #3F4147"><div style="width:1200px;height:860px;box-sizing:border-box;padding:40px;background:#1E1F22;color:#F2F3F5;font-family:'M PLUS 1 Code',ui-monospace,'Hiragino Sans','Noto Sans JP',monospace;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px">
+<section style="display:flex;flex-direction:column;gap:16px">
+<h2 style="margin:0;font-size:20px">色（数値は bg 上のコントラスト比）</h2>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px"><div style="display:flex;flex-direction:column;gap:6px">
+<div style="height:64px;border-radius:10px;border:1px solid #3F4147;background:#1E1F22"></div>
+<span style="font-size:13px;font-weight:700">bg</span><span style="font-size:12px;color:#B5BAC1">#1E1F22</span><span style="font-size:12px;line-height:1.4;color:#949BA4">画面の背景</span></div><div style="display:flex;flex-direction:column;gap:6px">
+<div style="height:64px;border-radius:10px;border:1px solid #3F4147;background:#2B2D31"></div>
+<span style="font-size:13px;font-weight:700">surface</span><span style="font-size:12px;color:#B5BAC1">#2B2D31</span><span style="font-size:12px;line-height:1.4;color:#949BA4">ヘッダー・モーダル</span></div><div style="display:flex;flex-direction:column;gap:6px">
+<div style="height:64px;border-radius:10px;border:1px solid #3F4147;background:#313338"></div>
+<span style="font-size:13px;font-weight:700">card</span><span style="font-size:12px;color:#B5BAC1">#313338</span><span style="font-size:12px;line-height:1.4;color:#949BA4">カード・入力欄</span></div><div style="display:flex;flex-direction:column;gap:6px">
+<div style="height:64px;border-radius:10px;border:1px solid #3F4147;background:#3F4147"></div>
+<span style="font-size:13px;font-weight:700">border</span><span style="font-size:12px;color:#B5BAC1">#3F4147</span><span style="font-size:12px;line-height:1.4;color:#949BA4">区切り線</span></div><div style="display:flex;flex-direction:column;gap:6px">
+<div style="height:64px;border-radius:10px;border:1px solid #3F4147;background:#4E5058"></div>
+<span style="font-size:13px;font-weight:700">border-strong</span><span style="font-size:12px;color:#B5BAC1">#4E5058</span><span style="font-size:12px;line-height:1.4;color:#949BA4">ボタンの枠</span></div><div style="display:flex;flex-direction:column;gap:6px">
+<div style="height:64px;border-radius:10px;border:1px solid #3F4147;background:#F2F3F5"></div>
+<span style="font-size:13px;font-weight:700">text</span><span style="font-size:12px;color:#B5BAC1">#F2F3F5</span><span style="font-size:12px;line-height:1.4;color:#949BA4">本文 14.8:1</span></div><div style="display:flex;flex-direction:column;gap:6px">
+<div style="height:64px;border-radius:10px;border:1px solid #3F4147;background:#B5BAC1"></div>
+<span style="font-size:13px;font-weight:700">text-muted</span><span style="font-size:12px;color:#B5BAC1">#B5BAC1</span><span style="font-size:12px;line-height:1.4;color:#949BA4">補足 8.4:1</span></div><div style="display:flex;flex-direction:column;gap:6px">
+<div style="height:64px;border-radius:10px;border:1px solid #3F4147;background:#949BA4"></div>
+<span style="font-size:13px;font-weight:700">text-subtle</span><span style="font-size:12px;color:#B5BAC1">#949BA4</span><span style="font-size:12px;line-height:1.4;color:#949BA4">注記 5.9:1</span></div><div style="display:flex;flex-direction:column;gap:6px">
+<div style="height:64px;border-radius:10px;border:1px solid #3F4147;background:#22C55E"></div>
+<span style="font-size:13px;font-weight:700">primary</span><span style="font-size:12px;color:#B5BAC1">#22C55E</span><span style="font-size:12px;line-height:1.4;color:#949BA4">決断・正常 7.2:1</span></div><div style="display:flex;flex-direction:column;gap:6px">
+<div style="height:64px;border-radius:10px;border:1px solid #3F4147;background:#EF4444"></div>
+<span style="font-size:13px;font-weight:700">danger</span><span style="font-size:12px;color:#B5BAC1">#EF4444</span><span style="font-size:12px;line-height:1.4;color:#949BA4">危険（塗りのみ）</span></div><div style="display:flex;flex-direction:column;gap:6px">
+<div style="height:64px;border-radius:10px;border:1px solid #3F4147;background:#F87171"></div>
+<span style="font-size:13px;font-weight:700">danger-text</span><span style="font-size:12px;color:#B5BAC1">#F87171</span><span style="font-size:12px;line-height:1.4;color:#949BA4">赤い文字 6.0:1</span></div><div style="display:flex;flex-direction:column;gap:6px">
+<div style="height:64px;border-radius:10px;border:1px solid #3F4147;background:#F59E0B"></div>
+<span style="font-size:13px;font-weight:700">accent</span><span style="font-size:12px;color:#B5BAC1">#F59E0B</span><span style="font-size:12px;line-height:1.4;color:#949BA4">切り札・因果 7.7:1</span></div></div>
+</section>
+<section style="display:flex;flex-direction:column;gap:20px">
+<h2 style="margin:0;font-size:20px">文字（M PLUS 1 Code）</h2>
+<div><div style="display:flex;gap:16px;align-items:baseline;border-bottom:1px solid #3F4147;padding:6px 0"><span style="width:90px;flex-shrink:0;font-size:12px;color:#B5BAC1">display 28</span><span style="font-size:28px;font-weight:700;line-height:1.4">限界SES社長</span></div><div style="display:flex;gap:16px;align-items:baseline;border-bottom:1px solid #3F4147;padding:6px 0"><span style="width:90px;flex-shrink:0;font-size:12px;color:#B5BAC1">heading 20</span><span style="font-size:20px;font-weight:700;line-height:1.4">経営スタイルを選んでください</span></div><div style="display:flex;gap:16px;align-items:baseline;border-bottom:1px solid #3F4147;padding:6px 0"><span style="width:90px;flex-shrink:0;font-size:12px;color:#B5BAC1">message 17</span><span style="font-size:17px;font-weight:400;line-height:1.4">来週から要件が変わります。納期はそのままで。</span></div><div style="display:flex;gap:16px;align-items:baseline;border-bottom:1px solid #3F4147;padding:6px 0"><span style="width:90px;flex-shrink:0;font-size:12px;color:#B5BAC1">body 15</span><span style="font-size:15px;font-weight:400;line-height:1.4">現場に頭を下げて対応</span></div><div style="display:flex;gap:16px;align-items:baseline;border-bottom:1px solid #3F4147;padding:6px 0"><span style="width:90px;flex-shrink:0;font-size:12px;color:#B5BAC1">label 13</span><span style="font-size:13px;font-weight:700;line-height:1.4">元請けPM 鬼塚</span></div><div style="display:flex;gap:16px;align-items:baseline;border-bottom:1px solid #3F4147;padding:6px 0"><span style="width:90px;flex-shrink:0;font-size:12px;color:#B5BAC1">caption 12</span><span style="font-size:12px;font-weight:400;line-height:1.4">※会社名はプレイヤーが入力した架空の名称です。</span></div></div>
+<h2 style="margin:0;font-size:20px">ゲージと予兆ドット</h2>
+<div style="display:flex;gap:8px"><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="資金" aria-valuetext="普通" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:55%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">資金</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"><span style="width:6px;height:6px;border-radius:50%;background:#F2F3F5"></span></div>
+<div role="meter" aria-label="顧客" aria-valuetext="やや低い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:38%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">顧客</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:50%;background:#F2F3F5"></span></div>
+<div role="meter" aria-label="現場" aria-valuetext="やや高い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:1px solid #4E5058;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:62%;background:rgba(34,197,94,0.40)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#B5BAC1">現場</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="コンプラ" aria-valuetext="危険なほど低い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:2px solid #EF4444;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:10%;background:rgba(239,68,68,0.55)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#F87171">コンプラ</span>
+</div><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:64px">
+<div style="height:10px;display:flex;align-items:center;justify-content:center"></div>
+<div role="meter" aria-label="資金" aria-valuetext="危険なほど高い" style="position:relative;width:44px;height:44px;box-sizing:border-box;border:2px solid #EF4444;border-radius:10px;overflow:hidden;background:#2B2D31">
+<div style="position:absolute;left:0;right:0;bottom:0;height:90%;background:rgba(239,68,68,0.55)"></div>
+<div style="position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2F3F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg></div>
+</div>
+<span style="font-size:12px;line-height:1.5;color:#F87171">資金</span>
+</div></div>
+<p style="margin:0;font-size:12px;color:#B5BAC1">左から：通常／予兆（小）／予兆（大）／危険域（低）／危険域（高）</p>
+<h2 style="margin:0;font-size:20px">ボタンとバッジ</h2>
+<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+<button type="button" style="min-height:52px;box-sizing:border-box;padding:12px 16px;background:#22C55E;border:0;border-radius:10px;color:#0B1A10;font-family:inherit;font-size:16px;font-weight:700">主ボタン</button>
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #4E5058;border-radius:10px;color:#F2F3F5;font-family:inherit;font-size:15px">副ボタン</button>
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:2px solid #22C55E;border-radius:10px;color:#22C55E;font-family:inherit;font-size:15px;font-weight:700">シェア</button>
+<button type="button" style="min-height:48px;box-sizing:border-box;padding:10px 16px;background:transparent;border:1px solid #F59E0B;border-radius:10px;color:#F59E0B;font-family:inherit;font-size:15px;font-weight:700">切り札</button>
+<span style="background:#F59E0B;color:#1E1F22;font-size:13px;font-weight:700;padding:2px 10px;border-radius:6px">【因果応報】</span>
+</div>
+</section>
+</div></div></figure></div></section>
+</main></body></html>
