@@ -1,7 +1,6 @@
 name: CI
 
 # docs/design/07_test_design.md 5章
-# カードの検証（validate:cards）とシミュレータ（simulate）は Phase 1-A で追加する。
 
 on:
   push:
@@ -34,8 +33,15 @@ jobs:
       - name: Lint (ESLint + dependency-cruiser)
         run: npm run lint
 
+      - name: Validate cards
+        run: npm run validate:cards
+
       - name: Unit tests
         run: npm test
+
+      - name: Balance simulator (warning only)
+        # 合格基準を外れても、マージは止めない（docs/design/01_architecture.md 7.2）
+        run: npm run simulate -- --quick || echo "::warning::シミュレータの合格基準を満たしていない項目があります"
 
       - name: Build (production base /genkai-ses/)
         run: npm run build
