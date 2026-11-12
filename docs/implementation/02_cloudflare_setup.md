@@ -39,7 +39,7 @@
 | `VITE_SITE_ORIGIN` | `https://promptlab-games.com` | （設定しない） | OGP とシェア URL の組み立てに使う（Phase 1-B 以降） |
 | `VITE_PUBLIC_BASE` | `/genkai-ses` | （設定しない） | 同上 |
 | `VITE_GA_MEASUREMENT_ID` | 2章で取得する `G-XXXXXXX` | **設定しない** | プレビューでは計測しない |
-| `VITE_CF_BEACON_TOKEN` | 3章で取得するトークン | **設定しない** | 同上 |
+| `VITE_CF_BEACON_TOKEN` | **設定しない**（3章。共通の自動挿入に任せる） | **設定しない** | 本作用のトークンが必要になったときだけ使う |
 
    - GA4 と Web Analytics の値は、2章・3章で取得してから追加すれば大丈夫です。追加した後に、本番を再デプロイ（Deployments › 最新の本番 › Retry deployment）すると反映されます。
    - どれも公開されても問題のない値なので、「Secret（暗号化）」ではなく通常の変数（Plaintext）で構いません。
@@ -104,12 +104,15 @@
 
 > 2026-11-12 改訂：`promptlab-games.com` は、ブランド全体のサイトとして**すでに登録済みで、自動設定（Automatic setup）が有効**だった。新しくサイトを登録せず、既存のサイトを使う。
 
-1. Cloudflare のダッシュボード › **Analytics & Logs** › **Web Analytics** › `promptlab-games.com` の **Manage site**。
-2. **自動設定はそのままにする。** Portal と他タイトルの計測に使われているため、本作の都合で変えない（共通公開アーキテクチャを変えない方針）。
-3. 同じ画面で JS スニペットを表示し、`data-cf-beacon='{"token": "…"}'` の **token の値** を、1.1 の `VITE_CF_BEACON_TOKEN`（本番だけ）に設定する。
+1. 既存サイトの設定は **「Enable, excluding visitor data in the EU」**（自動挿入。EU からの訪問者には挿入しない）。自動設定のため、トークンは画面に表示されない。
+2. **設定は変えない**（Cancel で閉じる）。「Enable with JS Snippet installation」に変えるとトークンは見えるが、Portal と他タイトルの自動挿入が止まるため。
+3. **`VITE_CF_BEACON_TOKEN` は設定しない。** 本作の Web Analytics は、ブランド共通の自動挿入に任せる。
+   - EU の訪問者を除く設定は、本作の方針（EEA では同意なしに計測しない。06 の 2.4）とも合っている。
 4. 本作のデータは、Web Analytics の画面でパス（`/genkai-ses/`）で絞り込んで見る。
 
-**ゲーム側の扱い（Phase 1-B で実装）：** 自動設定が本作のページにもビーコンを入れる場合と入れない場合の両方に対応する。起動時に、ページにすでにビーコン（`static.cloudflareinsights.com` のスクリプト）があれば何もせず、なければトークンを使って自分で入れる。これで二重計測も計測漏れも起きない。どちらになっているかは、Phase 1-C のステージング確認で確かめる。
+**ゲーム側の扱い（Phase 1-B で実装）：** トークンが設定されていなければ、ゲームは Web Analytics のタグを入れない。トークンが設定されていても、ページにすでにビーコンがあれば入れない（二重計測を防ぐ）。
+
+**Phase 1-C で確かめること：** 自動挿入が、Router（Worker）経由で返る本作のページにも入るか。ステージングと本番のページの HTML に `static.cloudflareinsights.com` のスクリプトがあるかを AI が確認する。入らなかった場合の対応（本作用に別のサイトを登録してトークンを使う、など）は、その時点で相談する。KPI の判定は GA4 で行うので、Web Analytics が取れなくても判定には影響しない。
 
 ## 4. 確認（0-6）
 

@@ -71,7 +71,7 @@ interface SessionRepository {
 
 ### 2.3 Cloudflare Web Analytics
 
-> **2026-11-12 追記：** `promptlab-games.com` は Web Analytics に登録済みで、自動設定が有効だった（Portal と他タイトルのため。変えない）。本作は既存サイトのトークンを使い、**起動時にビーコンがすでにあれば自分では入れない**（二重計測を防ぐ）。なければ従来どおり手動で入れる。自動設定が Router 経由の本作のページに入るかは、Phase 1-C のステージングで確認する。
+> **2026-11-12 追記：** `promptlab-games.com` は Web Analytics に登録済みで、自動挿入（「Enable, excluding visitor data in the EU」）が有効だった。Portal と他タイトルのための共通設定なので変えない。本作は**この自動挿入に任せ、トークンは設定しない**。コードは「トークンがあり、かつページにビーコンがまだないときだけ入れる」作りにしておく。自動挿入が Router 経由の本作のページに入るかは、Phase 1-C のステージングで確認する（入らなければ、その時点で対応を決める）。
 - **JS スニペットを手動で埋め込む方式**にする（v1.1 で変更）。Cloudflare のダッシュボードでサイトを登録してトークンを発行し、`index.html` と結末ページ（5章）の両方に、次のタグを入れる。トークンは公開されても問題ない値なので、環境変数 `VITE_CF_BEACON_TOKEN` としてビルド時に埋め込む。
   ```html
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "…"}'></script>
