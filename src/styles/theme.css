@@ -43,3 +43,55 @@ body {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
 }
+
+/* 危険域のゲージの枠の点滅（1秒周期）、切り札の確認状態の点滅 */
+@keyframes pulse-border {
+  50% {
+    border-color: transparent;
+  }
+}
+@keyframes pulse-bg {
+  50% {
+    opacity: 0.65;
+  }
+}
+.gauge-danger {
+  animation: pulse-border 1s steps(1) infinite;
+}
+.trump-confirm {
+  animation: pulse-bg 1s ease-in-out infinite;
+}
+
+/* 倒産の演出（0.6秒）：画面が一瞬暗くなり、赤い線が走る */
+@keyframes death-dim {
+  0% { opacity: 0; }
+  30% { opacity: 0.85; }
+  100% { opacity: 0.6; }
+}
+@keyframes death-line {
+  0% { transform: scaleX(0); }
+  60% { transform: scaleX(1); }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+.death-dim {
+  animation: death-dim 0.6s ease-out forwards;
+}
+.death-line {
+  transform-origin: left;
+  animation: death-line 0.6s ease-out forwards;
+}
+
+/* 本文がスクロールできることを、下端のぼかしで示す */
+.card-body {
+  mask-image: linear-gradient(to bottom, black calc(100% - 16px), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gauge-danger,
+  .trump-confirm {
+    animation: none;
+  }
+  .gauge-danger {
+    border-width: 3px;
+  }
+}

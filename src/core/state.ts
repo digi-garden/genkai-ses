@@ -56,7 +56,8 @@ export type Action =
   | { type: 'choose'; side: Side }
   | { type: 'useTrump' };
 
-export type AchievementId = 'white_company' | 'bicycle' | 'emperor' | 'phoenix' | 'audit_regular' | 'speed_quit';
+export type { AchievementId } from '../content/achievements';
+import type { AchievementId } from '../content/achievements';
 
 export type GameEvent =
   | { type: 'runStarted'; styleId: StyleId; isFirstPlay: boolean }

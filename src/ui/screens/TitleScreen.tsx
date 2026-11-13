@@ -1,32 +1,32 @@
-/**
- * Phase 0 の仮のタイトル画面。
- * ひな形・公開パス・素材の配信を確かめるためのもので、Phase 1-B で S01（02 の画面設計）に置き換える。
- */
-const icons = import.meta.glob<string>('../../assets/img/icon_*.webp', {
-  eager: true,
-  import: 'default',
-});
+import { Button } from '../components/Button';
 
-export function TitleScreen() {
-  const urls = Object.entries(icons)
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([path, url]) => ({ name: path.split('/').pop() ?? path, url }));
+interface Props {
+  resumeWeek?: number | undefined;
+  onStart: () => void;
+  onResume: () => void;
+}
 
+/** S01 タイトル（Phase 1-B の手順1では、図鑑・モーダル・効果音はまだ置かない） */
+export function TitleScreen({ resumeWeek, onStart, onResume }: Props) {
   return (
-    <main className="mx-auto flex min-h-full max-w-[480px] flex-col items-center justify-center gap-6 px-4 py-10 text-center">
-      <p className="text-sm text-text-subtle">PromptLab Games</p>
-      <h1 className="text-2xl leading-snug font-bold">
-        限界SES社長
-        <span className="mt-1 block text-base font-normal text-text-muted">〜人月ピラミッドの頂点へ〜</span>
-      </h1>
-      <ul className="grid grid-cols-3 gap-3" aria-label="登場人物">
-        {urls.map(({ name, url }) => (
-          <li key={name} className="rounded border border-border bg-card p-1">
-            <img src={url} alt="" width={64} height={64} className="pixelated" data-testid="speaker-icon" />
-          </li>
-        ))}
-      </ul>
-      <p className="rounded border border-accent px-3 py-2 text-sm text-accent">準備中（Phase 0 のひな形）</p>
+    <main className="mx-auto flex min-h-dvh max-w-[480px] flex-col items-center justify-center gap-8 px-4 py-10 text-center">
+      <div>
+        <p className="mb-3 text-[12px] text-text-subtle">PromptLab Games</p>
+        <h1 className="text-[28px] leading-[1.3] font-bold">限界SES社長</h1>
+        <p className="mt-1 text-[15px] text-text-muted">〜人月ピラミッドの頂点へ〜</p>
+      </div>
+      <p className="text-[15px]">今期も、誰もバックれませんように。</p>
+      <div className="flex w-full max-w-[320px] flex-col gap-3">
+        <Button onClick={onStart}>経営を始める</Button>
+        {resumeWeek !== undefined && (
+          <Button variant="secondary" onClick={onResume}>
+            続きから再開（第{resumeWeek}週から）
+          </Button>
+        )}
+      </div>
+      <p className="max-w-[360px] text-[12px] leading-relaxed text-text-subtle">
+        このゲームはフィクションです。登場する人物・団体・会社名は架空のもので、実在のものとは関係ありません。
+      </p>
     </main>
   );
 }

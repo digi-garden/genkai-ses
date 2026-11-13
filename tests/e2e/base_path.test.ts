@@ -8,6 +8,13 @@ import { expect, test, type Response } from '@playwright/test';
 
 const TOP = '/genkai-ses/';
 
+async function startRun(page: import('@playwright/test').Page) {
+  await page.getByRole('button', { name: '経営を始める' }).click();
+  await page.getByRole('button', { name: '次へ' }).click();
+  await page.getByRole('button', { name: 'この会社で始める' }).click();
+  await expect(page.getByTestId('event-card')).toBeVisible();
+}
+
 function collectResponses(page: import('@playwright/test').Page): Response[] {
   const responses: Response[] = [];
   page.on('response', (r) => responses.push(r));
@@ -30,7 +37,7 @@ test('公開パスのトップが起動し、コンソールにエラーがな�
 test('読み込むリソースがすべて 200 で、HTML が紛れ込んでいない', async ({ page }) => {
   const responses = collectResponses(page);
   await page.goto(TOP);
-  await expect(page.getByTestId('speaker-icon')).toHaveCount(9);
+  await startRun(page);
   // 画像の読み込み完了を待つ
   await page.waitForFunction(() =>
     Array.from(document.images).every((img) => img.complete && img.naturalWidth > 0),
@@ -54,7 +61,7 @@ test('読み込むリソースがすべて 200 で、HTML が紛れ込んでい�
 test('ハッシュ付きの資産に immutable のキャッシュが付き、CSP が返る', async ({ page, request }) => {
   const responses = collectResponses(page);
   await page.goto(TOP);
-  await expect(page.getByTestId('speaker-icon').first()).toBeVisible();
+  await startRun(page);
 
   const top = await request.get(TOP);
   expect(top.headers()['content-security-policy']).toContain("default-src 'self'");
