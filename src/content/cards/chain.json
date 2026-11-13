@@ -1,0 +1,131 @@
+[
+  {
+    "id": "c_resume_exposed",
+    "kind": "chain",
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "（あの時、経歴をプロデュースした新人が…）御社の山田さん、「インターフェースって何ですか」と聞いてきましたよ。契約、見直させてもらいます。",
+    "choice_left": {
+      "text": "平謝りで単価を下げる",
+      "effects": {
+        "cash": -21,
+        "client": -5
+      }
+    },
+    "choice_right": {
+      "text": "「本人の自己申告です」",
+      "effects": {
+        "client": -17,
+        "dev": -8,
+        "legal": -10
+      }
+    }
+  },
+  {
+    "id": "c_audit_visit",
+    "kind": "chain",
+    "speaker_name": "監査官 白石",
+    "speaker_icon": "icon_inspector",
+    "message": "（あの時、グレーな運用に目をつぶったツケが…）監査の立ち入りです。御社の取引と、要員への指示の記録をすべて見せてください。",
+    "choice_left": {
+      "text": "全面協力して改善する",
+      "effects": {
+        "cash": -17,
+        "dev": -4,
+        "legal": -11
+      }
+    },
+    "choice_right": {
+      "text": "書類が見つからない",
+      "effects": {
+        "client": -8,
+        "legal": -27
+      }
+    }
+  },
+  {
+    "id": "c_ghost_member",
+    "kind": "chain",
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "（体制図に名前だけ載せた古田さんが…）古田さん、3つの現場の会議に同時に出席していることになっていますね？",
+    "choice_left": {
+      "text": "正直に謝る",
+      "effects": {
+        "cash": -11,
+        "client": -14
+      }
+    },
+    "choice_right": {
+      "text": "「分身できるんです」",
+      "effects": {
+        "client": -19,
+        "legal": -10
+      }
+    }
+  },
+  {
+    "id": "c_license_audit",
+    "kind": "chain",
+    "speaker_name": "監査官 白石",
+    "speaker_icon": "icon_inspector",
+    "message": "（あの時使い回したライセンスが…）ソフトの利用状況を調べさせてください。台数と契約数が合わないようですが。",
+    "choice_left": {
+      "text": "差額をまとめて払う",
+      "effects": {
+        "cash": -25,
+        "legal": -4
+      }
+    },
+    "choice_right": {
+      "text": "「よく分かりません」",
+      "effects": {
+        "client": -6,
+        "legal": -25
+      }
+    }
+  },
+  {
+    "id": "c_overtime_claim",
+    "kind": "chain",
+    "speaker_name": "ベテラン 古田",
+    "speaker_icon": "icon_dev_senior",
+    "message": "（あの時、残業の扱いをごまかしたツケが…）辞めた3人が、未払いの残業代をまとめて請求してきました。残った僕らも同じ気持ちです。",
+    "choice_left": {
+      "text": "全額払って謝る",
+      "effects": {
+        "cash": -25,
+        "dev": 6
+      }
+    },
+    "choice_right": {
+      "text": "争う",
+      "effects": {
+        "dev": -17,
+        "legal": -21
+      }
+    }
+  },
+  {
+    "id": "c_scope_bill",
+    "kind": "chain",
+    "speaker_name": "客先役員 権田",
+    "speaker_icon": "icon_client_exec",
+    "message": "（口約束で「何でもやります」と言った件だ…）あれもこれも、契約の範囲だよね？ 全部、追加費用なしで頼むよ。",
+    "choice_left": {
+      "text": "全部呑む",
+      "effects": {
+        "cash": -8,
+        "client": 6,
+        "dev": -21
+      }
+    },
+    "choice_right": {
+      "text": "契約書を盾に断る",
+      "effects": {
+        "client": -19,
+        "legal": 4
+      }
+    }
+  }
+]
