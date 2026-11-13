@@ -15,7 +15,7 @@
     "choice_right": {
       "text": "「本人の自己申告です」",
       "effects": {
-        "client": -19,
+        "client": -17,
         "dev": -8,
         "legal": -10
       }
@@ -26,7 +26,7 @@
     "kind": "chain",
     "speaker_name": "監査官 白石",
     "speaker_icon": "icon_inspector",
-    "message": "（あの時の深い商流が…）監査の立ち入りです。御社の取引と、要員への指示の記録をすべて見せてください。",
+    "message": "（あの時、グレーな運用に目をつぶったツケが…）監査の立ち入りです。御社の取引と、要員への指示の記録をすべて見せてください。",
     "choice_left": {
       "text": "全面協力して改善する",
       "effects": {
@@ -53,13 +53,13 @@
       "text": "正直に謝る",
       "effects": {
         "cash": -11,
-        "client": -16
+        "client": -14
       }
     },
     "choice_right": {
       "text": "「分身できるんです」",
       "effects": {
-        "client": -21,
+        "client": -19,
         "legal": -10
       }
     }
@@ -80,7 +80,7 @@
     "choice_right": {
       "text": "「よく分かりません」",
       "effects": {
-        "client": -7,
+        "client": -6,
         "legal": -25
       }
     }
@@ -90,7 +90,7 @@
     "kind": "chain",
     "speaker_name": "ベテラン 古田",
     "speaker_icon": "icon_dev_senior",
-    "message": "（「見なし」で押し通した残業代の件で…）辞めた3人が、未払い分をまとめて請求してきました。残った僕らも同じ気持ちです。",
+    "message": "（あの時、残業の扱いをごまかしたツケが…）辞めた3人が、未払いの残業代をまとめて請求してきました。残った僕らも同じ気持ちです。",
     "choice_left": {
       "text": "全額払って謝る",
       "effects": {
@@ -123,7 +123,7 @@
     "choice_right": {
       "text": "契約書を盾に断る",
       "effects": {
-        "client": -21,
+        "client": -19,
         "legal": 4
       }
     }

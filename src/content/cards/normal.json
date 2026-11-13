@@ -9,8 +9,8 @@
     "choice_left": {
       "text": "正直に伝えて辞退",
       "effects": {
-        "cash": -11,
-        "client": -6,
+        "cash": -10,
+        "client": -5,
         "dev": 4,
         "legal": 10
       }
@@ -18,10 +18,10 @@
     "choice_right": {
       "text": "経歴をプロデュース",
       "effects": {
-        "cash": 17,
+        "cash": 18,
         "client": 4,
         "dev": -7,
-        "legal": -14
+        "legal": -15
       },
       "unethical": true,
       "inject_card_id": "c_resume_exposed",
@@ -42,16 +42,16 @@
     "choice_left": {
       "text": "受け入れる",
       "effects": {
-        "cash": -15,
-        "client": 12,
+        "cash": -14,
+        "client": 13,
         "dev": -5
       }
     },
     "choice_right": {
       "text": "粘って交渉する",
       "effects": {
-        "cash": 6,
-        "client": -16
+        "cash": 7,
+        "client": -15
       }
     }
   },
@@ -65,16 +65,15 @@
     "choice_left": {
       "text": "無償で受ける",
       "effects": {
-        "client": 22,
-        "dev": -17,
-        "cash": 1
+        "client": 23,
+        "dev": -17
       }
     },
     "choice_right": {
       "text": "追加見積を出す",
       "effects": {
-        "cash": 9,
-        "client": -16,
+        "cash": 10,
+        "client": -15,
         "dev": 4
       }
     }
@@ -89,16 +88,16 @@
     "choice_left": {
       "text": "現場を替える交渉をする",
       "effects": {
-        "cash": -5,
-        "client": -12,
+        "cash": -4,
+        "client": -11,
         "dev": 14
       }
     },
     "choice_right": {
       "text": "「若いうちは苦労しろ」",
       "effects": {
-        "cash": 6,
-        "dev": -24
+        "client": -8,
+        "dev": -25
       }
     }
   },
@@ -119,9 +118,9 @@
     "choice_right": {
       "text": "安くても現場に押し込む",
       "effects": {
-        "cash": 11,
-        "client": -6,
-        "dev": -19
+        "cash": 12,
+        "client": -5,
+        "dev": -20
       }
     }
   },
@@ -135,7 +134,7 @@
     "choice_left": {
       "text": "代休を約束する",
       "effects": {
-        "cash": -5,
+        "cash": -4,
         "client": -8,
         "dev": 12
       }
@@ -143,6 +142,7 @@
     "choice_right": {
       "text": "ピザを差し入れる",
       "effects": {
+        "cash": -2,
         "client": 6,
         "dev": -22
       }
@@ -158,15 +158,15 @@
     "choice_left": {
       "text": "素性の分かる人だけ",
       "effects": {
-        "cash": -11,
-        "client": -6,
+        "cash": -10,
+        "client": -5,
         "legal": 16
       }
     },
     "choice_right": {
       "text": "商流の深さは気にしない",
       "effects": {
-        "cash": 17,
+        "cash": 18,
         "client": 4,
         "legal": -17
       },
@@ -189,17 +189,15 @@
     "choice_left": {
       "text": "全員出す",
       "effects": {
-        "client": 12,
-        "dev": -14,
-        "cash": 2
+        "client": 13,
+        "dev": -15
       }
     },
     "choice_right": {
       "text": "代表者1人だけ出す",
       "effects": {
-        "client": -12,
-        "dev": 6,
-        "cash": 2
+        "client": -11,
+        "dev": 6
       }
     }
   },
@@ -220,8 +218,8 @@
     "choice_right": {
       "text": "抗議する",
       "effects": {
-        "cash": -4,
-        "client": -14
+        "cash": 6,
+        "client": -17
       }
     }
   },
@@ -235,15 +233,15 @@
     "choice_left": {
       "text": "やってみる",
       "effects": {
-        "cash": 16,
-        "client": -10,
-        "dev": -14
+        "cash": 17,
+        "client": -9,
+        "dev": -15
       }
     },
     "choice_right": {
       "text": "育成に時間をかける",
       "effects": {
-        "cash": -15,
+        "cash": -14,
         "dev": 8
       }
     }
@@ -257,7 +255,7 @@
     "choice_left": {
       "text": "実際の体制で出す",
       "effects": {
-        "cash": -9,
+        "cash": -8,
         "client": -8,
         "legal": 10
       }
@@ -265,7 +263,7 @@
     "choice_right": {
       "text": "名前だけ載せる",
       "effects": {
-        "cash": 15,
+        "cash": 16,
         "client": 6,
         "legal": -12
       },
@@ -287,7 +285,7 @@
     "choice_left": {
       "text": "人数分買う",
       "effects": {
-        "cash": -15,
+        "cash": -14,
         "dev": 6,
         "legal": 10
       }
@@ -295,9 +293,9 @@
     "choice_right": {
       "text": "使い回させる",
       "effects": {
-        "cash": 8,
+        "cash": 9,
         "dev": -5,
-        "legal": -14
+        "legal": -15
       },
       "unethical": true,
       "inject_card_id": "c_license_audit",
@@ -317,7 +315,7 @@
     "choice_left": {
       "text": "実績どおり全額払う",
       "effects": {
-        "cash": -21,
+        "cash": -20,
         "dev": 10,
         "legal": 16
       }
@@ -325,7 +323,7 @@
     "choice_right": {
       "text": "見なしで押し通す",
       "effects": {
-        "cash": 13,
+        "cash": 14,
         "dev": -12,
         "legal": -12
       },
@@ -347,18 +345,16 @@
     "choice_left": {
       "text": "窓口を通すよう頼む",
       "effects": {
-        "client": -12,
-        "legal": 16,
-        "cash": 2
+        "client": -11,
+        "legal": 16
       }
     },
     "choice_right": {
       "text": "「どうぞどうぞ」",
       "effects": {
-        "client": 15,
+        "client": 16,
         "dev": -5,
-        "legal": -14,
-        "cash": 2
+        "legal": -15
       },
       "unethical": true,
       "inject_card_id": "c_audit_visit",
@@ -378,8 +374,8 @@
     "choice_left": {
       "text": "案件から外して休ませる",
       "effects": {
-        "cash": -6,
-        "client": -12,
+        "cash": -5,
+        "client": -11,
         "dev": 6,
         "legal": 16
       }
@@ -387,10 +383,10 @@
     "choice_right": {
       "text": "記録を整える",
       "effects": {
-        "client": 6,
+        "cash": 14,
+        "client": 4,
         "dev": -10,
-        "legal": -14,
-        "cash": 1
+        "legal": -15
       },
       "unethical": true,
       "inject_card_id": "c_overtime_claim",
@@ -410,16 +406,15 @@
     "choice_left": {
       "text": "範囲を書面で確認する",
       "effects": {
-        "client": -10,
+        "client": -9,
         "dev": 4,
-        "legal": 10,
-        "cash": 2
+        "legal": 10
       }
     },
     "choice_right": {
       "text": "口約束のまま走る",
       "effects": {
-        "cash": 8,
+        "cash": 9,
         "client": 18,
         "dev": -7
       },
@@ -440,14 +435,14 @@
     "choice_left": {
       "text": "出す",
       "effects": {
-        "cash": -11,
+        "cash": -10,
         "dev": 12
       }
     },
     "choice_right": {
       "text": "「自己研鑽で」",
       "effects": {
-        "cash": 3,
+        "cash": 4,
         "dev": -12
       }
     }
@@ -461,7 +456,7 @@
     "choice_left": {
       "text": "認める",
       "effects": {
-        "cash": -8,
+        "cash": -7,
         "client": -4,
         "dev": 14
       }
@@ -469,7 +464,7 @@
     "choice_right": {
       "text": "業務時間外でやれ",
       "effects": {
-        "cash": 6,
+        "cash": 7,
         "dev": -12
       }
     }
@@ -479,11 +474,11 @@
     "kind": "normal",
     "speaker_name": "ベテラン 古田",
     "speaker_icon": "icon_dev_senior",
-    "message": "次の案件、最新のフレームワークで全部作り直させてください。そのほうが絶対いいので。",
+    "message": "次の持ち帰り案件、最新のフレームワークで全部作り直させてください。そのほうが絶対いいので。",
     "choice_left": {
       "text": "好きにやらせる",
       "effects": {
-        "cash": -4,
+        "cash": -3,
         "client": -8,
         "dev": 18
       }
@@ -492,31 +487,28 @@
       "text": "客先指定の古い技術で",
       "effects": {
         "client": 8,
-        "dev": -12,
-        "cash": 1
+        "dev": -12
       }
     }
   },
   {
     "id": "n_refactor_month",
     "kind": "normal",
-    "speaker_name": "ベテラン 古田",
-    "speaker_icon": "icon_dev_senior",
-    "message": "1か月だけ、機能追加を止めてリファクタリングに専念させてください。技術的負債が限界です。",
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "御社の古田さんが「技術的負債だ」と言って、勝手に設計を作り直しました。動かなくなりましたけど、どうしてくれるんです？",
     "choice_left": {
-      "text": "認める",
+      "text": "平謝りして元に戻させる",
       "effects": {
-        "client": -14,
-        "dev": 20,
-        "cash": 2
+        "client": 6,
+        "dev": -12
       }
     },
     "choice_right": {
-      "text": "却下する",
+      "text": "古田の判断を擁護する",
       "effects": {
-        "client": 6,
-        "dev": -12,
-        "cash": 2
+        "client": -13,
+        "dev": 20
       }
     }
   },
@@ -529,17 +521,16 @@
     "choice_left": {
       "text": "最後まで付き合う",
       "effects": {
-        "cash": -6,
-        "client": 32,
+        "cash": -5,
+        "client": 34,
         "dev": -5
       }
     },
     "choice_right": {
       "text": "一次会で帰る",
       "effects": {
-        "client": -10,
-        "dev": 2,
-        "cash": 1
+        "client": -9,
+        "dev": 2
       }
     }
   },
@@ -548,19 +539,19 @@
     "kind": "normal",
     "speaker_name": "客先役員 権田",
     "speaker_icon": "icon_client_exec",
-    "message": "今度の週末、ゴルフに行こう。もちろん御社の持ちでね。",
+    "message": "週末はゴルフね。うちの部下5人も連れていくから、全員分よろしく。もちろん御社の持ちで。",
     "choice_left": {
-      "text": "喜んでお供する",
+      "text": "6人分まとめて払う",
       "effects": {
-        "cash": -10,
-        "client": 32
+        "cash": -19,
+        "client": 36
       }
     },
     "choice_right": {
-      "text": "丁重に断る",
+      "text": "割り勘を提案する",
       "effects": {
-        "client": -12,
-        "cash": 2
+        "client": -13,
+        "legal": 16
       }
     }
   },
@@ -573,17 +564,16 @@
     "choice_left": {
       "text": "かき集めて出す",
       "effects": {
-        "cash": 13,
-        "client": 22,
+        "cash": 14,
+        "client": 23,
         "dev": -17
       }
     },
     "choice_right": {
       "text": "今の体制を守る",
       "effects": {
-        "client": -10,
-        "dev": 6,
-        "cash": 1
+        "client": -9,
+        "dev": 6
       }
     }
   },
@@ -597,16 +587,14 @@
       "text": "黙って受ける",
       "effects": {
         "client": 6,
-        "dev": -14,
-        "cash": 2
+        "dev": -15
       }
     },
     "choice_right": {
       "text": "環境の改善を求める",
       "effects": {
-        "client": -12,
-        "dev": 10,
-        "cash": 2
+        "client": -11,
+        "dev": 10
       }
     }
   },
@@ -619,17 +607,16 @@
     "choice_left": {
       "text": "引き受ける",
       "effects": {
-        "cash": 5,
-        "client": 12,
+        "cash": 6,
+        "client": 13,
         "dev": -17
       }
     },
     "choice_right": {
       "text": "手当がなければ断る",
       "effects": {
-        "client": -12,
-        "dev": 4,
-        "cash": 1
+        "client": -11,
+        "dev": 4
       }
     }
   },
@@ -642,13 +629,14 @@
     "choice_left": {
       "text": "強気で行く",
       "effects": {
-        "cash": 18,
-        "client": -12
+        "cash": 19,
+        "client": -11
       }
     },
     "choice_right": {
       "text": "関係を優先する",
       "effects": {
+        "cash": -2,
         "client": 8
       }
     }
@@ -662,7 +650,7 @@
     "choice_left": {
       "text": "受けて人をかき集める",
       "effects": {
-        "cash": 21,
+        "cash": 22,
         "client": 6,
         "dev": -22
       }
@@ -670,8 +658,8 @@
     "choice_right": {
       "text": "身の丈で断る",
       "effects": {
-        "cash": -11,
-        "client": -6,
+        "cash": -10,
+        "client": -5,
         "dev": 6
       }
     }
@@ -685,14 +673,14 @@
     "choice_left": {
       "text": "借りられるだけ借りる",
       "effects": {
-        "cash": 24,
+        "cash": 25,
         "legal": -5
       }
     },
     "choice_right": {
       "text": "借りない",
       "effects": {
-        "cash": -3,
+        "cash": -2,
         "dev": 2
       }
     }
@@ -714,31 +702,30 @@
     "choice_right": {
       "text": "今のオフィスで我慢",
       "effects": {
-        "dev": -5,
-        "cash": 1
+        "dev": -5
       }
     }
   },
   {
     "id": "n_ai_tool",
     "kind": "normal",
-    "speaker_name": "新人 山田",
-    "speaker_icon": "icon_dev_junior",
-    "message": "AIの開発支援ツールを入れたら、作業が半分になりそうです！",
+    "speaker_name": "営業 爽やか佐藤",
+    "speaker_icon": "icon_sales",
+    "message": "AIツールで作業が半分になりました！ でも客先に「工数が半分なら、請求も半分ね」と言われちゃいました！",
     "choice_left": {
-      "text": "全員に導入する",
+      "text": "AIを封印して人月を守る",
       "effects": {
-        "cash": -10,
-        "dev": 12,
-        "legal": -5
+        "cash": 13,
+        "client": -4,
+        "dev": -15
       }
     },
     "choice_right": {
-      "text": "情報漏えいが怖いので禁止",
+      "text": "半額の請求を受け入れる",
       "effects": {
-        "dev": -10,
-        "legal": 16,
-        "cash": 2
+        "cash": -14,
+        "client": 13,
+        "dev": 8
       }
     }
   },
@@ -751,7 +738,7 @@
     "choice_left": {
       "text": "全項目きっちりやる",
       "effects": {
-        "cash": -4,
+        "cash": -3,
         "dev": -10,
         "legal": 40
       }
@@ -760,8 +747,7 @@
       "text": "最低限で済ませる",
       "effects": {
         "dev": 4,
-        "legal": -12,
-        "cash": 1
+        "legal": -12
       }
     }
   },
@@ -774,7 +760,7 @@
     "choice_left": {
       "text": "年4回やる",
       "effects": {
-        "cash": -3,
+        "cash": -2,
         "dev": -7,
         "legal": 40
       }
@@ -783,8 +769,7 @@
       "text": "動画を流すだけ",
       "effects": {
         "dev": 2,
-        "legal": -10,
-        "cash": 2
+        "legal": -10
       }
     }
   },
@@ -799,16 +784,14 @@
       "effects": {
         "client": -8,
         "dev": -7,
-        "legal": 40,
-        "cash": 1
+        "legal": 40
       }
     },
     "choice_right": {
       "text": "今の3人のまま",
       "effects": {
         "client": 2,
-        "legal": -7,
-        "cash": 1
+        "legal": -7
       }
     }
   },
@@ -821,7 +804,7 @@
     "choice_left": {
       "text": "認証を取る",
       "effects": {
-        "cash": -10,
+        "cash": -9,
         "client": 6,
         "dev": -5,
         "legal": 40
@@ -830,9 +813,8 @@
     "choice_right": {
       "text": "見送る",
       "effects": {
-        "client": -6,
-        "dev": 2,
-        "cash": 2
+        "client": -5,
+        "dev": 2
       }
     }
   },
@@ -841,21 +823,20 @@
     "kind": "normal",
     "speaker_name": "元請けPM 鬼塚",
     "speaker_icon": "icon_client_pm",
-    "message": "再委託の条項、今回の契約から変えておきました。読まなくても大丈夫です、いつものやつなので。",
+    "message": "発注書は来月まとめて出しますから、とりあえず来週から3人入れて作業を進めてください。いつもの信頼関係で！",
     "choice_left": {
-      "text": "弁護士に確認する",
+      "text": "発注書が出るまで待つ",
       "effects": {
-        "cash": -9,
+        "cash": -8,
         "client": -4,
         "legal": 40
       }
     },
     "choice_right": {
-      "text": "そのままサインする",
+      "text": "信じて3人を入れる",
       "effects": {
         "client": 8,
-        "legal": -12,
-        "cash": 1
+        "legal": -12
       }
     }
   },
@@ -868,7 +849,7 @@
     "choice_left": {
       "text": "職場を見直す",
       "effects": {
-        "cash": -10,
+        "cash": -9,
         "dev": 12
       }
     },
@@ -876,8 +857,7 @@
       "text": "削除依頼だけ出す",
       "effects": {
         "dev": -12,
-        "legal": -5,
-        "cash": 2
+        "legal": -5
       }
     }
   },
@@ -888,7 +868,7 @@
     "speaker_icon": "icon_dev_senior",
     "message": "他社から、今の倍の給料で来ないかと誘われています。",
     "choice_left": {
-      "text": "給料を上げて引き止める",
+      "text": "還元率を上げて引き止める",
       "effects": {
         "cash": -13,
         "dev": 14
@@ -897,9 +877,8 @@
     "choice_right": {
       "text": "引き止めない",
       "effects": {
-        "client": -12,
-        "dev": -14,
-        "cash": 1
+        "client": -11,
+        "dev": -15
       }
     }
   },
@@ -912,7 +891,7 @@
     "choice_left": {
       "text": "早めて払う",
       "effects": {
-        "cash": -15,
+        "cash": -14,
         "dev": 2,
         "legal": 16
       }
@@ -920,8 +899,8 @@
     "choice_right": {
       "text": "契約どおりで",
       "effects": {
-        "cash": 6,
-        "client": -6,
+        "cash": 7,
+        "client": -5,
         "legal": -10
       }
     }
@@ -935,7 +914,7 @@
     "choice_left": {
       "text": "2割下げる",
       "effects": {
-        "cash": 17,
+        "cash": 18,
         "client": -8,
         "legal": -7
       }
@@ -943,7 +922,7 @@
     "choice_right": {
       "text": "据え置く",
       "effects": {
-        "cash": -11,
+        "cash": -10,
         "legal": 10
       }
     }
@@ -957,17 +936,15 @@
     "choice_left": {
       "text": "夜通し対応する",
       "effects": {
-        "client": 15,
-        "dev": -19,
-        "cash": 2
+        "client": 16,
+        "dev": -20
       }
     },
     "choice_right": {
       "text": "原因の調査を先に",
       "effects": {
-        "client": -14,
-        "dev": 4,
-        "cash": 2
+        "client": -13,
+        "dev": 4
       }
     }
   },
@@ -980,17 +957,15 @@
     "choice_left": {
       "text": "従う",
       "effects": {
-        "client": 12,
-        "dev": -14,
-        "cash": 1
+        "client": 13,
+        "dev": -15
       }
     },
     "choice_right": {
       "text": "1日単位で交渉する",
       "effects": {
-        "client": -10,
-        "dev": 6,
-        "cash": 1
+        "client": -9,
+        "dev": 6
       }
     }
   },
@@ -1003,19 +978,17 @@
     "choice_left": {
       "text": "元請けに正式に抗議する",
       "effects": {
-        "client": -16,
+        "client": -15,
         "dev": 16,
-        "legal": 10,
-        "cash": 2
+        "legal": 10
       }
     },
     "choice_right": {
       "text": "見なかったことにする",
       "effects": {
         "client": 4,
-        "dev": -19,
-        "legal": -5,
-        "cash": 2
+        "dev": -20,
+        "legal": -5
       }
     }
   },
@@ -1028,17 +1001,15 @@
     "choice_left": {
       "text": "即レス体制を組む",
       "effects": {
-        "client": 15,
-        "dev": -17,
-        "cash": 1
+        "client": 16,
+        "dev": -17
       }
     },
     "choice_right": {
       "text": "対応時間を決める",
       "effects": {
-        "client": -12,
-        "dev": 8,
-        "cash": 1
+        "client": -11,
+        "dev": 8
       }
     }
   },
@@ -1049,16 +1020,16 @@
     "speaker_icon": "icon_sales",
     "message": "社長！今期の目標は売上倍増でいきましょう！根拠はありませんけど、気合いです！",
     "choice_left": {
-      "text": "倍増を掲げる",
+      "text": "無謀な案件をかき集める",
       "effects": {
-        "cash": 14,
-        "dev": -14
+        "cash": 15,
+        "dev": -15
       }
     },
     "choice_right": {
       "text": "現実的な目標にする",
       "effects": {
-        "cash": -3,
+        "cash": -2,
         "dev": 6
       }
     }
@@ -1072,16 +1043,23 @@
     "choice_left": {
       "text": "精算し直す",
       "effects": {
-        "cash": -11,
+        "cash": -10,
         "legal": 31
       }
     },
     "choice_right": {
       "text": "雑費で通す",
       "effects": {
-        "cash": 7,
+        "cash": 8,
         "legal": -12
-      }
+      },
+      "unethical": true,
+      "inject_card_id": "c_audit_visit",
+      "inject_delay": [
+        3,
+        8
+      ],
+      "regret_text": "社長のお車代を雑費で通した"
     }
   },
   {
@@ -1093,18 +1071,17 @@
     "choice_left": {
       "text": "快く送り出す",
       "effects": {
-        "cash": -10,
-        "client": 32,
+        "cash": -9,
+        "client": 34,
         "dev": -7
       }
     },
     "choice_right": {
       "text": "契約違反だと抗議する",
       "effects": {
-        "client": -14,
+        "client": -13,
         "dev": 4,
-        "legal": 10,
-        "cash": 2
+        "legal": 10
       }
     }
   },
@@ -1117,15 +1094,15 @@
     "choice_left": {
       "text": "払い続ける",
       "effects": {
-        "cash": -16,
+        "cash": -15,
         "dev": 8
       }
     },
     "choice_right": {
       "text": "止めろ",
       "effects": {
-        "cash": 7,
-        "client": -6,
+        "cash": 8,
+        "client": -5,
         "dev": -12
       }
     }
@@ -1139,7 +1116,7 @@
     "choice_left": {
       "text": "評価制度を作る",
       "effects": {
-        "cash": -10,
+        "cash": -9,
         "dev": 10,
         "legal": 16
       }
@@ -1147,8 +1124,7 @@
     "choice_right": {
       "text": "「そうだよ」",
       "effects": {
-        "dev": -19,
-        "cash": 2
+        "dev": -20
       }
     }
   },
@@ -1161,41 +1137,37 @@
     "choice_left": {
       "text": "徹夜で対応する",
       "effects": {
-        "client": 22,
-        "dev": -19,
-        "cash": 1
+        "client": 23,
+        "dev": -20
       }
     },
     "choice_right": {
       "text": "納期の延長を求める",
       "effects": {
-        "client": -14,
-        "dev": 4,
-        "cash": 1
+        "client": -13,
+        "dev": 4
       }
     }
   },
   {
     "id": "n_bureaucracy_form",
     "kind": "normal",
-    "speaker_name": "監査官 白石",
-    "speaker_icon": "icon_inspector",
-    "message": "今後、要員1人の配置につき、確認書類を12枚提出していただきます。",
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "事故防止のため、来週から要員1人の入場につき、誓約書や申請書など12枚の書類を出してください。",
     "choice_left": {
       "text": "完璧に揃える",
       "effects": {
-        "client": -6,
+        "client": -5,
         "dev": -7,
-        "legal": 40,
-        "cash": 2
+        "legal": 40
       }
     },
     "choice_right": {
       "text": "出せる分だけ出す",
       "effects": {
         "dev": 4,
-        "legal": -12,
-        "cash": 2
+        "legal": -12
       }
     }
   }

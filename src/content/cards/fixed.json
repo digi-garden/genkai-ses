@@ -10,7 +10,7 @@
       "text": "全員すぐ現場へ",
       "effects": {
         "cash": 22,
-        "client": -7,
+        "client": -6,
         "dev": -24
       }
     },
@@ -64,7 +64,7 @@
     "choice_right": {
       "text": "丁重に断る",
       "effects": {
-        "client": -22,
+        "client": -20,
         "dev": 6
       }
     }
@@ -88,7 +88,7 @@
       "text": "納期延期を交渉",
       "effects": {
         "cash": -12,
-        "client": -20
+        "client": -18
       }
     }
   }

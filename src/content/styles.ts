@@ -26,11 +26,11 @@ export const styles: Record<StyleId, StyleDef> = {
     description: { web: '商流の深さで稼ぐ。お金は入りやすいが、コンプラの傷は深い。' },
     passives: [
       { param: 'cash', direction: 'gain', factor: 1.3 },
-      { param: 'legal', direction: 'loss', factor: 1.1 },
+      { param: 'legal', direction: 'loss', factor: 1.2 },
     ],
     trump: {
       name: { web: '多重商流ブースト' },
-      effects: { cash: 50, client: 0, dev: 0, legal: -20 },
+      effects: { cash: 50, client: 0, dev: 0, legal: -25 },
       inject: {
         cardId: AUDIT_CHAIN_CARD_ID,
         delay: [3, 8],
