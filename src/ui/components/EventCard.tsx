@@ -1,11 +1,13 @@
 import { animate, m, useMotionValue, useTransform, type PanInfo } from 'motion/react';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { EventCard as Card } from '../../content/schema';
 import type { Side } from '../../core';
 import { iconUrl } from '../assets';
 
 const THRESHOLD = 80;
-const VELOCITY = 500;
+/** 素早く払ったとみなす速さ（px/秒）と、そのときに必要な最小の移動量。軽すぎる・誤操作の指摘（2026-11-14）で 500 → 900、最小移動量 40px を追加 */
+const VELOCITY = 900;
+const FLICK_MIN = 40;
 
 interface Props {
   card: Card;
@@ -26,6 +28,21 @@ export function EventCard({ card, isChain, isTutorial, reducedMotion, disabled, 
   const rightOpacity = useTransform(x, [0, 30, THRESHOLD], [0, 0, 1]);
   const lean = useRef<Side | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  // 本文がはみ出していて、まだ下まで読んでいないときだけ、下端をぼかす（02 の 6.2）
+  const [fade, setFade] = useState(false);
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const update = () => setFade(el.scrollHeight - el.clientHeight - el.scrollTop > 1);
+    update();
+    el.addEventListener('scroll', update, { passive: true });
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener('scroll', update);
+      ro.disconnect();
+    };
+  }, [card.id]);
 
   const setLean = (s: Side | null) => {
     if (lean.current !== s) {
@@ -43,8 +60,8 @@ export function EventCard({ card, isChain, isTutorial, reducedMotion, disabled, 
     const dx = info.offset.x;
     const vx = info.velocity.x;
     setLean(null);
-    if (dx <= -THRESHOLD || vx <= -VELOCITY) onDecide('left');
-    else if (dx >= THRESHOLD || vx >= VELOCITY) onDecide('right');
+    if (dx <= -THRESHOLD || (vx <= -VELOCITY && dx <= -FLICK_MIN)) onDecide('left');
+    else if (dx >= THRESHOLD || (vx >= VELOCITY && dx >= FLICK_MIN)) onDecide('right');
     else void animate(x, 0, { type: 'spring', stiffness: 500, damping: 35 });
   };
 
@@ -54,7 +71,7 @@ export function EventCard({ card, isChain, isTutorial, reducedMotion, disabled, 
       aria-labelledby="card-speaker"
       drag={disabled ? false : 'x'}
       dragSnapToOrigin={false}
-      dragElastic={0.9}
+      dragElastic={0.6}
       dragMomentum={false}
       onDrag={onDrag}
       onDragEnd={onDragEnd}
@@ -75,7 +92,7 @@ export function EventCard({ card, isChain, isTutorial, reducedMotion, disabled, 
         <img src={iconUrl(card.speaker_icon)} alt="" width={64} height={64} draggable={false} className="pixelated h-16 w-16 shrink-0 rounded-md bg-surface" />
         <p id="card-speaker" className="truncate text-[13px] font-bold">{card.speaker_name}</p>
       </div>
-      <div ref={scrollRef} className="card-body mt-3.5 min-h-0 overflow-y-auto">
+      <div ref={scrollRef} className={`mt-3.5 min-h-0 overflow-y-auto ${fade ? 'card-body-fade' : ''}`}>
         <p className="text-[17px] leading-[1.7] [overflow-wrap:anywhere] md:text-[18px]">{card.message}</p>
         {isTutorial && (
           <p className="mt-3 rounded-[10px] border border-dashed border-border-strong px-3 py-2 text-[12px] text-text-muted">

@@ -82,7 +82,8 @@ body {
 }
 
 /* 本文がスクロールできることを、下端のぼかしで示す */
-.card-body {
+/* はみ出しているときだけ付ける */
+.card-body-fade {
   mask-image: linear-gradient(to bottom, black calc(100% - 16px), transparent);
 }
 
