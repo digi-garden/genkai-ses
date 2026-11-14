@@ -84,3 +84,22 @@ test('カードを左へドラッグして選べる', async ({ page }) => {
   await page.mouse.up();
   await expect(page.getByTestId('week')).toHaveText('Week 2/52');
 });
+
+test('選んだ直後に、動いたゲージに増減の矢印が出て、しばらくすると消える（R17）', async ({ page }) => {
+  await startRun(page);
+  await page.getByRole('button', { name: /^← / }).click(); // 導入カード「任せておけ」は資金が増える
+  const delta = page.locator('[data-testid^="delta-"]').first();
+  await expect(delta).toBeVisible();
+  await expect(page.getByTestId('delta-cash')).toHaveAttribute('data-dir', 'up');
+  await expect(delta).toBeHidden({ timeout: 2000 });
+});
+
+test('リザルトに4つのゲージの最終的な量が出る（R18）', async ({ page }) => {
+  await startRun(page);
+  for (let i = 0; i < 60; i++) {
+    if (await page.getByTestId('report').isVisible().catch(() => false)) break;
+    await page.keyboard.press('ArrowRight');
+    await page.waitForTimeout(320);
+  }
+  await expect(page.getByTestId('final-gauges').getByRole('meter')).toHaveCount(4);
+});

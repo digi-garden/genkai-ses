@@ -8,7 +8,7 @@ import { endingUrl } from '../assets';
 import { Button } from '../components/Button';
 import { formatSales } from '../format';
 
-const LABEL = { cash: '資金', client: '顧客満足', dev: '現場メンタル', legal: 'コンプラ' } as const;
+const LABEL = { cash: '資金', client: '顧客', dev: '現場', legal: 'コンプラ' } as const;
 
 /** S05 リザルト（Phase 1-B の手順1：報告書と次の行動。シェアと画像化は手順5） */
 export function ResultScreen({
@@ -68,27 +68,36 @@ export function ResultScreen({
         <p className="mt-3 text-[12px] text-text-subtle">※会社名は架空です。</p>
       </section>
 
-      {!clear && def.param && (
-        <section aria-label="倒産の原因" className="grid grid-cols-4 gap-2 text-center text-[12px]">
-          {PARAMS.map((p) => {
-            const hit = p === def.param;
-            return (
-              <div key={p} className={`rounded-md border p-2 ${hit ? 'border-danger text-danger-text' : 'border-border text-text-subtle'}`}>
-                <p className="font-bold">{LABEL[p]}</p>
-                {hit ? (
-                  <p className="mt-1 flex items-center justify-center gap-0.5 text-[15px] font-bold">
-                    {def.direction === 'zero' ? <ArrowDown className="h-4 w-4" aria-hidden /> : <ArrowUp className="h-4 w-4" aria-hidden />}
-                    {def.direction === 'zero' ? '0' : '100'}
-                    <span className="sr-only">{def.direction === 'zero' ? 'に落ちた' : 'を振り切った'}</span>
-                  </p>
-                ) : (
-                  <p className="mt-1">―</p>
-                )}
+      <section aria-label="最終的な会社の状態" className="grid grid-cols-4 gap-2 text-center text-[12px]" data-testid="final-gauges">
+        {PARAMS.map((p) => {
+          const v = state.parameters[p];
+          const hit = !clear && p === def.param;
+          return (
+            <div key={p} className={`flex flex-col items-center gap-1 rounded-md border p-2 ${hit ? 'border-danger text-danger-text' : 'border-border text-text-muted'}`}>
+              <p className="font-bold">{LABEL[p]}</p>
+              <div
+                role="meter"
+                aria-label={LABEL[p]}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={v}
+                className="relative h-14 w-6 overflow-hidden rounded-sm border border-border-strong bg-bg"
+              >
+                <div className={`absolute inset-x-0 bottom-0 ${hit ? 'bg-danger' : 'bg-primary/60'}`} style={{ height: `${v}%` }} />
               </div>
-            );
-          })}
-        </section>
-      )}
+              {hit ? (
+                <p className="flex items-center gap-0.5 text-[15px] font-bold">
+                  {def.direction === 'zero' ? <ArrowDown className="h-4 w-4" aria-hidden /> : <ArrowUp className="h-4 w-4" aria-hidden />}
+                  {def.direction === 'zero' ? '0' : '100'}
+                  <span className="sr-only">{def.direction === 'zero' ? 'に落ちた' : 'を振り切った'}</span>
+                </p>
+              ) : (
+                <p className="text-[15px]">&nbsp;</p>
+              )}
+            </div>
+          );
+        })}
+      </section>
 
       <div className="flex flex-col gap-3">
         <Button onClick={onRetry}>もう1期挑む</Button>

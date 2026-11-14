@@ -1,14 +1,16 @@
-import { Banknote, Handshake, Scale, Users, type LucideIcon } from 'lucide-react';
+import { ArrowDown, ArrowUp, Banknote, ChevronsDown, ChevronsUp, Handshake, Scale, Users, type LucideIcon } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import type { ChoiceEffect, Param } from '../../content/types';
 import type { Hint } from '../../core';
 
-const META: Record<Param, { label: string; Icon: LucideIcon }> = {
+export const GAUGE_META: Record<Param, { label: string; Icon: LucideIcon }> = {
   cash: { label: '資金', Icon: Banknote },
   client: { label: '顧客', Icon: Handshake },
   dev: { label: '現場', Icon: Users },
   legal: { label: 'コンプラ', Icon: Scale },
 };
-const ORDER: readonly Param[] = ['cash', 'client', 'dev', 'legal'];
+export const GAUGE_ORDER: readonly Param[] = ['cash', 'client', 'dev', 'legal'];
+const DELTA_MS = 700;
 
 function valueText(v: number): string {
   if (v <= 15) return '危険なほど低い';
@@ -18,25 +20,58 @@ function valueText(v: number): string {
   return '危険なほど高い';
 }
 
-/** 4つのゲージ（docs/design/03_ui_design_spec.md 5.3）。数値は出さない */
+function DeltaArrow({ d }: { d: number }) {
+  const big = Math.abs(d) >= 10;
+  const Icon = d > 0 ? (big ? ChevronsUp : ArrowUp) : big ? ChevronsDown : ArrowDown;
+  return <Icon className="h-4 w-4 text-text" aria-hidden strokeWidth={3} />;
+}
+
+/**
+ * 4つのゲージ（docs/design/03_ui_design_spec.md 5.3）。数値は出さない。
+ * 選ぶ前は予兆ドット（大小）、選んだ直後は増減の矢印（R17）をアイコンの上に出す。
+ */
 export function Gauges({ params, hints }: { params: ChoiceEffect; hints?: Record<Param, Hint> | undefined }) {
+  const prev = useRef(params);
+  const [deltas, setDeltas] = useState<Partial<ChoiceEffect>>({});
+
+  useEffect(() => {
+    const before = prev.current;
+    prev.current = params;
+    const d: Partial<ChoiceEffect> = {};
+    for (const p of GAUGE_ORDER) if (params[p] !== before[p]) d[p] = params[p] - before[p];
+    if (Object.keys(d).length === 0) return;
+    const t0 = window.setTimeout(() => setDeltas(d), 0);
+    const t1 = window.setTimeout(() => setDeltas({}), DELTA_MS);
+    return () => {
+      window.clearTimeout(t0);
+      window.clearTimeout(t1);
+    };
+  }, [params]);
+
   return (
     <div className="grid grid-cols-4 gap-2" role="group" aria-label="会社の状態">
-      {ORDER.map((p) => {
+      {GAUGE_ORDER.map((p) => {
         const v = params[p];
         const danger = v <= 15 || v >= 85;
-        const { label, Icon } = META[p];
+        const { label, Icon } = GAUGE_META[p];
         const hint = hints?.[p] ?? 'none';
+        const delta = deltas[p];
         return (
           <div key={p} className="flex flex-col items-center gap-1">
-            <div className="relative h-3 w-full">
-              {hint !== 'none' && (
-                <span
-                  aria-hidden
-                  data-testid={`hint-${p}`}
-                  data-size={hint}
-                  className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-text transition-opacity duration-100 ${hint === 'large' ? 'h-2.5 w-2.5' : 'h-1.5 w-1.5'}`}
-                />
+            <div className="relative flex h-4 w-full items-center justify-center">
+              {delta !== undefined ? (
+                <span data-testid={`delta-${p}`} data-dir={delta > 0 ? 'up' : 'down'}>
+                  <DeltaArrow d={delta} />
+                </span>
+              ) : (
+                hint !== 'none' && (
+                  <span
+                    aria-hidden
+                    data-testid={`hint-${p}`}
+                    data-size={hint}
+                    className={`rounded-full bg-text ${hint === 'large' ? 'h-2.5 w-2.5' : 'h-1.5 w-1.5'}`}
+                  />
+                )
               )}
             </div>
             <div
