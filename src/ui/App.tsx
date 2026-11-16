@@ -1,36 +1,64 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Content } from '../content';
-import { DEFAULT_COMPANY_NAME } from '../core/companyName';
 import type { StyleId } from '../content/types';
-import { step, type Action, type GameEvent, type RuntimeGameState } from '../core';
+import { step, survivedWeeks, type Action, type GameEvent, type RuntimeGameState } from '../core';
+import { DEFAULT_COMPANY_NAME } from '../core/companyName';
+import type { Clock, Random, SaveRepository, SessionRepository } from '../core/ports';
+import { addSeen, onRunEnded, onRunStarted, type SaveData } from '../core/progress';
+import { HowToModal } from './screens/HowToModal';
 import { NameScreen } from './screens/NameScreen';
 import { PlayScreen } from './screens/PlayScreen';
-import { ResultScreen } from './screens/ResultScreen';
+import { ResultScreen, type ResultNews } from './screens/ResultScreen';
 import { StyleScreen } from './screens/StyleScreen';
+import { TermsModal } from './screens/TermsModal';
 import { TitleScreen } from './screens/TitleScreen';
+import { ZukanModal } from './screens/ZukanModal';
 
 type Screen = 'title' | 'name' | 'style' | 'play' | 'result';
+type ModalId = 'zukan' | 'howto' | 'terms' | null;
 type EndEvent = Extract<GameEvent, { type: 'gameOver' | 'gameClear' }>;
 
 export interface AppPorts {
-  newSeed: () => number;
-  now: () => string;
+  random: Random;
+  clock: Clock;
+  saves: SaveRepository;
+  sessions: SessionRepository;
 }
 
 /**
- * 画面の切り替えとランの状態（Phase 1-B の手順1）。
- * 保存（SaveData・途中データ）は手順3、計測は手順4で、ポートとして足す。
+ * 画面の切り替え、ランの状態、記録の保存（02 の 2章、05 の 5・6章）
  */
 export function App({ content, ports }: { content: Content; ports: AppPorts }) {
+  const { random, clock, saves, sessions } = ports;
+  const [save, setSave] = useState<SaveData>(() => saves.load());
+  const saveRef = useRef(save);
+  const [resumable, setResumable] = useState<RuntimeGameState | null>(() => sessions.load());
   const [screen, setScreen] = useState<Screen>('title');
-  const [companyName, setCompanyName] = useState('');
+  const [modal, setModal] = useState<ModalId>(null);
+  const [companyName, setCompanyName] = useState(save.last_company_name);
   const [styleId, setStyleId] = useState<StyleId>('taiikukai');
   const [run, setRun] = useState<RuntimeGameState | null>(null);
-  const [lastEnd, setLastEnd] = useState<EndEvent | undefined>();
-  const [playCount, setPlayCount] = useState(0);
-  const [seen, setSeen] = useState<string[]>([]);
-
   const runRef = useRef<RuntimeGameState | null>(null);
+  const [lastEnd, setLastEnd] = useState<EndEvent | undefined>();
+  const [news, setNews] = useState<ResultNews | undefined>();
+
+  const updateSave = useCallback(
+    (next: SaveData, persist: boolean) => {
+      saveRef.current = next;
+      setSave(next);
+      if (persist) saves.save(next);
+    },
+    [saves],
+  );
+
+  // ページが隠れたら、メモリ上の既読カードなどをまとめて保存する（05 の 5.2）
+  useEffect(() => {
+    const onHide = () => {
+      if (document.visibilityState === 'hidden') saves.save(saveRef.current);
+    };
+    document.addEventListener('visibilitychange', onHide);
+    return () => document.removeEventListener('visibilitychange', onHide);
+  }, [saves]);
 
   const dispatch = useCallback(
     (action: Action) => {
@@ -38,38 +66,96 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
       if (state === runRef.current) return;
       runRef.current = state;
       setRun(state);
-      const shown = events.flatMap((e) => (e.type === 'cardShown' ? [e.cardId] : []));
-      if (shown.length) setSeen((s) => [...new Set([...s, ...shown])]);
-      const end = events.find((e): e is EndEvent => e.type === 'gameOver' || e.type === 'gameClear');
-      if (end) setLastEnd(end);
+
+      let s = saveRef.current;
+      let persist = false;
+      for (const e of events) {
+        if (e.type === 'runStarted') {
+          s = onRunStarted(s, state.companyName, clock.now());
+          persist = true;
+        } else if (e.type === 'cardShown') {
+          s = addSeen(s, [e.cardId]);
+        } else if (e.type === 'gameOver' || e.type === 'gameClear') {
+          const ending = state.ending ?? 'clear';
+          const r = onRunEnded(s, { ending, survivedWeeks: survivedWeeks(state, ending), sales: e.sales, achievements: e.achievements });
+          setNews({ newRecord: r.newRecord, newEnding: r.newEnding, newAchievements: r.newAchievements });
+          s = r.save;
+          persist = true;
+          setLastEnd(e);
+        }
+      }
+      if (s !== saveRef.current || persist) updateSave(s, persist);
+
+      if (state.ending === undefined) sessions.save(state);
+      else sessions.clear();
     },
-    [content],
+    [clock, content, sessions, updateSave],
   );
 
   const start = (style: StyleId) => {
     setStyleId(style);
     setLastEnd(undefined);
+    setNews(undefined);
+    setResumable(null);
+    sessions.clear();
     runRef.current = null;
     dispatch({
       type: 'start',
       styleId: style,
       companyName: companyName || DEFAULT_COMPANY_NAME,
-      isFirstPlay: playCount === 0,
-      seenCardIds: seen,
-      seed: ports.newSeed(),
-      now: ports.now(),
+      isFirstPlay: saveRef.current.play_count === 0,
+      seenCardIds: saveRef.current.seen_card_ids,
+      seed: random.newSeed(),
+      now: clock.now(),
     });
-    setPlayCount((n) => n + 1);
     setScreen('play');
+  };
+
+  const resume = () => {
+    if (!resumable) return;
+    runRef.current = resumable;
+    setRun(resumable);
+    setStyleId(resumable.styleId);
+    setCompanyName(resumable.companyName);
+    setLastEnd(undefined);
+    setNews(undefined);
+    setResumable(null);
+    setScreen('play');
+  };
+
+  const toTitle = () => {
+    setResumable(sessions.load());
+    setScreen('title');
   };
 
   const onFinished = useCallback(() => setScreen('result'), []);
 
+  const modalEl =
+    modal === 'zukan' ? (
+      <ZukanModal save={save} onClose={() => setModal(null)} />
+    ) : modal === 'howto' ? (
+      <HowToModal onClose={() => setModal(null)} />
+    ) : modal === 'terms' ? (
+      <TermsModal onClose={() => setModal(null)} />
+    ) : null;
+
+  let body: React.ReactNode = null;
   switch (screen) {
     case 'title':
-      return <TitleScreen onStart={() => setScreen('name')} onResume={() => setScreen('play')} />;
+      body = (
+        <TitleScreen
+          resumeWeek={resumable?.currentWeek}
+          persistent={saves.persistent}
+          onStart={() => setScreen('name')}
+          onResume={resume}
+          onZukan={() => setModal('zukan')}
+          onHowTo={() => setModal('howto')}
+          onTerms={() => setModal('terms')}
+        />
+      );
+      break;
     case 'name':
-      return (
+      body = (
         <NameScreen
           initial={companyName}
           onNext={(n) => {
@@ -78,13 +164,23 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
           }}
         />
       );
+      break;
     case 'style':
-      return <StyleScreen content={content} initial={styleId} onBack={() => setScreen('name')} onStart={start} />;
+      body = <StyleScreen content={content} initial={styleId} onBack={() => setScreen('name')} onStart={start} />;
+      break;
     case 'play':
-      return run ? <PlayScreen state={run} content={content} dispatch={dispatch} onFinished={onFinished} /> : null;
+      body = run ? <PlayScreen state={run} content={content} dispatch={dispatch} onFinished={onFinished} /> : null;
+      break;
     case 'result':
-      return run ? (
-        <ResultScreen state={run} last={lastEnd} content={content} onRetry={() => setScreen('name')} onTitle={() => setScreen('title')} />
+      body = run ? (
+        <ResultScreen state={run} last={lastEnd} news={news} content={content} onRetry={() => setScreen('name')} onTitle={toTitle} onZukan={() => setModal('zukan')} />
       ) : null;
+      break;
   }
+  return (
+    <>
+      {body}
+      {modalEl}
+    </>
+  );
 }
