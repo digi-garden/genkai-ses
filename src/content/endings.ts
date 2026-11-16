@@ -25,7 +25,7 @@ export const endings: Record<EndingId, EndingDef> = {
   cash_max: {
     id: 'cash_max', param: 'cash', direction: 'max', slug: 'cash-max',
     title: { web: '敵対的買収エンド' },
-    subtitle: { web: '貯め込んだ現金に目を付けられ、役員会で社長の席が消えた。' },
+    subtitle: { web: '貯め込んだ現金に目を付けられ、役員会の採決で社長は会議室から運び出された。' },
     selfComment: { web: 'お金を貯めすぎて会社ごと持っていかれました。' },
   },
   client_zero: {
@@ -43,7 +43,7 @@ export const endings: Record<EndingId, EndingDef> = {
   dev_zero: {
     id: 'dev_zero', param: 'dev', direction: 'zero', slug: 'dev-zero',
     title: { web: '全員蒸発エンド' },
-    subtitle: { web: '月曜の朝、誰も来なかった。そこまで追い込んだのは社長だった。' },
+    subtitle: { web: '誰もいない夜のオフィスに、退職の連絡だけが届き続ける。追い込んだのは社長だった。' },
     selfComment: { web: '全員辞めました。悪いのは全部、社長です。' },
   },
   dev_max: {
