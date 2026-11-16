@@ -3,6 +3,7 @@
  * validate-cards（CLI）とシミュレータの両方から使う。
  */
 import { CardSchema, type EventCard } from '../../src/content/schema';
+import { normalizeForMatch } from '../../src/core/companyName';
 import { NG_COMPANY_NAMES } from '../../src/content/ng_company_names';
 import { NG_EXPRESSION_TERMS } from '../../src/content/ng_terms';
 import { FIXED_WEEKS, PARAMS, STYLE_IDS, type StyleDef, type StyleId } from '../../src/content/types';
@@ -28,13 +29,7 @@ export interface ValidationResult {
   chars: string;
 }
 
-/** 照合のための正規化：NFKC、小文字、空白・中黒・記号の除去 */
-export function normalizeForMatch(s: string): string {
-  return s
-    .normalize('NFKC')
-    .toLowerCase()
-    .replace(/[\s・･\-‐_.()（）]/g, '');
-}
+export { normalizeForMatch };
 
 function textsOf(c: EventCard): string[] {
   const out = [c.speaker_name, c.message, c.message_store_safe];

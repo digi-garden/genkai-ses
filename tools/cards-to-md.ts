@@ -5,6 +5,8 @@
 import { writeFileSync } from 'node:fs';
 import type { Choice, EventCard } from '../src/content/schema';
 import { styles } from '../src/content/styles';
+import { endings } from '../src/content/endings';
+import { achievements } from '../src/content/achievements';
 import { PARAMS } from '../src/content/types';
 import { loadCardFiles } from './lib/load-cards';
 import { validateCards } from './lib/validate-cards';
@@ -63,12 +65,35 @@ const body = sections
   })
   .join('\n');
 
+const endingRows = Object.values(endings)
+  .map((e) => `| \`${e.id}\` | ${e.title.web} | ${e.subtitle.web} | ${e.selfComment.web} |`)
+  .join('\n');
+const achievementRows = achievements.map((a) => `| ${a.name.web} | ${a.description.web} |`).join('\n');
+const extra = `
+## 結末の文言（${Object.keys(endings).length}種）
+
+> \`src/content/endings.ts\`。一言はリザルトでタイトルの下に出る。自虐コメントは、敗因がないときにシェア文の3行目に入る。一枚絵の場面は \`docs/assets/asset_prompts_v2.md\` ④と合わせる。
+
+| ID | タイトル | 一言（リザルト） | 自虐コメント（シェア文） |
+|---|---|---|---|
+${endingRows}
+
+## 称号（${achievements.length}種）
+
+> \`src/content/achievements.ts\`。条件の数値は \`src/content/balance.ts\` から入る。
+
+| 名前 | 条件（図鑑の説明） |
+|---|---|
+${achievementRows}
+`;
+
 const md = `# カード一覧（自動生成）
 
 > \`npm run cards:md\` で \`src/content/cards/*.json\` から作る。直接編集しない（JSON を直す）。
 > 数値はゲージ（0〜100、初期値 50）への増減。スタイルのパッシブ倍率を掛ける前の値。どちらかが 0 か 100 に達すると倒産。
 > 計 ${cards.length} 枚。話者：${[...new Set(cards.map((c) => c.speaker_name))].join('、')}
 
-${body}`;
+${body}
+${extra}`;
 writeFileSync(out, md);
 console.log(`${out} に ${cards.length} 枚を書き出した（参照の確認：${byId.size} 件）`);
