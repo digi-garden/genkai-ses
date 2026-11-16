@@ -103,3 +103,22 @@ test('リザルトに4つのゲージの最終的な量が出る（R18）', asyn
   }
   await expect(page.getByTestId('final-gauges').getByRole('meter')).toHaveCount(4);
 });
+
+test('リザルトの［Xでポスト］で、シェア文と結末ページの URL を入れた X の投稿画面が開き、計測が送られる', async ({ page, context }) => {
+  await context.route('https://x.com/**', (r) => r.fulfill({ status: 200, body: 'x' }));
+  const logs: string[] = [];
+  page.on('console', (m) => logs.push(m.text()));
+  await startRun(page, 'シェア工業');
+  for (let i = 0; i < 70; i++) {
+    if (await page.getByTestId('report').isVisible().catch(() => false)) break;
+    await page.keyboard.press('ArrowRight');
+    await page.waitForTimeout(300);
+  }
+  const [popup] = await Promise.all([context.waitForEvent('page'), page.getByRole('button', { name: 'Xでポスト' }).click()]);
+  const url = new URL(popup.url());
+  expect(url.origin + url.pathname).toBe('https://x.com/intent/tweet');
+  expect(url.searchParams.get('text')).toContain('シェア工業は、');
+  expect(url.searchParams.get('text')).toContain('#限界SES社長');
+  expect(url.searchParams.get('url')).toMatch(/^https:\/\/promptlab-games\.com\/genkai-ses\/results\/[a-z-]+\?utm_source=x&utm_medium=share$/);
+  expect(logs.some((l) => l.includes('share_intent_success'))).toBe(true);
+});

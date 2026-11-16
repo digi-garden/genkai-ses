@@ -7,6 +7,7 @@ import { gameContent } from '../content/game';
 import { needsConsent } from '../core/analytics';
 import { createAnalytics, createConsentRepository, ensureCfBeacon } from '../infra/analytics';
 import { createSaveRepository, createSessionRepository } from '../infra/storage';
+import { createShareService } from '../infra/share';
 import { App, type AppPorts } from '../ui/App';
 import { normalizeEntryPath } from './entryPath';
 
@@ -38,6 +39,11 @@ const ports: AppPorts = {
   analytics,
   consent,
   enableAnalytics: () => analytics.enable(),
+  share: createShareService(window),
+  site: {
+    origin: import.meta.env.VITE_SITE_ORIGIN || 'https://promptlab-games.com',
+    base: import.meta.env.VITE_PUBLIC_BASE ?? '/genkai-ses',
+  },
 };
 
 createRoot(root).render(
