@@ -40,8 +40,8 @@ export function ResultScreen({
           {clear ? '決算通知書' : '倒産報告書'}
         </p>
         <img src={endingUrl(ending)} alt={def.subtitle.web} className="pixelated mt-3 aspect-video w-full rounded-md" />
-        <h1 className="mt-3 text-center text-[24px] font-bold">{def.title.web}</h1>
-        <p className="mt-1 text-center text-[13px] text-text-muted">{def.subtitle.web}</p>
+        <h1 className="jp-balance mt-3 text-center text-[24px] font-bold">{def.title.web}</h1>
+        <p className="jp-balance mt-1 text-center text-[13px] text-text-muted">{def.subtitle.web}</p>
         <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-[15px]">
           <dt className="text-text-muted">会社名</dt>
           <dd className="[overflow-wrap:anywhere]">{state.companyName}</dd>
@@ -61,7 +61,7 @@ export function ResultScreen({
           )}
         </dl>
         {regret && (
-          <p className="mt-3 rounded-md border border-accent px-3 py-2 text-[13px] text-accent">
+          <p className="jp-pretty mt-3 rounded-md border border-accent px-3 py-2 text-[13px] text-accent">
             敗因：第{regret.week}週「{regret.regretText.web}」
           </p>
         )}

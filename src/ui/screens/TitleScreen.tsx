@@ -24,7 +24,7 @@ export function TitleScreen({ resumeWeek, onStart, onResume }: Props) {
           </Button>
         )}
       </div>
-      <p className="max-w-[360px] text-[12px] leading-relaxed text-text-subtle">
+      <p className="jp-balance max-w-[360px] text-[12px] leading-relaxed text-text-subtle">
         このゲームはフィクションです。登場する人物・団体・会社名は架空のもので、実在のものとは関係ありません。
       </p>
     </main>

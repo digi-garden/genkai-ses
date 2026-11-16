@@ -50,7 +50,7 @@ export function StyleScreen({ content, initial, onBack, onStart }: { content: Co
               className={`rounded-2xl border-2 bg-card p-4 text-left ${on ? 'border-primary' : 'border-border'}`}
             >
               <p className="text-[17px] font-bold">{s.name.web}</p>
-              <p className="mt-1 text-[15px] text-text-muted">{s.description.web}</p>
+              <p className="jp-pretty mt-1 text-[15px] text-text-muted">{s.description.web}</p>
               <p className="mt-2 text-[13px]">特性：{s.passives.map(passiveText).join('／')}</p>
               <p className="mt-1 text-[13px] text-accent">
                 切り札「{s.trump.name.web}」：{trumpText(s.trump.effects)}

@@ -96,3 +96,18 @@ body {
     border-width: 3px;
   }
 }
+
+/*
+ * 日本語の改行（2026-11-16、実機確認の指摘）
+ * - jp-balance：短い文（見出し・結末の一言）。行の長さをそろえ、1〜2文字だけの行を作らない
+ * - jp-pretty：長い文（カード本文・説明）。最後の行が1〜2文字だけになるのを避ける
+ * auto-phrase は、文節の途中で改行しない指定（対応ブラウザだけで効き、未対応でも表示は壊れない）
+ */
+.jp-balance {
+  text-wrap: balance;
+  word-break: auto-phrase;
+}
+.jp-pretty {
+  text-wrap: pretty;
+  word-break: auto-phrase;
+}

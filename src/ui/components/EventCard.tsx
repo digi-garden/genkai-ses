@@ -93,7 +93,7 @@ export function EventCard({ card, isChain, isTutorial, reducedMotion, disabled, 
         <p id="card-speaker" className="truncate text-[13px] font-bold">{card.speaker_name}</p>
       </div>
       <div ref={scrollRef} className={`mt-3.5 min-h-0 overflow-y-auto ${fade ? 'card-body-fade' : ''}`}>
-        <p className="text-[17px] leading-[1.7] [overflow-wrap:anywhere] md:text-[18px]">{card.message}</p>
+        <p className="jp-pretty text-[17px] leading-[1.7] [overflow-wrap:anywhere] md:text-[18px]">{card.message}</p>
         {isTutorial && (
           <p className="mt-3 rounded-[10px] border border-dashed border-border-strong px-3 py-2 text-[12px] text-text-muted">
             カードを左右にスワイプ、または下のボタンで選びます。PC では ← / → キーでも選べます。
