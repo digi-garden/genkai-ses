@@ -38,3 +38,8 @@ export interface ConsentRepository {
   get(): ConsentChoice | null;
   set(choice: ConsentChoice): void;
 }
+
+export interface ShareService {
+  /** X の投稿画面を開く（新しいタブ。ブロックされたら同じタブ） */
+  openXIntent(text: string, url: string): void;
+}

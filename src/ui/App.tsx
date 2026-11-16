@@ -3,7 +3,11 @@ import type { Content } from '../content';
 import type { StyleId } from '../content/types';
 import { step, survivedWeeks, type Action, type GameEvent, type RuntimeGameState } from '../core';
 import { DEFAULT_COMPANY_NAME } from '../core/companyName';
-import type { AnalyticsPort, Clock, ConsentRepository, Random, SaveRepository, SessionRepository } from '../core/ports';
+import type { AnalyticsPort, Clock, ConsentRepository, Random, SaveRepository, SessionRepository, ShareService } from '../core/ports';
+import { buildShareText, shareUrl } from '../core/share';
+import { achievementById } from '../content/achievements';
+import { endings } from '../content/endings';
+import { formatSales } from './format';
 import { commonParams, toAnalyticsEvents } from '../core/analytics';
 import { ConsentBanner } from './components/ConsentBanner';
 import { useVisibleTimer } from './hooks/useVisibleTimer';
@@ -30,13 +34,16 @@ export interface AppPorts {
   consent: ConsentRepository;
   /** 同意が得られたときに計測を読み込む */
   enableAnalytics: () => void;
+  share: ShareService;
+  /** 結末ページの URL の組み立てに使う（VITE_SITE_ORIGIN、VITE_PUBLIC_BASE） */
+  site: { origin: string; base: string };
 }
 
 /**
  * 画面の切り替え、ランの状態、記録の保存（02 の 2章、05 の 5・6章）
  */
 export function App({ content, ports }: { content: Content; ports: AppPorts }) {
-  const { random, clock, saves, sessions, analytics, consent, enableAnalytics } = ports;
+  const { random, clock, saves, sessions, analytics, consent, enableAnalytics, share, site } = ports;
   const [showConsent, setShowConsent] = useState(() => consent.required && consent.get() === null);
   const runsInPage = useRef(0);
   const droppedRun = useRef<string | null>(null);
@@ -234,6 +241,21 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
           }}
           onTitle={toTitle}
           onZukan={() => setModal('zukan')}
+          onShareX={() => {
+            const ending = run.ending ?? 'clear';
+            const def = endings[ending];
+            const top = lastEnd?.achievements[0];
+            const { text } = buildShareText({
+              companyName: run.companyName,
+              ending: def,
+              week: ending === 'clear' ? 52 : run.currentWeek,
+              salesText: formatSales(lastEnd?.sales ?? 0),
+              achievement: top ? achievementById.get(top) : undefined,
+              regret: run.regret,
+            });
+            track('share_intent_success', { share_type: 'XIntent' });
+            share.openXIntent(text, shareUrl(site.origin, site.base, def.slug));
+          }}
         />
       ) : null;
       break;

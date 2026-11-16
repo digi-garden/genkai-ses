@@ -27,6 +27,7 @@ export function ResultScreen({
   onRetry,
   onTitle,
   onZukan,
+  onShareX,
 }: {
   state: RuntimeGameState;
   last: Extract<GameEvent, { type: 'gameOver' | 'gameClear' }> | undefined;
@@ -35,6 +36,7 @@ export function ResultScreen({
   onRetry: () => void;
   onTitle: () => void;
   onZukan: () => void;
+  onShareX: () => void;
 }) {
   const ending = state.ending ?? 'clear';
   const def = endings[ending];
@@ -122,6 +124,16 @@ export function ResultScreen({
       </section>
 
       <div className="flex flex-col gap-3">
+        <button
+          type="button"
+          onClick={onShareX}
+          className="flex min-h-12 items-center justify-center gap-2 rounded-[10px] border border-border-strong bg-black px-5 text-[15px] font-bold text-white"
+        >
+          <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+          Xでポスト
+        </button>
         <Button onClick={onRetry}>もう1期挑む</Button>
         <div className="flex justify-center gap-4">
           <Button variant="link" onClick={onZukan}>
