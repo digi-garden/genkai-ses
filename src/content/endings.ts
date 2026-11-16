@@ -31,19 +31,19 @@ export const endings: Record<EndingId, EndingDef> = {
   client_zero: {
     id: 'client_zero', param: 'client', direction: 'zero', slug: 'client-zero',
     title: { web: '契約解除エンド' },
-    subtitle: { web: '元請けから分厚い書類が届いた。読むまでもなく、全部終わりだった。' },
+    subtitle: { web: '元請けから分厚い書類を突きつけられた。読むまでもなく、全部終わりだった。' },
     selfComment: { web: '客先を怒らせ続けた結果、客先がなくなりました。' },
   },
   client_max: {
     id: 'client_max', param: 'client', direction: 'max', slug: 'client-max',
-    title: { web: '際限なき奴隷エンド' },
+    title: { web: '無限常駐エンド' },
     subtitle: { web: '気に入られすぎて、断る権利ごと差し出してしまった。' },
     selfComment: { web: '「何でもやります」と言い続けた結果です。' },
   },
   dev_zero: {
     id: 'dev_zero', param: 'dev', direction: 'zero', slug: 'dev-zero',
     title: { web: '全員蒸発エンド' },
-    subtitle: { web: '誰もいない夜のオフィスに、退職の連絡だけが届き続ける。追い込んだのは社長だった。' },
+    subtitle: { web: '誰もいない夜のオフィスで、スマホに退職の通知だけが光り続けている。' },
     selfComment: { web: '全員辞めました。悪いのは全部、社長です。' },
   },
   dev_max: {
@@ -56,7 +56,7 @@ export const endings: Record<EndingId, EndingDef> = {
     id: 'legal_zero', param: 'legal', direction: 'zero', slug: 'legal-zero',
     title: { web: '労務監査局突入エンド' },
     subtitle: { web: '段ボールが次々と運び出されていく。グレーは、いつか黒になる。' },
-    selfComment: { web: 'グレーな運用を続けた結果、監査の立ち入りが来ました。' },
+    selfComment: { web: 'グレーを攻めすぎて、監査が入りました。' },
   },
   legal_max: {
     id: 'legal_max', param: 'legal', direction: 'max', slug: 'legal-max',
@@ -68,6 +68,6 @@ export const endings: Record<EndingId, EndingDef> = {
     id: 'clear', slug: 'clear',
     title: { web: '1期完走' },
     subtitle: { web: 'ボロボロだが、生き延びた。来期のことは、来期の自分に任せる。' },
-    selfComment: { web: 'なんとか1年、生き延びました。' },
+    selfComment: { web: '1年生き延びました。来期の案件はまだゼロです。' },
   },
 };

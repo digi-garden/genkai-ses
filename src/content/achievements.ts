@@ -17,12 +17,12 @@ export const achievements: readonly AchievementDef[] = [
   {
     id: 'white_company', priority: 1,
     name: { web: 'ホワイト企業の鑑' },
-    description: { web: `第14週以降、コンプラを一度も${balance.whiteCompanyMinLegal}未満にせずに1期完走する` },
+    description: { web: `第14週以降、コンプラを${balance.whiteCompanyMinLegal}以上に保って1期完走する` },
   },
   {
     id: 'bicycle', priority: 2,
     name: { web: '自転車操業マスター' },
-    description: { web: `第14週以降、資金を一度も${balance.bicycleMaxCash}より上げずに1期完走する` },
+    description: { web: `第14週以降、資金を常に${balance.bicycleMaxCash}以下に保って1期完走する` },
   },
   {
     id: 'emperor', priority: 3,
@@ -42,7 +42,7 @@ export const achievements: readonly AchievementDef[] = [
   {
     id: 'speed_quit', priority: 6,
     name: { web: 'スピード退職' },
-    description: { web: `第${balance.earlyDeathMaxWeek}週までに、現場メンタル0で倒産する` },
+    description: { web: `第${balance.earlyDeathMaxWeek}週までに、現場0で倒産する` },
   },
 ];
 
