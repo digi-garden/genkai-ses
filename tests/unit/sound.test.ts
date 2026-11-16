@@ -26,3 +26,20 @@ describe('createSound', () => {
     }).not.toThrow();
   });
 });
+
+describe('iOS / iPadOS の消音モード対策', () => {
+  it('unlock で Audio Session を playback（音楽扱い）にする', () => {
+    const audioSession = { type: 'auto' };
+    const win = { navigator: { audioSession }, document: {} } as unknown as Window;
+    createSound(win).unlock();
+    expect(audioSession.type).toBe('playback');
+  });
+  it('Audio Session がない環境では、無音の audio を再生する', () => {
+    let played = false;
+    const el = { setAttribute: () => {}, src: '', play: () => ((played = true), Promise.resolve()) };
+    const win = { navigator: {}, document: { createElement: () => el } } as unknown as Window;
+    createSound(win).unlock();
+    expect(played).toBe(true);
+    expect(el.src).toMatch(/^blob:/);
+  });
+});

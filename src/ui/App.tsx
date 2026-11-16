@@ -70,6 +70,22 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
     [saves],
   );
 
+  // 効果音が ON なら、ページを開いた後の最初の操作で、音を鳴らせる状態にする（iOS・iPadOS の自動再生の制限）
+  useEffect(() => {
+    if (!save.sound_enabled) return;
+    const onGesture = () => {
+      sound.unlock();
+      window.removeEventListener('pointerdown', onGesture, true);
+      window.removeEventListener('keydown', onGesture, true);
+    };
+    window.addEventListener('pointerdown', onGesture, true);
+    window.addEventListener('keydown', onGesture, true);
+    return () => {
+      window.removeEventListener('pointerdown', onGesture, true);
+      window.removeEventListener('keydown', onGesture, true);
+    };
+  }, [save.sound_enabled, sound]);
+
   // ページが隠れたら、メモリ上の既読カードなどをまとめて保存する（05 の 5.2）
   useEffect(() => {
     const onHide = () => {
