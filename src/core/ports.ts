@@ -25,3 +25,16 @@ export interface Random {
 export interface Clock {
   now(): string;
 }
+
+export interface AnalyticsPort {
+  send(name: string, params: Record<string, string | number | boolean>, opts?: { beacon?: boolean }): void;
+}
+
+export type ConsentChoice = 'granted' | 'denied';
+
+export interface ConsentRepository {
+  /** 同意が必要な地域か（タイムゾーンで推定） */
+  readonly required: boolean;
+  get(): ConsentChoice | null;
+  set(choice: ConsentChoice): void;
+}
