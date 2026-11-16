@@ -14,7 +14,10 @@
     "size": "tsx tools/check-size.ts",
     "lint": "eslint . && depcruise src --config .dependency-cruiser.cjs",
     "test": "vitest run --coverage",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "validate:cards": "tsx tools/validate-cards.ts",
+    "simulate": "tsx tools/simulate/index.ts",
+    "cards:md": "tsx tools/cards-to-md.ts"
   },
   "dependencies": {
     "lucide-react": "^1.72.0",

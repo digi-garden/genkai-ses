@@ -1,0 +1,1174 @@
+[
+  {
+    "id": "n_resume_produce",
+    "kind": "normal",
+    "opening": true,
+    "speaker_name": "営業 爽やか佐藤",
+    "speaker_icon": "icon_sales",
+    "message": "元請けが「Java3年以上」じゃないと入れないって言ってます。新人の山田くん、まだ半年なんですけど……",
+    "choice_left": {
+      "text": "正直に伝えて辞退",
+      "effects": {
+        "cash": -10,
+        "client": -5,
+        "dev": 4,
+        "legal": 10
+      }
+    },
+    "choice_right": {
+      "text": "経歴をプロデュース",
+      "effects": {
+        "cash": 18,
+        "client": 4,
+        "dev": -7,
+        "legal": -15
+      },
+      "unethical": true,
+      "inject_card_id": "c_resume_exposed",
+      "inject_delay": [
+        3,
+        10
+      ],
+      "regret_text": "新人の経歴をJava歴3年にプロデュースした"
+    }
+  },
+  {
+    "id": "n_unit_price_down",
+    "kind": "normal",
+    "opening": true,
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "来期から単価を一律5万円下げてください。嫌なら他社さんに替えるだけなので。",
+    "choice_left": {
+      "text": "受け入れる",
+      "effects": {
+        "cash": -14,
+        "client": 13,
+        "dev": -5
+      }
+    },
+    "choice_right": {
+      "text": "粘って交渉する",
+      "effects": {
+        "cash": 7,
+        "client": -15
+      }
+    }
+  },
+  {
+    "id": "n_free_feature",
+    "kind": "normal",
+    "opening": true,
+    "speaker_name": "客先役員 権田",
+    "speaker_icon": "icon_client_exec",
+    "message": "「ついで」にこの機能も足しておいてくれ。小さい話だから、追加費用はいらないよね？",
+    "choice_left": {
+      "text": "無償で受ける",
+      "effects": {
+        "client": 23,
+        "dev": -17
+      }
+    },
+    "choice_right": {
+      "text": "追加見積を出す",
+      "effects": {
+        "cash": 10,
+        "client": -15,
+        "dev": 4
+      }
+    }
+  },
+  {
+    "id": "n_junior_crying",
+    "kind": "normal",
+    "opening": true,
+    "speaker_name": "新人 山田",
+    "speaker_icon": "icon_dev_junior",
+    "message": "客先で毎日怒鳴られていて……もう辞めたいです。",
+    "choice_left": {
+      "text": "現場を替える交渉をする",
+      "effects": {
+        "cash": -4,
+        "client": -11,
+        "dev": 14
+      }
+    },
+    "choice_right": {
+      "text": "「若いうちは苦労しろ」",
+      "effects": {
+        "client": -8,
+        "dev": -25
+      }
+    }
+  },
+  {
+    "id": "n_bench_cost",
+    "kind": "normal",
+    "opening": true,
+    "speaker_name": "秘書 森",
+    "speaker_icon": "icon_secretary",
+    "message": "待機中の要員が3人います。売上はゼロで、給料だけ出ていく状態です。",
+    "choice_left": {
+      "text": "社内研修で育てる",
+      "effects": {
+        "cash": -13,
+        "dev": 10
+      }
+    },
+    "choice_right": {
+      "text": "安くても現場に押し込む",
+      "effects": {
+        "cash": 12,
+        "client": -5,
+        "dev": -20
+      }
+    }
+  },
+  {
+    "id": "n_night_release",
+    "kind": "normal",
+    "opening": true,
+    "speaker_name": "ベテラン 古田",
+    "speaker_icon": "icon_dev_senior",
+    "message": "本番リリースの深夜作業、今週3回目です。そろそろ限界です。",
+    "choice_left": {
+      "text": "代休を約束する",
+      "effects": {
+        "cash": -4,
+        "client": -8,
+        "dev": 12
+      }
+    },
+    "choice_right": {
+      "text": "ピザを差し入れる",
+      "effects": {
+        "cash": -2,
+        "client": 6,
+        "dev": -22
+      }
+    }
+  },
+  {
+    "id": "n_deep_chain",
+    "kind": "normal",
+    "opening": true,
+    "speaker_name": "下請け社長 小林",
+    "speaker_icon": "icon_subcontract",
+    "message": "うちの下の、そのまた下の会社から人を出せるそうです。どんな人かは、誰も知りませんけど。",
+    "choice_left": {
+      "text": "素性の分かる人だけ",
+      "effects": {
+        "cash": -10,
+        "client": -5,
+        "legal": 16
+      }
+    },
+    "choice_right": {
+      "text": "商流の深さは気にしない",
+      "effects": {
+        "cash": 18,
+        "client": 4,
+        "legal": -17
+      },
+      "unethical": true,
+      "inject_card_id": "c_audit_visit",
+      "inject_delay": [
+        3,
+        8
+      ],
+      "regret_text": "素性の分からない七次請けの要員を入れた"
+    }
+  },
+  {
+    "id": "n_daily_meeting",
+    "kind": "normal",
+    "opening": true,
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "定例会議を毎朝2時間にします。御社の要員は全員参加で。もちろん作業時間には含めませんよ。",
+    "choice_left": {
+      "text": "全員出す",
+      "effects": {
+        "client": 13,
+        "dev": -15
+      }
+    },
+    "choice_right": {
+      "text": "代表者1人だけ出す",
+      "effects": {
+        "client": -11,
+        "dev": 6
+      }
+    }
+  },
+  {
+    "id": "n_payment_delay",
+    "kind": "normal",
+    "opening": true,
+    "speaker_name": "秘書 森",
+    "speaker_icon": "icon_secretary",
+    "message": "元請けから「支払いを月末締め翌々月末払いに変更します」と通知が来ました。",
+    "choice_left": {
+      "text": "黙って受け入れる",
+      "effects": {
+        "cash": -13,
+        "client": 8
+      }
+    },
+    "choice_right": {
+      "text": "抗議する",
+      "effects": {
+        "cash": 6,
+        "client": -17
+      }
+    }
+  },
+  {
+    "id": "n_mass_hire",
+    "kind": "normal",
+    "opening": true,
+    "speaker_name": "営業 爽やか佐藤",
+    "speaker_icon": "icon_sales",
+    "message": "未経験者を大量に採用して、研修1週間で現場に出しましょう！数こそ力です！",
+    "choice_left": {
+      "text": "やってみる",
+      "effects": {
+        "cash": 17,
+        "client": -9,
+        "dev": -15
+      }
+    },
+    "choice_right": {
+      "text": "育成に時間をかける",
+      "effects": {
+        "cash": -14,
+        "dev": 8
+      }
+    }
+  },
+  {
+    "id": "n_name_only",
+    "kind": "normal",
+    "speaker_name": "営業 爽やか佐藤",
+    "speaker_icon": "icon_sales",
+    "message": "提案書の体制図、人が足りないので古田さんの名前を3つの案件に載せちゃっていいですか？",
+    "choice_left": {
+      "text": "実際の体制で出す",
+      "effects": {
+        "cash": -8,
+        "client": -8,
+        "legal": 10
+      }
+    },
+    "choice_right": {
+      "text": "名前だけ載せる",
+      "effects": {
+        "cash": 16,
+        "client": 6,
+        "legal": -12
+      },
+      "unethical": true,
+      "inject_card_id": "c_ghost_member",
+      "inject_delay": [
+        3,
+        8
+      ],
+      "regret_text": "古田さんの名前を3つの体制図に載せた"
+    }
+  },
+  {
+    "id": "n_license_share",
+    "kind": "normal",
+    "speaker_name": "ベテラン 古田",
+    "speaker_icon": "icon_dev_senior",
+    "message": "開発ツールのライセンス、人数分ありません。1つのライセンスを10人で回せと？",
+    "choice_left": {
+      "text": "人数分買う",
+      "effects": {
+        "cash": -14,
+        "dev": 6,
+        "legal": 10
+      }
+    },
+    "choice_right": {
+      "text": "使い回させる",
+      "effects": {
+        "cash": 9,
+        "dev": -5,
+        "legal": -15
+      },
+      "unethical": true,
+      "inject_card_id": "c_license_audit",
+      "inject_delay": [
+        3,
+        9
+      ],
+      "regret_text": "ツールのライセンスを10人で使い回した"
+    }
+  },
+  {
+    "id": "n_minashi_overtime",
+    "kind": "normal",
+    "speaker_name": "秘書 森",
+    "speaker_icon": "icon_secretary",
+    "message": "残業代、今月も「見なし残業に含まれる」で処理しておきますか？",
+    "choice_left": {
+      "text": "実績どおり全額払う",
+      "effects": {
+        "cash": -20,
+        "dev": 10,
+        "legal": 16
+      }
+    },
+    "choice_right": {
+      "text": "見なしで押し通す",
+      "effects": {
+        "cash": 14,
+        "dev": -12,
+        "legal": -12
+      },
+      "unethical": true,
+      "inject_card_id": "c_overtime_claim",
+      "inject_delay": [
+        4,
+        10
+      ],
+      "regret_text": "残業代を「見なし」で押し通した"
+    }
+  },
+  {
+    "id": "n_direct_order",
+    "kind": "normal",
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "御社の要員さんに、うちの社員から直接あれこれ指示を出しますね。そのほうが早いので。",
+    "choice_left": {
+      "text": "窓口を通すよう頼む",
+      "effects": {
+        "client": -11,
+        "legal": 16
+      }
+    },
+    "choice_right": {
+      "text": "「どうぞどうぞ」",
+      "effects": {
+        "client": 16,
+        "dev": -5,
+        "legal": -15
+      },
+      "unethical": true,
+      "inject_card_id": "c_audit_visit",
+      "inject_delay": [
+        3,
+        8
+      ],
+      "regret_text": "客先から要員へ直接指示を出させた"
+    }
+  },
+  {
+    "id": "n_attendance_tweak",
+    "kind": "normal",
+    "speaker_name": "秘書 森",
+    "speaker_icon": "icon_secretary",
+    "message": "残業が上限を超えそうな人が5人います。勤怠の記録、少し「整えて」おきましょうか？",
+    "choice_left": {
+      "text": "案件から外して休ませる",
+      "effects": {
+        "cash": -5,
+        "client": -11,
+        "dev": 6,
+        "legal": 16
+      }
+    },
+    "choice_right": {
+      "text": "記録を整える",
+      "effects": {
+        "cash": 14,
+        "client": 4,
+        "dev": -10,
+        "legal": -15
+      },
+      "unethical": true,
+      "inject_card_id": "c_overtime_claim",
+      "inject_delay": [
+        4,
+        10
+      ],
+      "regret_text": "勤怠の記録を「整えた」"
+    }
+  },
+  {
+    "id": "n_verbal_promise",
+    "kind": "normal",
+    "speaker_name": "営業 爽やか佐藤",
+    "speaker_icon": "icon_sales",
+    "message": "客先に「何でもやります！」って言ってきました！契約書には何も書いてませんけど！",
+    "choice_left": {
+      "text": "範囲を書面で確認する",
+      "effects": {
+        "client": -9,
+        "dev": 4,
+        "legal": 10
+      }
+    },
+    "choice_right": {
+      "text": "口約束のまま走る",
+      "effects": {
+        "cash": 9,
+        "client": 18,
+        "dev": -7
+      },
+      "inject_card_id": "c_scope_bill",
+      "inject_delay": [
+        3,
+        8
+      ],
+      "regret_text": "契約の範囲を口約束のまま走らせた"
+    }
+  },
+  {
+    "id": "n_cert_bonus",
+    "kind": "normal",
+    "speaker_name": "ベテラン 古田",
+    "speaker_icon": "icon_dev_senior",
+    "message": "資格の受験料と報奨金、会社で出してもらえませんか。若手のやる気が全然違うので。",
+    "choice_left": {
+      "text": "出す",
+      "effects": {
+        "cash": -10,
+        "dev": 12
+      }
+    },
+    "choice_right": {
+      "text": "「自己研鑽で」",
+      "effects": {
+        "cash": 4,
+        "dev": -12
+      }
+    }
+  },
+  {
+    "id": "n_study_time",
+    "kind": "normal",
+    "speaker_name": "新人 山田",
+    "speaker_icon": "icon_dev_junior",
+    "message": "社内勉強会を、業務時間内にやってもいいですか？",
+    "choice_left": {
+      "text": "認める",
+      "effects": {
+        "cash": -7,
+        "client": -4,
+        "dev": 14
+      }
+    },
+    "choice_right": {
+      "text": "業務時間外でやれ",
+      "effects": {
+        "cash": 7,
+        "dev": -12
+      }
+    }
+  },
+  {
+    "id": "n_new_framework",
+    "kind": "normal",
+    "speaker_name": "ベテラン 古田",
+    "speaker_icon": "icon_dev_senior",
+    "message": "次の持ち帰り案件、最新のフレームワークで全部作り直させてください。そのほうが絶対いいので。",
+    "choice_left": {
+      "text": "好きにやらせる",
+      "effects": {
+        "cash": -3,
+        "client": -8,
+        "dev": 18
+      }
+    },
+    "choice_right": {
+      "text": "客先指定の古い技術で",
+      "effects": {
+        "client": 8,
+        "dev": -12
+      }
+    }
+  },
+  {
+    "id": "n_refactor_month",
+    "kind": "normal",
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "御社の古田さんが「技術的負債だ」と言って、勝手に設計を作り直しました。動かなくなりましたけど、どうしてくれるんです？",
+    "choice_left": {
+      "text": "平謝りして元に戻させる",
+      "effects": {
+        "client": 6,
+        "dev": -12
+      }
+    },
+    "choice_right": {
+      "text": "古田の判断を擁護する",
+      "effects": {
+        "client": -13,
+        "dev": 20
+      }
+    }
+  },
+  {
+    "id": "n_party",
+    "kind": "normal",
+    "speaker_name": "客先役員 権田",
+    "speaker_icon": "icon_client_exec",
+    "message": "プロジェクトの打ち上げ、社長も来るよね？ 二次会も、三次会もあるからね。",
+    "choice_left": {
+      "text": "最後まで付き合う",
+      "effects": {
+        "cash": -5,
+        "client": 34,
+        "dev": -5
+      }
+    },
+    "choice_right": {
+      "text": "一次会で帰る",
+      "effects": {
+        "client": -9,
+        "dev": 2
+      }
+    }
+  },
+  {
+    "id": "n_golf",
+    "kind": "normal",
+    "speaker_name": "客先役員 権田",
+    "speaker_icon": "icon_client_exec",
+    "message": "週末はゴルフね。うちの部下5人も連れていくから、全員分よろしく。もちろん御社の持ちで。",
+    "choice_left": {
+      "text": "6人分まとめて払う",
+      "effects": {
+        "cash": -19,
+        "client": 36
+      }
+    },
+    "choice_right": {
+      "text": "割り勘を提案する",
+      "effects": {
+        "client": -13,
+        "legal": 16
+      }
+    }
+  },
+  {
+    "id": "n_one_more_team",
+    "kind": "normal",
+    "speaker_name": "客先役員 権田",
+    "speaker_icon": "icon_client_exec",
+    "message": "御社のおかげで助かってるよ。来月から、もう1チーム出してくれないか。",
+    "choice_left": {
+      "text": "かき集めて出す",
+      "effects": {
+        "cash": 14,
+        "client": 23,
+        "dev": -17
+      }
+    },
+    "choice_right": {
+      "text": "今の体制を守る",
+      "effects": {
+        "client": -9,
+        "dev": 6
+      }
+    }
+  },
+  {
+    "id": "n_warehouse_desk",
+    "kind": "normal",
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "御社の要員の席、倉庫の横にしました。冷房は効きませんが、静かでいいでしょう？",
+    "choice_left": {
+      "text": "黙って受ける",
+      "effects": {
+        "client": 6,
+        "dev": -15
+      }
+    },
+    "choice_right": {
+      "text": "環境の改善を求める",
+      "effects": {
+        "client": -11,
+        "dev": 10
+      }
+    }
+  },
+  {
+    "id": "n_holiday_oncall",
+    "kind": "normal",
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "年末年始のオンコール当番、御社にお願いします。手当？ 出ませんよ。",
+    "choice_left": {
+      "text": "引き受ける",
+      "effects": {
+        "cash": 6,
+        "client": 13,
+        "dev": -17
+      }
+    },
+    "choice_right": {
+      "text": "手当がなければ断る",
+      "effects": {
+        "client": -11,
+        "dev": 4
+      }
+    }
+  },
+  {
+    "id": "n_rate_up",
+    "kind": "normal",
+    "speaker_name": "営業 爽やか佐藤",
+    "speaker_icon": "icon_sales",
+    "message": "今なら単価を10万上げられそうです！強気で行っちゃいますか？",
+    "choice_left": {
+      "text": "強気で行く",
+      "effects": {
+        "cash": 19,
+        "client": -11
+      }
+    },
+    "choice_right": {
+      "text": "関係を優先する",
+      "effects": {
+        "cash": -2,
+        "client": 8
+      }
+    }
+  },
+  {
+    "id": "n_big_deal",
+    "kind": "normal",
+    "speaker_name": "営業 爽やか佐藤",
+    "speaker_icon": "icon_sales",
+    "message": "大型案件です！ただし来月から20人を出す必要があります。今いるのは12人です！",
+    "choice_left": {
+      "text": "受けて人をかき集める",
+      "effects": {
+        "cash": 22,
+        "client": 6,
+        "dev": -22
+      }
+    },
+    "choice_right": {
+      "text": "身の丈で断る",
+      "effects": {
+        "cash": -10,
+        "client": -5,
+        "dev": 6
+      }
+    }
+  },
+  {
+    "id": "n_bank_loan",
+    "kind": "normal",
+    "speaker_name": "秘書 森",
+    "speaker_icon": "icon_secretary",
+    "message": "銀行から融資のご提案です。今なら低金利で借りられるそうです。",
+    "choice_left": {
+      "text": "借りられるだけ借りる",
+      "effects": {
+        "cash": 25,
+        "legal": -5
+      }
+    },
+    "choice_right": {
+      "text": "借りない",
+      "effects": {
+        "cash": -2,
+        "dev": 2
+      }
+    }
+  },
+  {
+    "id": "n_office_move",
+    "kind": "normal",
+    "speaker_name": "社長（心の声）",
+    "speaker_icon": "icon_player",
+    "message": "（見栄えのいいオフィスに移れば、優秀な人も客も来るはずだ……）",
+    "choice_left": {
+      "text": "一等地に移転する",
+      "effects": {
+        "cash": -23,
+        "client": 6,
+        "dev": 6
+      }
+    },
+    "choice_right": {
+      "text": "今のオフィスで我慢",
+      "effects": {
+        "dev": -5
+      }
+    }
+  },
+  {
+    "id": "n_ai_tool",
+    "kind": "normal",
+    "speaker_name": "営業 爽やか佐藤",
+    "speaker_icon": "icon_sales",
+    "message": "AIツールで作業が半分になりました！ でも客先に「工数が半分なら、請求も半分ね」と言われちゃいました！",
+    "choice_left": {
+      "text": "AIを封印して人月を守る",
+      "effects": {
+        "cash": 13,
+        "client": -4,
+        "dev": -15
+      }
+    },
+    "choice_right": {
+      "text": "半額の請求を受け入れる",
+      "effects": {
+        "cash": -14,
+        "client": 13,
+        "dev": 8
+      }
+    }
+  },
+  {
+    "id": "n_security_check",
+    "kind": "normal",
+    "speaker_name": "監査官 白石",
+    "speaker_icon": "icon_inspector",
+    "message": "情報セキュリティの自己点検です。全120項目、それぞれ証跡を添えて提出してください。",
+    "choice_left": {
+      "text": "全項目きっちりやる",
+      "effects": {
+        "cash": -3,
+        "dev": -10,
+        "legal": 40
+      }
+    },
+    "choice_right": {
+      "text": "最低限で済ませる",
+      "effects": {
+        "dev": 4,
+        "legal": -12
+      }
+    }
+  },
+  {
+    "id": "n_compliance_training",
+    "kind": "normal",
+    "speaker_name": "秘書 森",
+    "speaker_icon": "icon_secretary",
+    "message": "コンプラ研修、全社員に年4回やるべきだと監査法人に言われました。",
+    "choice_left": {
+      "text": "年4回やる",
+      "effects": {
+        "cash": -2,
+        "dev": -7,
+        "legal": 40
+      }
+    },
+    "choice_right": {
+      "text": "動画を流すだけ",
+      "effects": {
+        "dev": 2,
+        "legal": -10
+      }
+    }
+  },
+  {
+    "id": "n_approval_chain",
+    "kind": "normal",
+    "speaker_name": "秘書 森",
+    "speaker_icon": "icon_secretary",
+    "message": "稟議の承認者を7人に増やせば、事故は防げるそうです。",
+    "choice_left": {
+      "text": "7人に増やす",
+      "effects": {
+        "client": -8,
+        "dev": -7,
+        "legal": 40
+      }
+    },
+    "choice_right": {
+      "text": "今の3人のまま",
+      "effects": {
+        "client": 2,
+        "legal": -7
+      }
+    }
+  },
+  {
+    "id": "n_iso",
+    "kind": "normal",
+    "speaker_name": "監査官 白石",
+    "speaker_icon": "icon_inspector",
+    "message": "ISOの認証を取れば、大手とも直接取引できますよ。ただし書類は山ほど要ります。",
+    "choice_left": {
+      "text": "認証を取る",
+      "effects": {
+        "cash": -9,
+        "client": 6,
+        "dev": -5,
+        "legal": 40
+      }
+    },
+    "choice_right": {
+      "text": "見送る",
+      "effects": {
+        "client": -5,
+        "dev": 2
+      }
+    }
+  },
+  {
+    "id": "n_contract_review",
+    "kind": "normal",
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "発注書は来月まとめて出しますから、とりあえず来週から3人入れて作業を進めてください。いつもの信頼関係で！",
+    "choice_left": {
+      "text": "発注書が出るまで待つ",
+      "effects": {
+        "cash": -8,
+        "client": -4,
+        "legal": 40
+      }
+    },
+    "choice_right": {
+      "text": "信じて3人を入れる",
+      "effects": {
+        "client": 8,
+        "legal": -12
+      }
+    }
+  },
+  {
+    "id": "n_review_site",
+    "kind": "normal",
+    "speaker_name": "秘書 森",
+    "speaker_icon": "icon_secretary",
+    "message": "転職サイトに元社員の口コミが。「社長の思いつきで全てが決まる」と書かれています。",
+    "choice_left": {
+      "text": "職場を見直す",
+      "effects": {
+        "cash": -9,
+        "dev": 12
+      }
+    },
+    "choice_right": {
+      "text": "削除依頼だけ出す",
+      "effects": {
+        "dev": -12,
+        "legal": -5
+      }
+    }
+  },
+  {
+    "id": "n_poached",
+    "kind": "normal",
+    "speaker_name": "ベテラン 古田",
+    "speaker_icon": "icon_dev_senior",
+    "message": "他社から、今の倍の給料で来ないかと誘われています。",
+    "choice_left": {
+      "text": "還元率を上げて引き止める",
+      "effects": {
+        "cash": -13,
+        "dev": 14
+      }
+    },
+    "choice_right": {
+      "text": "引き止めない",
+      "effects": {
+        "client": -11,
+        "dev": -15
+      }
+    }
+  },
+  {
+    "id": "n_sub_early_pay",
+    "kind": "normal",
+    "speaker_name": "下請け社長 小林",
+    "speaker_icon": "icon_subcontract",
+    "message": "支払いを30日早めてもらえないと、うちは今月で潰れます……",
+    "choice_left": {
+      "text": "早めて払う",
+      "effects": {
+        "cash": -14,
+        "dev": 2,
+        "legal": 16
+      }
+    },
+    "choice_right": {
+      "text": "契約どおりで",
+      "effects": {
+        "cash": 7,
+        "client": -5,
+        "legal": -10
+      }
+    }
+  },
+  {
+    "id": "n_sub_squeeze",
+    "kind": "normal",
+    "speaker_name": "秘書 森",
+    "speaker_icon": "icon_secretary",
+    "message": "下請けさんへの発注単価を2割下げれば、今期は黒字です。",
+    "choice_left": {
+      "text": "2割下げる",
+      "effects": {
+        "cash": 18,
+        "client": -8,
+        "legal": -7
+      }
+    },
+    "choice_right": {
+      "text": "据え置く",
+      "effects": {
+        "cash": -10,
+        "legal": 10
+      }
+    }
+  },
+  {
+    "id": "n_prod_incident",
+    "kind": "normal",
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "本番で障害です。原因は御社のコードですよね？ 今すぐ全員集めてください。",
+    "choice_left": {
+      "text": "夜通し対応する",
+      "effects": {
+        "client": 16,
+        "dev": -20
+      }
+    },
+    "choice_right": {
+      "text": "原因の調査を先に",
+      "effects": {
+        "client": -13,
+        "dev": 4
+      }
+    }
+  },
+  {
+    "id": "n_daily_report",
+    "kind": "normal",
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "日報は15分単位でお願いします。何をしていたか、全部書いてくださいね。",
+    "choice_left": {
+      "text": "従う",
+      "effects": {
+        "client": 13,
+        "dev": -15
+      }
+    },
+    "choice_right": {
+      "text": "1日単位で交渉する",
+      "effects": {
+        "client": -9,
+        "dev": 6
+      }
+    }
+  },
+  {
+    "id": "n_pm_yelling",
+    "kind": "normal",
+    "speaker_name": "ベテラン 古田",
+    "speaker_icon": "icon_dev_senior",
+    "message": "鬼塚さんが、また新人を大声で怒鳴っています。周りはみんな見て見ぬふりです。",
+    "choice_left": {
+      "text": "元請けに正式に抗議する",
+      "effects": {
+        "client": -15,
+        "dev": 16,
+        "legal": 10
+      }
+    },
+    "choice_right": {
+      "text": "見なかったことにする",
+      "effects": {
+        "client": 4,
+        "dev": -20,
+        "legal": -5
+      }
+    }
+  },
+  {
+    "id": "n_midnight_chat",
+    "kind": "normal",
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "夜中でもチャットには5分以内に返事をください。お客様は待ってくれないので。",
+    "choice_left": {
+      "text": "即レス体制を組む",
+      "effects": {
+        "client": 16,
+        "dev": -17
+      }
+    },
+    "choice_right": {
+      "text": "対応時間を決める",
+      "effects": {
+        "client": -11,
+        "dev": 8
+      }
+    }
+  },
+  {
+    "id": "n_sales_target",
+    "kind": "normal",
+    "speaker_name": "営業 爽やか佐藤",
+    "speaker_icon": "icon_sales",
+    "message": "社長！今期の目標は売上倍増でいきましょう！根拠はありませんけど、気合いです！",
+    "choice_left": {
+      "text": "無謀な案件をかき集める",
+      "effects": {
+        "cash": 15,
+        "dev": -15
+      }
+    },
+    "choice_right": {
+      "text": "現実的な目標にする",
+      "effects": {
+        "cash": -2,
+        "dev": 6
+      }
+    }
+  },
+  {
+    "id": "n_receipts",
+    "kind": "normal",
+    "speaker_name": "秘書 森",
+    "speaker_icon": "icon_secretary",
+    "message": "経費の領収書、半分くらいが「お車代」になっています。社長の分です。",
+    "choice_left": {
+      "text": "精算し直す",
+      "effects": {
+        "cash": -10,
+        "legal": 31
+      }
+    },
+    "choice_right": {
+      "text": "雑費で通す",
+      "effects": {
+        "cash": 8,
+        "legal": -12
+      },
+      "unethical": true,
+      "inject_card_id": "c_audit_visit",
+      "inject_delay": [
+        3,
+        8
+      ],
+      "regret_text": "社長のお車代を雑費で通した"
+    }
+  },
+  {
+    "id": "n_transfer_offer",
+    "kind": "normal",
+    "speaker_name": "客先役員 権田",
+    "speaker_icon": "icon_client_exec",
+    "message": "御社の古田くん、うちに転籍させてもいいかな？ 本人も乗り気みたいだし。",
+    "choice_left": {
+      "text": "快く送り出す",
+      "effects": {
+        "cash": -9,
+        "client": 34,
+        "dev": -7
+      }
+    },
+    "choice_right": {
+      "text": "契約違反だと抗議する",
+      "effects": {
+        "client": -13,
+        "dev": 4,
+        "legal": 10
+      }
+    }
+  },
+  {
+    "id": "n_cloud_cost",
+    "kind": "normal",
+    "speaker_name": "ベテラン 古田",
+    "speaker_icon": "icon_dev_senior",
+    "message": "検証環境のクラウド費用、毎月50万円かかっています。止めると開発も止まります。",
+    "choice_left": {
+      "text": "払い続ける",
+      "effects": {
+        "cash": -15,
+        "dev": 8
+      }
+    },
+    "choice_right": {
+      "text": "止めろ",
+      "effects": {
+        "cash": 8,
+        "client": -5,
+        "dev": -12
+      }
+    }
+  },
+  {
+    "id": "n_eval_system",
+    "kind": "normal",
+    "speaker_name": "新人 山田",
+    "speaker_icon": "icon_dev_junior",
+    "message": "評価の基準って、社長の気分だって聞いたんですけど、本当ですか？",
+    "choice_left": {
+      "text": "評価制度を作る",
+      "effects": {
+        "cash": -9,
+        "dev": 10,
+        "legal": 16
+      }
+    },
+    "choice_right": {
+      "text": "「そうだよ」",
+      "effects": {
+        "dev": -20
+      }
+    }
+  },
+  {
+    "id": "n_spec_change",
+    "kind": "normal",
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "仕様変更です。来週リリースのところ、画面を全部作り直してください。納期はそのままで。",
+    "choice_left": {
+      "text": "徹夜で対応する",
+      "effects": {
+        "client": 23,
+        "dev": -20
+      }
+    },
+    "choice_right": {
+      "text": "納期の延長を求める",
+      "effects": {
+        "client": -13,
+        "dev": 4
+      }
+    }
+  },
+  {
+    "id": "n_bureaucracy_form",
+    "kind": "normal",
+    "speaker_name": "元請けPM 鬼塚",
+    "speaker_icon": "icon_client_pm",
+    "message": "事故防止のため、来週から要員1人の入場につき、誓約書や申請書など12枚の書類を出してください。",
+    "choice_left": {
+      "text": "完璧に揃える",
+      "effects": {
+        "client": -5,
+        "dev": -7,
+        "legal": 40
+      }
+    },
+    "choice_right": {
+      "text": "出せる分だけ出す",
+      "effects": {
+        "dev": 4,
+        "legal": -12
+      }
+    }
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "t_1_welcome",
+    "kind": "tutorial",
+    "tutorial_week": 1,
+    "speaker_name": "秘書 森",
+    "speaker_icon": "icon_secretary",
+    "message": "社長、就任おめでとうございます。左右どちらかを選ぶと、上の4つのゲージが動きます。どれかが空になっても、満タンになっても会社は終わりです。",
+    "choice_left": {
+      "text": "任せておけ",
+      "effects": {
+        "cash": 4
+      }
+    },
+    "choice_right": {
+      "text": "まずは様子見だ",
+      "effects": {
+        "dev": 4
+      }
+    }
+  },
+  {
+    "id": "t_2_trump",
+    "kind": "tutorial",
+    "tutorial_week": 2,
+    "speaker_name": "秘書 森",
+    "speaker_icon": "icon_secretary",
+    "message": "画面の下にあるのが「切り札」です。1期に1度だけ使えます。ゲージの横の点は、動きの大きさの目安です。増えるか減るかは選ぶまで分かりません。",
+    "choice_left": {
+      "text": "覚えておく",
+      "effects": {
+        "client": 4
+      }
+    },
+    "choice_right": {
+      "text": "切り札は温存する",
+      "effects": {
+        "legal": 4
+      }
+    }
+  }
+]
