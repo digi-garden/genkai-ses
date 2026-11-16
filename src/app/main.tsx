@@ -48,6 +48,10 @@ const ports: AppPorts = {
   },
 };
 
+if (new URLSearchParams(location.search).get('debug') === 'sound') {
+  void import('./soundDebug').then((m) => m.mountSoundDebug(window as Parameters<typeof m.mountSoundDebug>[0]));
+}
+
 createRoot(root).render(
   <StrictMode>
     <LazyMotion features={loadMotionFeatures} strict>

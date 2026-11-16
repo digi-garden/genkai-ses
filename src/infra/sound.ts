@@ -8,27 +8,27 @@ type Note = { f: number; t: number; d: number; type?: OscillatorType; gain?: num
 
 /** 音の設計：短く、うるさくない音量。t は開始の遅れ（秒）、d は長さ（秒） */
 const SOUNDS: Record<SoundId, Note[]> = {
-  // めくり音：短い高めのクリック
-  flip: [{ f: 880, t: 0, d: 0.05, type: 'triangle', gain: 0.06, slideTo: 660 }],
+  // めくり音：短い高めのクリック（2026-11-17：iPad mini で聞こえなかったため、音量と長さを上げた）
+  flip: [{ f: 880, t: 0, d: 0.09, type: 'triangle', gain: 0.35, slideTo: 620 }],
   // 因果応報：低い2音の警告
   chain: [
-    { f: 220, t: 0, d: 0.16, type: 'square', gain: 0.05 },
-    { f: 185, t: 0.18, d: 0.24, type: 'square', gain: 0.05 },
+    { f: 220, t: 0, d: 0.16, type: 'square', gain: 0.18 },
+    { f: 185, t: 0.18, d: 0.26, type: 'square', gain: 0.18 },
   ],
   // 切り札：上昇する音
-  trump: [{ f: 330, t: 0, d: 0.35, type: 'sawtooth', gain: 0.05, slideTo: 990 }],
+  trump: [{ f: 330, t: 0, d: 0.4, type: 'sawtooth', gain: 0.16, slideTo: 990 }],
   // 倒産：下降する音
   death: [
-    { f: 392, t: 0, d: 0.18, type: 'square', gain: 0.06 },
-    { f: 330, t: 0.2, d: 0.18, type: 'square', gain: 0.06 },
-    { f: 262, t: 0.4, d: 0.5, type: 'square', gain: 0.06, slideTo: 130 },
+    { f: 392, t: 0, d: 0.18, type: 'square', gain: 0.2 },
+    { f: 330, t: 0.2, d: 0.18, type: 'square', gain: 0.2 },
+    { f: 262, t: 0.4, d: 0.55, type: 'square', gain: 0.2, slideTo: 130 },
   ],
   // クリア：短いファンファーレ
   clear: [
-    { f: 523, t: 0, d: 0.12, type: 'square', gain: 0.05 },
-    { f: 659, t: 0.13, d: 0.12, type: 'square', gain: 0.05 },
-    { f: 784, t: 0.26, d: 0.12, type: 'square', gain: 0.05 },
-    { f: 1047, t: 0.39, d: 0.45, type: 'square', gain: 0.05 },
+    { f: 523, t: 0, d: 0.12, type: 'square', gain: 0.18 },
+    { f: 659, t: 0.13, d: 0.12, type: 'square', gain: 0.18 },
+    { f: 784, t: 0.26, d: 0.12, type: 'square', gain: 0.18 },
+    { f: 1047, t: 0.39, d: 0.5, type: 'square', gain: 0.18 },
   ],
 };
 
