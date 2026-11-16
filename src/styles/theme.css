@@ -1,5 +1,19 @@
 @import 'tailwindcss';
 
+/* M PLUS 1 Code のサブセット（09 の検証2。tools/subset-font.py で作る。OFL-1.1：/licenses/MPLUS1Code-OFL.txt） */
+@font-face {
+  font-family: 'GenkaiMono';
+  src: url('../assets/fonts/genkai-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GenkaiMono';
+  src: url('../assets/fonts/genkai-700.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
 /* docs/design/03_ui_design_spec.md 2.1 の色トークン */
 @theme {
   --color-bg: #1e1f22;
@@ -17,7 +31,6 @@
   --color-accent: #f59e0b;
   --color-on-accent: #1e1f22;
   --color-focus: #60a5fa;
-  /* フォント（GenkaiMono のサブセット化は Phase 1-B。09 検証2） */
   --font-mono: 'GenkaiMono', ui-monospace, 'Hiragino Sans', 'Noto Sans JP', monospace;
 }
 
