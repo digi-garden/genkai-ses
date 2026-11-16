@@ -1,9 +1,20 @@
+import type { ConsentChoice } from '../../core/ports';
+import { Button } from '../components/Button';
 import { Modal } from '../components/Modal';
 
 const BRAND = 'https://promptlab-games.com';
 
 /** M03 規約・プライバシー・免責（11 の 3章：本作固有の免責と、ブランド共通のページへのリンク） */
-export function TermsModal({ onClose }: { onClose: () => void }) {
+export function TermsModal({
+  onClose,
+  consent,
+  onConsent,
+}: {
+  onClose: () => void;
+  /** 同意が必要な地域のときだけ渡す（null は未選択） */
+  consent?: ConsentChoice | null | undefined;
+  onConsent: (granted: boolean) => void;
+}) {
   const link = 'text-primary underline underline-offset-4';
   return (
     <Modal title="規約・プライバシー・免責" onClose={onClose}>
@@ -23,6 +34,20 @@ export function TermsModal({ onClose }: { onClose: () => void }) {
             <li><a className={link} href={`${BRAND}/privacy`} target="_blank" rel="noopener">プライバシーポリシー</a></li>
           </ul>
         </section>
+        {consent !== undefined && (
+          <section>
+            <h3 className="mb-2 font-bold">アクセス解析の設定</h3>
+            <p>現在：{consent === 'granted' ? '同意している' : consent === 'denied' ? '拒否している' : '未選択'}</p>
+            <div className="mt-2 flex gap-2">
+              <Button variant="secondary" onClick={() => onConsent(false)}>
+                拒否する
+              </Button>
+              <Button variant="secondary" onClick={() => onConsent(true)}>
+                同意する
+              </Button>
+            </div>
+          </section>
+        )}
         <section>
           <h3 className="mb-2 font-bold">記録の保存</h3>
           <p>プレイの記録（図鑑、最高記録、プレイ回数）は、お使いのブラウザの中にだけ保存されます。サーバーには送信しません。ブラウザのデータを消すと記録も消えます。</p>

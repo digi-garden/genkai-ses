@@ -3,7 +3,10 @@ import type { Content } from '../content';
 import type { StyleId } from '../content/types';
 import { step, survivedWeeks, type Action, type GameEvent, type RuntimeGameState } from '../core';
 import { DEFAULT_COMPANY_NAME } from '../core/companyName';
-import type { Clock, Random, SaveRepository, SessionRepository } from '../core/ports';
+import type { AnalyticsPort, Clock, ConsentRepository, Random, SaveRepository, SessionRepository } from '../core/ports';
+import { commonParams, toAnalyticsEvents } from '../core/analytics';
+import { ConsentBanner } from './components/ConsentBanner';
+import { useVisibleTimer } from './hooks/useVisibleTimer';
 import { addSeen, onRunEnded, onRunStarted, type SaveData } from '../core/progress';
 import { HowToModal } from './screens/HowToModal';
 import { NameScreen } from './screens/NameScreen';
@@ -23,13 +26,20 @@ export interface AppPorts {
   clock: Clock;
   saves: SaveRepository;
   sessions: SessionRepository;
+  analytics: AnalyticsPort;
+  consent: ConsentRepository;
+  /** 同意が得られたときに計測を読み込む */
+  enableAnalytics: () => void;
 }
 
 /**
  * 画面の切り替え、ランの状態、記録の保存（02 の 2章、05 の 5・6章）
  */
 export function App({ content, ports }: { content: Content; ports: AppPorts }) {
-  const { random, clock, saves, sessions } = ports;
+  const { random, clock, saves, sessions, analytics, consent, enableAnalytics } = ports;
+  const [showConsent, setShowConsent] = useState(() => consent.required && consent.get() === null);
+  const runsInPage = useRef(0);
+  const droppedRun = useRef<string | null>(null);
   const [save, setSave] = useState<SaveData>(() => saves.load());
   const saveRef = useRef(save);
   const [resumable, setResumable] = useState<RuntimeGameState | null>(() => sessions.load());
@@ -60,12 +70,20 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
     return () => document.removeEventListener('visibilitychange', onHide);
   }, [saves]);
 
+  const track = useCallback(
+    (name: string, params: Record<string, string | number | boolean>, opts?: { beacon?: boolean }) => {
+      analytics.send(name, { ...commonParams(saveRef.current, new Date(clock.now())), ...params }, opts);
+    },
+    [analytics, clock],
+  );
+
   const dispatch = useCallback(
     (action: Action) => {
       const { state, events } = step(runRef.current, action, content);
       if (state === runRef.current) return;
       runRef.current = state;
       setRun(state);
+      const isRetry = events.some((e) => e.type === 'runStarted') ? runsInPage.current++ > 0 : runsInPage.current > 1;
 
       let s = saveRef.current;
       let persist = false;
@@ -85,12 +103,40 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
         }
       }
       if (s !== saveRef.current || persist) updateSave(s, persist);
+      // 計測は記録の更新の後に送る（play_count などの共通パラメータを最新にするため）
+      for (const a of toAnalyticsEvents(events, state, { isRetry, now: new Date(clock.now()) })) track(a.name, a.params, a.beacon ? { beacon: true } : undefined);
 
       if (state.ending === undefined) sessions.save(state);
       else sessions.clear();
     },
-    [clock, content, sessions, updateSave],
+    [clock, content, sessions, updateSave, track],
   );
+
+  // heartbeat_10s：ラン開始から、表示中の時間の累計が10秒に達したら1回だけ（ユーザーにつき1回）
+  useVisibleTimer(screen === 'play' && !save.heartbeat_sent, 10_000, () => {
+    track('heartbeat_10s', {});
+    updateSave({ ...saveRef.current, heartbeat_sent: true }, true);
+  });
+
+  // drop_at_week：プレイ中にページが隠れたとき。同じランで1回まで（ページが閉じられても届くよう beacon で送る）
+  useEffect(() => {
+    if (screen !== 'play') return;
+    const onHide = () => {
+      const r = runRef.current;
+      if (document.visibilityState !== 'hidden' || !r || r.ending !== undefined) return;
+      if (droppedRun.current === r.runStartedAt) return;
+      droppedRun.current = r.runStartedAt;
+      track('drop_at_week', { week_number: r.currentWeek }, { beacon: true });
+    };
+    document.addEventListener('visibilitychange', onHide);
+    return () => document.removeEventListener('visibilitychange', onHide);
+  }, [screen, track]);
+
+  const chooseConsent = (granted: boolean) => {
+    consent.set(granted ? 'granted' : 'denied');
+    setShowConsent(false);
+    if (granted) enableAnalytics();
+  };
 
   const start = (style: StyleId) => {
     setStyleId(style);
@@ -136,7 +182,11 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
     ) : modal === 'howto' ? (
       <HowToModal onClose={() => setModal(null)} />
     ) : modal === 'terms' ? (
-      <TermsModal onClose={() => setModal(null)} />
+      <TermsModal
+        onClose={() => setModal(null)}
+        consent={consent.required ? consent.get() : undefined}
+        onConsent={(granted) => chooseConsent(granted)}
+      />
     ) : null;
 
   let body: React.ReactNode = null;
@@ -173,7 +223,18 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
       break;
     case 'result':
       body = run ? (
-        <ResultScreen state={run} last={lastEnd} news={news} content={content} onRetry={() => setScreen('name')} onTitle={toTitle} onZukan={() => setModal('zukan')} />
+        <ResultScreen
+          state={run}
+          last={lastEnd}
+          news={news}
+          content={content}
+          onRetry={() => {
+            track('retry_click', { total_plays_in_session: runsInPage.current });
+            setScreen('name');
+          }}
+          onTitle={toTitle}
+          onZukan={() => setModal('zukan')}
+        />
       ) : null;
       break;
   }
@@ -181,6 +242,7 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
     <>
       {body}
       {modalEl}
+      {showConsent && screen !== 'play' && <ConsentBanner onChoose={chooseConsent} />}
     </>
   );
 }
