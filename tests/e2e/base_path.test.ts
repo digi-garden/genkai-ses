@@ -97,3 +97,28 @@ test('存在しないパスで開いても、タイトル画面が表示され�
   await expect(page.getByRole('heading', { name: /限界SES社長/ })).toBeVisible();
   expect(new URL(page.url()).pathname).toBe(TOP);
 });
+
+test('結末ページ：末尾スラッシュなしで 200、OGP があり、ボタンでトップへ移る（11 の 6.1、R13）', async ({ page, request }) => {
+  const res = await request.get('/genkai-ses/results/dev-zero', { maxRedirects: 0 });
+  expect(res.status()).toBe(200);
+  const html = await res.text();
+  expect(html).toContain('<meta property="og:image" content="https://promptlab-games.com/genkai-ses/ogp/end_dev_zero.png">');
+  expect(html).toContain('<link rel="canonical" href="https://promptlab-games.com/genkai-ses/results/dev-zero">');
+  expect(html).not.toContain('<script');
+
+  const img = await request.get('/genkai-ses/ogp/end_dev_zero.png');
+  expect(img.status()).toBe(200);
+  expect(img.headers()['content-type']).toContain('image/png');
+
+  await page.goto('/genkai-ses/results/dev-zero');
+  await expect(page.getByRole('heading', { name: '全員蒸発エンド' })).toBeVisible();
+  await page.getByRole('link', { name: 'このブラック業界に挑む' }).click();
+  await expect(page).toHaveURL(/\/genkai-ses\/$/);
+  await expect(page.getByRole('heading', { name: /限界SES社長/ })).toBeVisible();
+});
+
+test('トップページに OGP がある', async ({ request }) => {
+  const html = await (await request.get('/genkai-ses/')).text();
+  expect(html).toContain('og:image" content="https://promptlab-games.com/genkai-ses/ogp/title.png"');
+  expect(html).toContain('twitter:card');
+});
