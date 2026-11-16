@@ -22,7 +22,8 @@ const ports: AppPorts = {
   random: { newSeed: () => crypto.getRandomValues(new Uint32Array(1))[0] ?? Date.now() >>> 0 },
   clock: { now },
   saves: createSaveRepository(() => window.localStorage, cardIds),
-  sessions: createSessionRepository(() => window.sessionStorage, contentHash(gameContent.cards), cardIds, now),
+  // 途中データはタブを閉じても残す（R20。2026-11-16 オーナー判断で sessionStorage から変更）
+  sessions: createSessionRepository(() => window.localStorage, contentHash(gameContent.cards), cardIds, now),
 };
 
 createRoot(root).render(

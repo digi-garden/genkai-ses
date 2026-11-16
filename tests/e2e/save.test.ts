@@ -38,6 +38,17 @@ test('T5：途中で再読み込みしても、同じ週・同じカードから
   await expect(page.getByTestId('event-card')).toHaveText(message ?? '');
 });
 
+test('タブを閉じて開き直しても、続きから再開できる（R20）', async ({ page, context }) => {
+  await page.goto(TOP);
+  await startRun(page);
+  await page.keyboard.press('ArrowLeft');
+  await page.waitForTimeout(300);
+  await page.close();
+  const again = await context.newPage();
+  await again.goto(TOP);
+  await expect(again.getByTestId('resume')).toContainText('第2週から');
+});
+
 test('導入カードは生涯で最初の1回だけ。2回目は前回の会社名が入っている', async ({ page }) => {
   await page.goto(TOP);
   await page.getByRole('button', { name: '経営を始める' }).click();

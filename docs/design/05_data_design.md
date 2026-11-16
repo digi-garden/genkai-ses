@@ -265,7 +265,9 @@ data.seen_card_ids ← 現存するカードの ID だけに絞る
 
 ---
 
-## 6. 途中データ（sessionStorage）
+## 6. 途中データ（LocalStorage。R20 で sessionStorage から変更）
+
+> **2026-11-16 変更（R20）：** タブを閉じても途中データを残すため、保存先を sessionStorage から LocalStorage に変えた（キーは同じ `genkai_ses_session_v1`）。複数のタブで同時に遊ぶと、最後に操作したタブの途中データだけが残る。
 
 ```ts
 // キー：'genkai_ses_session_v1'
