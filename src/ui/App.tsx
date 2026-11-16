@@ -3,7 +3,8 @@ import type { Content } from '../content';
 import type { StyleId } from '../content/types';
 import { step, survivedWeeks, type Action, type GameEvent, type RuntimeGameState } from '../core';
 import { DEFAULT_COMPANY_NAME } from '../core/companyName';
-import type { AnalyticsPort, Clock, ConsentRepository, Random, SaveRepository, SessionRepository, ShareService } from '../core/ports';
+import type { AnalyticsPort, Clock, ConsentRepository, Random, SaveRepository, SessionRepository, ShareService, SoundPort } from '../core/ports';
+import { soundsFor } from '../core/sounds';
 import { buildShareText, shareUrl } from '../core/share';
 import { achievementById } from '../content/achievements';
 import { endings } from '../content/endings';
@@ -35,6 +36,7 @@ export interface AppPorts {
   /** 同意が得られたときに計測を読み込む */
   enableAnalytics: () => void;
   share: ShareService;
+  sound: SoundPort;
   /** 結末ページの URL の組み立てに使う（VITE_SITE_ORIGIN、VITE_PUBLIC_BASE） */
   site: { origin: string; base: string };
 }
@@ -43,7 +45,7 @@ export interface AppPorts {
  * 画面の切り替え、ランの状態、記録の保存（02 の 2章、05 の 5・6章）
  */
 export function App({ content, ports }: { content: Content; ports: AppPorts }) {
-  const { random, clock, saves, sessions, analytics, consent, enableAnalytics, share, site } = ports;
+  const { random, clock, saves, sessions, analytics, consent, enableAnalytics, share, site, sound } = ports;
   const [showConsent, setShowConsent] = useState(() => consent.required && consent.get() === null);
   const runsInPage = useRef(0);
   const droppedRun = useRef<string | null>(null);
@@ -110,13 +112,14 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
         }
       }
       if (s !== saveRef.current || persist) updateSave(s, persist);
+      if (saveRef.current.sound_enabled) for (const id of soundsFor(events)) sound.play(id);
       // 計測は記録の更新の後に送る（play_count などの共通パラメータを最新にするため）
       for (const a of toAnalyticsEvents(events, state, { isRetry, now: new Date(clock.now()) })) track(a.name, a.params, a.beacon ? { beacon: true } : undefined);
 
       if (state.ending === undefined) sessions.save(state);
       else sessions.clear();
     },
-    [clock, content, sessions, updateSave, track],
+    [clock, content, sessions, sound, updateSave, track],
   );
 
   // heartbeat_10s：ラン開始から、表示中の時間の累計が10秒に達したら1回だけ（ユーザーにつき1回）
@@ -203,6 +206,15 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
         <TitleScreen
           resumeWeek={resumable?.currentWeek}
           persistent={saves.persistent}
+          soundEnabled={save.sound_enabled}
+          onToggleSound={() => {
+            const on = !saveRef.current.sound_enabled;
+            updateSave({ ...saveRef.current, sound_enabled: on }, true);
+            if (on) {
+              sound.unlock(); // ユーザー操作の中で鳴らせる状態にする（自動再生の制限）
+              sound.play('flip');
+            }
+          }}
           onStart={() => setScreen('name')}
           onResume={resume}
           onZukan={() => setModal('zukan')}

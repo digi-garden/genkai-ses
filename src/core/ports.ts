@@ -43,3 +43,11 @@ export interface ShareService {
   /** X の投稿画面を開く（新しいタブ。ブロックされたら同じタブ） */
   openXIntent(text: string, url: string): void;
 }
+
+export type SoundId = 'flip' | 'chain' | 'trump' | 'death' | 'clear';
+
+export interface SoundPort {
+  play(id: SoundId): void;
+  /** ユーザー操作の中で呼ぶ（ブラウザの自動再生の制限のため、音を鳴らせる状態にする） */
+  unlock(): void;
+}
