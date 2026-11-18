@@ -7,6 +7,13 @@ import type { SoundId, SoundPort } from '../core/ports';
 type Note = { f: number; t: number; d: number; type?: OscillatorType; gain?: number; slideTo?: number };
 
 /** 音の設計：短く、うるさくない音量。t は開始の遅れ（秒）、d は長さ（秒） */
+/**
+ * 全体の音量（2026-11-18：実機確認で「全体的に少しうるさい」との指摘で 1.0 → 0.6）。
+ * 毎ターン鳴るめくり音は、さらに半分にする（FLIP_SCALE）。
+ */
+const MASTER = 0.6;
+const FLIP_SCALE = 0.5;
+
 const SOUNDS: Record<SoundId, Note[]> = {
   // めくり音：短い高めのクリック（2026-11-17：iPad mini で聞こえなかったため、音量と長さを上げた）
   flip: [{ f: 880, t: 0, d: 0.09, type: 'triangle', gain: 0.35, slideTo: 620 }],
@@ -134,7 +141,7 @@ export function createSound(win: Window): SoundPort {
           osc.type = n.type ?? 'square';
           osc.frequency.setValueAtTime(n.f, now + n.t);
           if (n.slideTo) osc.frequency.exponentialRampToValueAtTime(n.slideTo, now + n.t + n.d);
-          const v = n.gain ?? 0.05;
+          const v = (n.gain ?? 0.05) * MASTER * (id === 'flip' ? FLIP_SCALE : 1);
           g.gain.setValueAtTime(0.0001, now + n.t);
           g.gain.exponentialRampToValueAtTime(v, now + n.t + 0.01);
           g.gain.exponentialRampToValueAtTime(0.0001, now + n.t + n.d);
