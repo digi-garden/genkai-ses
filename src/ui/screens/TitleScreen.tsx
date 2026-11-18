@@ -25,9 +25,10 @@ export function TitleScreen({ resumeWeek, persistent, soundEnabled, onToggleSoun
         onClick={onToggleSound}
         aria-pressed={soundEnabled}
         aria-label={soundEnabled ? '効果音：オン（押すとオフ）' : '効果音：オフ（押すとオン）'}
-        className="absolute top-3 right-3 flex h-11 w-11 items-center justify-center rounded-md border border-border text-text-muted"
+        className={`absolute top-3 right-3 flex min-h-11 items-center gap-1.5 rounded-full border px-3 text-[13px] font-bold ${soundEnabled ? 'border-primary text-primary' : 'border-border-strong text-text-muted'}`}
       >
-        {soundEnabled ? <Volume2 className="h-5 w-5" aria-hidden /> : <VolumeX className="h-5 w-5" aria-hidden />}
+        {soundEnabled ? <Volume2 className="h-4 w-4" aria-hidden /> : <VolumeX className="h-4 w-4" aria-hidden />}
+        効果音 {soundEnabled ? 'オン' : 'オフ'}
       </button>
       <div className="flex flex-1 flex-col items-center justify-center gap-8">
         <div>
