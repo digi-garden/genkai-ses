@@ -117,16 +117,27 @@ describe('境界条件（docs/design/04_game_logic.md 11章）', () => {
     expect(step(withState(base, { currentCardId: 'n_b' }), { type: 'choose', side: 'left' }, content).state.ending).toBe('dev_max');
   });
 
-  it('E3：切り札で 100 に達したらその週で倒産（週は進まない）', () => {
-    const content = makeContent(); // 体育会系の切り札：dev +40
+  it('E3（R21）：切り札では倒産しない。限界の1歩手前（1〜99）で止まり、実際に動いた量をイベントに載せる', () => {
+    const content = makeContent(); // 体育会系の切り札：dev +40、legal −20
     const s0 = withState(step(null, startAction(), content).state, {
       currentWeek: 7,
-      parameters: { cash: 50, client: 50, dev: 60, legal: 50 },
+      parameters: { cash: 50, client: 50, dev: 60, legal: 15 },
     });
     const { state, events } = step(s0, { type: 'useTrump' }, content);
-    expect(state.ending).toBe('dev_max');
+    expect(state.ending).toBeUndefined();
+    expect(state.parameters).toEqual({ cash: 50, client: 50, dev: 99, legal: 1 });
+    expect(events.find((e) => e.type === 'trumpUsed')).toMatchObject({ applied: { dev: 39, legal: -14 } });
     expect(state.currentWeek).toBe(7);
-    expect(events.at(-1)).toMatchObject({ type: 'gameOver', week: 7 });
+  });
+
+  it('R21：すでに限界の1歩手前にあるゲージは、切り札の向きには動かさない。戻す向きはそのまま', () => {
+    const content = makeContent(); // dev +40、legal −20
+    const s0 = withState(step(null, startAction(), content).state, {
+      parameters: { cash: 50, client: 50, dev: 99, legal: 1 },
+    });
+    expect(step(s0, { type: 'useTrump' }, content).state.parameters).toEqual({ cash: 50, client: 50, dev: 99, legal: 1 });
+    const s1 = withState(s0, { parameters: { cash: 50, client: 50, dev: 5, legal: 50 } });
+    expect(step(s1, { type: 'useTrump' }, content).state.parameters).toEqual({ cash: 50, client: 50, dev: 45, legal: 30 });
   });
 
   it('E4：切り札の後、同じ週のカードを選べる。切り札は再使用できない', () => {
@@ -332,11 +343,11 @@ describe('境界条件（docs/design/04_game_logic.md 11章）', () => {
     for (let seed = 1; seed <= 30; seed++) {
       const s0 = withState(step(null, startAction({ styleId: 'gray_broker', seed }), content).state, { currentWeek: 20 });
       const { state, events } = step(s0, { type: 'useTrump' }, content);
-      expect(state.parameters.cash).toBe(100); // 50 + 50（倍率なし）
-      expect(state.ending).toBe('cash_max');
+      expect(state.parameters.cash).toBe(99); // 50 + 50 は 99 で止まる（R21）
+      expect(state.ending).toBeUndefined();
       expect(events.some((e) => e.type === 'injectionScheduled')).toBe(true);
     }
-    // 生存するケースで中身を確かめる
+    // 予約の中身を確かめる
     const s1 = withState(step(null, startAction({ styleId: 'gray_broker' }), content).state, {
       currentWeek: 20,
       parameters: { cash: 30, client: 50, dev: 50, legal: 60 },

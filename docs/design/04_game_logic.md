@@ -284,20 +284,23 @@ const signedRound = (x: number) => Math.sign(x) * Math.round(Math.abs(x));
 function useTrump(state, content):
   if state.usedTrumpCard: return state（イベントなし）
   trump ← content.styles[state.styleId].trump
-  applied ← trump.effects                                 // 倍率は掛けない
+  applied ← trumpApplied(state.parameters, trump.effects)  // 倍率は掛けない。1〜99 の外へは押し出さない（R21）
   state.parameters ← clampAll(state.parameters + applied)
   state.cashGainedTotal += max(applied.cash, 0)
   if state.currentWeek >= 14: 極値を記録（5章と同じ）
   state.usedTrumpCard ← true
   if trump.inject: state ← scheduleInjection(state, trump.inject, content)
   emit trumpUsed
-  ending ← judgeEnding(state.parameters)                   // 直ちに判定（即死あり。要件 3.1-4）
+  ending ← judgeEnding(state.parameters)                   // 直ちに判定（R21 以降、切り札では起きない。念のため残す）
   if ending: return finish(state, ending)
   return state                                             // 週は進めない。同じカードのまま
 ```
 
 - 切り札の後も、表示中のカードはそのまま。プレイヤーは続けて2択を選ぶ。
 - 切り札で死亡した場合の死亡週 N は、発動した週（`currentWeek`）とする（要件 3.1-1）。
+- **2026-11-18 変更（R21）：切り札では倒産しない。** 増やす向きは 99（`balance.trumpSafeMax`）、減らす向きは 1（`trumpSafeMin`）で止める。すでにその外にあるゲージは、その向きには動かさない。`trumpUsed.applied` には実際に動いた量を載せる（増減の矢印と売上の計算もこの量）。
+  - 経緯：テストプレイで、切り札を適当な時期に使うとその場で倒産することが多かった。random の各ターンで切り札を使った場合の即死率は、体育会系 24%（多くは現場100）、技術至上主義 24%、グレー派遣 61%（資金100）。
+  - 危険域の手前（16〜84）で止める案は、切り札が強くなりすぎた（greedy のクリア率 技術至上主義 45.5%、スタイル差 13.0pt で A2・A5 が不合格）。1〜99 ではすべて合格（`docs/balance/2026-11-18_trump_safe.md`）。
 
 ### 7.4 予兆ドットの計算（ui 層から呼ぶ）
 
@@ -401,7 +404,7 @@ function finish(state, ending):
 |---|---|---|
 | E1 | Week 52 のカードで 0 または 100 に達した | クリアではなく倒産（死亡週は 52） |
 | E2 | 2つのパラメータが同時に崩壊した | 優先順位（cash → legal → dev → client）で死因を決める |
-| E3 | 切り札で 100 に達した | その週で倒産。週は進まない |
+| E3 | 切り札で 0／100 に届く量だった | （R21）1／99 で止まり、倒産しない。週は進まない |
 | E4 | 切り札を使った後、同じ週のカードを選んだ | 2択の効果が通常どおり適用される。切り札は再使用できない |
 | E5 | 連鎖の予約週が Week 13 だった | Week 14 にずれる。Week 14 も予約済みなら Week 15 |
 | E6 | Week 50 に `inject_delay [3, 6]` の連鎖を予約した | Week 53 以降になるので破棄する |

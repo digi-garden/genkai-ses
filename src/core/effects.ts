@@ -39,6 +39,20 @@ export function addClamped(params: ChoiceEffect, applied: ChoiceEffect): ChoiceE
   };
 }
 
+/**
+ * 切り札で実際に動く量（R21、2026-11-18）。増やす向きは safeMax、減らす向きは safeMin で止める（切り札では倒産しない）。
+ * もともと範囲の外にあるゲージは、その向きには動かさない（悪化も改善もしない）。逆向き（範囲へ戻す向き）はそのまま。
+ */
+export function trumpApplied(params: ChoiceEffect, effects: ChoiceEffect, safeMin: number, safeMax: number): ChoiceEffect {
+  const one = (p: number, e: number) => (e > 0 ? Math.max(0, Math.min(e, safeMax - p)) : e < 0 ? Math.min(0, Math.max(e, safeMin - p)) : 0);
+  return {
+    cash: one(params.cash, effects.cash),
+    client: one(params.client, effects.client),
+    dev: one(params.dev, effects.dev),
+    legal: one(params.legal, effects.legal),
+  };
+}
+
 export type Hint = 'none' | 'small' | 'large';
 
 /** 予兆ドット（要件 7.1-1）：|v| が 0 なら none、1〜9 は small、10 以上は large。向きは返さない */

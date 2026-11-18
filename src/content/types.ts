@@ -89,4 +89,7 @@ export interface Balance {
   bicycleMaxCash: number;
   emperorMinSales: number;
   earlyDeathMaxWeek: number;
+  /** 切り札で動かせる範囲（R21）。この範囲の外へは押し出さない＝切り札では倒産しない。限界の1歩手前（1・99）。危険域の手前（16・84）で止めると切り札が強くなりすぎた（シミュレータ A2・A5 が不合格） */
+  trumpSafeMin: number;
+  trumpSafeMax: number;
 }

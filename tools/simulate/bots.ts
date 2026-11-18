@@ -5,7 +5,7 @@
 import type { Content } from '../../src/content';
 import { PARAMS, type ChoiceEffect, type Param } from '../../src/content/types';
 import { appliedEffects, judgeEnding, type RuntimeGameState, type Side } from '../../src/core';
-import { addClamped } from '../../src/core/effects';
+import { addClamped, trumpApplied } from '../../src/core/effects';
 import { nextFloat, type RngState } from '../../src/core/rng';
 
 export type BotId = 'random' | 'greedy' | 'gambler' | 'greedy:white' | 'greedy:bicycle';
@@ -54,7 +54,8 @@ export function decide(bot: BotId, s: RuntimeGameState, content: Content, rng: R
   let useTrump = false;
   let base = s.parameters;
   if (!s.usedTrumpCard && PARAMS.some((k) => s.parameters[k] <= 15 || s.parameters[k] >= 85)) {
-    const after = addClamped(s.parameters, content.styles[s.styleId].trump.effects);
+    const b = content.balance;
+    const after = addClamped(s.parameters, trumpApplied(s.parameters, content.styles[s.styleId].trump.effects, b.trumpSafeMin, b.trumpSafeMax));
     if (!judgeEnding(after) && distance(after, target) < now) {
       useTrump = true;
       base = after;

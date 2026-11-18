@@ -5,7 +5,7 @@
 import type { Content } from '../content';
 import type { ChoiceEffect, EndingId } from '../content/types';
 import { buildDeck, injectionFromChoice, scheduleInjection, showNextCard } from './deck';
-import { addClamped, applyPassives } from './effects';
+import { addClamped, applyPassives, trumpApplied } from './effects';
 import { computeSales, judgeAchievements, judgeEnding, judgeRegret } from './judge';
 import { seedRandom } from './rng';
 import { cloneState, type Action, type GameEvent, type RuntimeGameState, type Side } from './state';
@@ -109,7 +109,8 @@ function applyTrump(prev: RuntimeGameState, content: Content): StepResult {
   const s = cloneState(prev);
   const events: GameEvent[] = [];
   const trump = content.styles[s.styleId].trump;
-  const applied = { ...trump.effects }; // 倍率は掛けない
+  // 倍率は掛けない。危険域の手前で止める（R21：切り札では倒産しない）
+  const applied = trumpApplied(s.parameters, trump.effects, content.balance.trumpSafeMin, content.balance.trumpSafeMax);
   applyToState(s, applied, content);
   s.usedTrumpCard = true;
   events.push({ type: 'trumpUsed', week: s.currentWeek, applied });
