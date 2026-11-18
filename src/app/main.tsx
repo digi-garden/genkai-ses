@@ -8,6 +8,7 @@ import { needsConsent } from '../core/analytics';
 import { createAnalytics, createConsentRepository, ensureCfBeacon } from '../infra/analytics';
 import { createSaveRepository, createSessionRepository } from '../infra/storage';
 import { createShareService } from '../infra/share';
+import { createSound } from '../infra/sound';
 import { App, type AppPorts } from '../ui/App';
 import { normalizeEntryPath } from './entryPath';
 
@@ -40,11 +41,16 @@ const ports: AppPorts = {
   consent,
   enableAnalytics: () => analytics.enable(),
   share: createShareService(window),
+  sound: createSound(window),
   site: {
     origin: import.meta.env.VITE_SITE_ORIGIN || 'https://promptlab-games.com',
     base: import.meta.env.VITE_PUBLIC_BASE ?? '/genkai-ses',
   },
 };
+
+if (new URLSearchParams(location.search).get('debug') === 'sound') {
+  void import('./soundDebug').then((m) => m.mountSoundDebug(window as Parameters<typeof m.mountSoundDebug>[0]));
+}
 
 createRoot(root).render(
   <StrictMode>

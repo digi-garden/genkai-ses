@@ -4,7 +4,7 @@
  * そのセッションの間はメモリで保持する。
  */
 import { ENDING_IDS } from '../content/types';
-import { defaultSaveData, SAVE_SCHEMA_VERSION, type SaveData } from '../core/progress';
+import { defaultSaveData, SAVE_SCHEMA_VERSION, SOUND_VOLUMES, type SaveData } from '../core/progress';
 import type { SaveRepository, SessionRepository } from '../core/ports';
 import type { RuntimeGameState } from '../core/state';
 
@@ -56,6 +56,7 @@ function isSaveData(d: unknown): d is SaveData {
     Number.isInteger(r.play_count) &&
     (r.play_count as number) >= 0 &&
     typeof r.sound_enabled === 'boolean' &&
+    (r.sound_volume === undefined || SOUND_VOLUMES.includes(r.sound_volume as never)) &&
     str(r.last_company_name) &&
     strArr(r.seen_card_ids) &&
     typeof r.heartbeat_sent === 'boolean' &&
@@ -111,7 +112,7 @@ export function createSaveRepository(
         const candidate = readOnly ? { ...data, schema_version: 1 } : data;
         if (!isSaveData(candidate)) throw new Error('形式が違う');
         const d = candidate;
-        return { ...d, seen_card_ids: d.seen_card_ids.filter((id) => knownCardIds.has(id)) };
+        return { ...d, sound_volume: d.sound_volume ?? 'mid', seen_card_ids: d.seen_card_ids.filter((id) => knownCardIds.has(id)) };
       } catch {
         // 壊れたデータは1世代だけ退避して、初期データで作り直す
         safeSet(`${SAVE_KEY}_broken`, raw);

@@ -6,12 +6,18 @@ import type { EndingId } from '../content/types';
 
 export const SAVE_SCHEMA_VERSION = 1;
 
+/** 効果音の音量（2026-11-18 追加）。小・中・大の3段階 */
+export type SoundVolume = 'low' | 'mid' | 'high';
+export const SOUND_VOLUMES: readonly SoundVolume[] = ['low', 'mid', 'high'];
+
 export interface SaveData {
   schema_version: 1;
   first_played_at: string | null;
   last_played_at: string | null;
   play_count: number;
   sound_enabled: boolean;
+  /** 2026-11-18 追加。古いデータにはないので、読み込み時に 'mid' で補う（schema_version は上げない） */
+  sound_volume: SoundVolume;
   last_company_name: string;
   seen_card_ids: string[];
   heartbeat_sent: boolean;
@@ -27,6 +33,7 @@ export function defaultSaveData(): SaveData {
     last_played_at: null,
     play_count: 0,
     sound_enabled: false,
+    sound_volume: 'mid',
     last_company_name: '',
     seen_card_ids: [],
     heartbeat_sent: false,

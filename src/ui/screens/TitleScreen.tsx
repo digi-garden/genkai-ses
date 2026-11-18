@@ -1,9 +1,14 @@
 import { BookOpen } from 'lucide-react';
+import type { SoundVolume } from '../../core/progress';
+import { SoundPanel } from '../components/SoundPanel';
 import { Button } from '../components/Button';
 
 interface Props {
   resumeWeek?: number | undefined;
   persistent: boolean;
+  soundEnabled: boolean;
+  soundVolume: SoundVolume;
+  onSoundChange: (enabled: boolean, volume: SoundVolume) => void;
   onStart: () => void;
   onResume: () => void;
   onZukan: () => void;
@@ -14,10 +19,11 @@ interface Props {
 const CONTACT = 'https://promptlab-games.com/contact';
 
 /** S01 タイトル（効果音の ON / OFF は、効果音を入れる手順で追加する） */
-export function TitleScreen({ resumeWeek, persistent, onStart, onResume, onZukan, onHowTo, onTerms }: Props) {
+export function TitleScreen({ resumeWeek, persistent, soundEnabled, soundVolume, onSoundChange, onStart, onResume, onZukan, onHowTo, onTerms }: Props) {
   const link = 'min-h-11 px-2 text-[13px] text-text-muted underline underline-offset-4';
   return (
-    <main className="mx-auto flex min-h-dvh max-w-[480px] flex-col items-center px-4 py-10 text-center">
+    <main className="relative mx-auto flex min-h-dvh max-w-[480px] flex-col items-center px-4 py-10 text-center">
+      <SoundPanel enabled={soundEnabled} volume={soundVolume} onChange={onSoundChange} />
       <div className="flex flex-1 flex-col items-center justify-center gap-8">
         <div>
           <p className="mb-3 text-[12px] text-text-subtle">PromptLab Games</p>

@@ -3,7 +3,8 @@ import type { Content } from '../content';
 import type { StyleId } from '../content/types';
 import { step, survivedWeeks, type Action, type GameEvent, type RuntimeGameState } from '../core';
 import { DEFAULT_COMPANY_NAME } from '../core/companyName';
-import type { AnalyticsPort, Clock, ConsentRepository, Random, SaveRepository, SessionRepository, ShareService } from '../core/ports';
+import type { AnalyticsPort, Clock, ConsentRepository, Random, SaveRepository, SessionRepository, ShareService, SoundPort } from '../core/ports';
+import { soundsFor } from '../core/sounds';
 import { buildShareText, shareUrl } from '../core/share';
 import { achievementById } from '../content/achievements';
 import { endings } from '../content/endings';
@@ -21,6 +22,9 @@ import { TermsModal } from './screens/TermsModal';
 import { TitleScreen } from './screens/TitleScreen';
 import { ZukanModal } from './screens/ZukanModal';
 
+/** 音量の倍率（中＝今までの音量） */
+const VOLUME = { low: 0.4, mid: 1, high: 1.7 } as const;
+
 type Screen = 'title' | 'name' | 'style' | 'play' | 'result';
 type ModalId = 'zukan' | 'howto' | 'terms' | null;
 type EndEvent = Extract<GameEvent, { type: 'gameOver' | 'gameClear' }>;
@@ -35,6 +39,7 @@ export interface AppPorts {
   /** 同意が得られたときに計測を読み込む */
   enableAnalytics: () => void;
   share: ShareService;
+  sound: SoundPort;
   /** 結末ページの URL の組み立てに使う（VITE_SITE_ORIGIN、VITE_PUBLIC_BASE） */
   site: { origin: string; base: string };
 }
@@ -43,7 +48,7 @@ export interface AppPorts {
  * 画面の切り替え、ランの状態、記録の保存（02 の 2章、05 の 5・6章）
  */
 export function App({ content, ports }: { content: Content; ports: AppPorts }) {
-  const { random, clock, saves, sessions, analytics, consent, enableAnalytics, share, site } = ports;
+  const { random, clock, saves, sessions, analytics, consent, enableAnalytics, share, site, sound } = ports;
   const [showConsent, setShowConsent] = useState(() => consent.required && consent.get() === null);
   const runsInPage = useRef(0);
   const droppedRun = useRef<string | null>(null);
@@ -67,6 +72,22 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
     },
     [saves],
   );
+
+  // 効果音が ON なら、ページを開いた後の最初の操作で、音を鳴らせる状態にする（iOS・iPadOS の自動再生の制限）
+  useEffect(() => {
+    if (!save.sound_enabled) return;
+    const onGesture = () => {
+      sound.unlock();
+      window.removeEventListener('pointerdown', onGesture, true);
+      window.removeEventListener('keydown', onGesture, true);
+    };
+    window.addEventListener('pointerdown', onGesture, true);
+    window.addEventListener('keydown', onGesture, true);
+    return () => {
+      window.removeEventListener('pointerdown', onGesture, true);
+      window.removeEventListener('keydown', onGesture, true);
+    };
+  }, [save.sound_enabled, sound]);
 
   // ページが隠れたら、メモリ上の既読カードなどをまとめて保存する（05 の 5.2）
   useEffect(() => {
@@ -110,13 +131,14 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
         }
       }
       if (s !== saveRef.current || persist) updateSave(s, persist);
+      if (saveRef.current.sound_enabled) for (const id of soundsFor(events)) sound.play(id, VOLUME[saveRef.current.sound_volume]);
       // 計測は記録の更新の後に送る（play_count などの共通パラメータを最新にするため）
       for (const a of toAnalyticsEvents(events, state, { isRetry, now: new Date(clock.now()) })) track(a.name, a.params, a.beacon ? { beacon: true } : undefined);
 
       if (state.ending === undefined) sessions.save(state);
       else sessions.clear();
     },
-    [clock, content, sessions, updateSave, track],
+    [clock, content, sessions, sound, updateSave, track],
   );
 
   // heartbeat_10s：ラン開始から、表示中の時間の累計が10秒に達したら1回だけ（ユーザーにつき1回）
@@ -203,6 +225,15 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
         <TitleScreen
           resumeWeek={resumable?.currentWeek}
           persistent={saves.persistent}
+          soundEnabled={save.sound_enabled}
+          soundVolume={save.sound_volume}
+          onSoundChange={(enabled, volume) => {
+            updateSave({ ...saveRef.current, sound_enabled: enabled, sound_volume: volume }, true);
+            if (enabled) {
+              sound.unlock(); // ユーザー操作の中で鳴らせる状態にする（自動再生の制限）
+              sound.play('trump', VOLUME[volume]); // 試し音（めくり音は小さいので、聞き取りやすい切り札の音にする）
+            }
+          }}
           onStart={() => setScreen('name')}
           onResume={resume}
           onZukan={() => setModal('zukan')}

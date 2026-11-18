@@ -50,6 +50,16 @@ describe('SaveRepository', () => {
     expect(createSaveRepository(() => asStorage(st), ids).load()).toEqual(defaultSaveData());
   });
 
+  it('音量の項目がない古いデータは、音量「中」で補う（作り直さない）', () => {
+    const st = new MemStorage();
+    const old: Partial<ReturnType<typeof defaultSaveData>> = { ...defaultSaveData(), play_count: 4 };
+    delete old.sound_volume;
+    st.setItem(SAVE_KEY, JSON.stringify(old));
+    const d = createSaveRepository(() => asStorage(st), ids).load();
+    expect(d.play_count).toBe(4);
+    expect(d.sound_volume).toBe('mid');
+  });
+
   it('存在しないカードの既読は落とす', () => {
     const st = new MemStorage();
     st.setItem(SAVE_KEY, JSON.stringify({ ...defaultSaveData(), seen_card_ids: ['n_golf', 'n_deleted'] }));
