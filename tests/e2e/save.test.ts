@@ -106,12 +106,16 @@ test('T8：ストレージが使えなくても遊べて、記録が残らない
   await expect(page.getByTestId('week')).toHaveText('Week 2/52');
 });
 
-test('効果音の ON / OFF は初期値 OFF で、切り替えが保存される', async ({ page }) => {
+test('効果音は初期値オフ。パネルでオンと音量を選ぶと保存される', async ({ page }) => {
   await page.goto(TOP);
-  const toggle = page.getByRole('button', { name: /効果音/ });
-  await expect(toggle).toHaveAttribute('aria-pressed', 'false');
-  await toggle.click();
-  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+  const button = page.getByRole('button', { name: /効果音/ });
+  await expect(button).toContainText('効果音 オフ');
+  await button.click();
+  const panel = page.getByRole('group', { name: '効果音の設定' });
+  await panel.getByRole('button', { name: '大' }).click();
+  await expect(button).toContainText('効果音 オン・大');
+  await page.keyboard.press('Escape');
+  await expect(panel).toBeHidden();
   await page.reload();
-  await expect(page.getByRole('button', { name: /効果音/ })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: /効果音/ })).toContainText('効果音 オン・大');
 });

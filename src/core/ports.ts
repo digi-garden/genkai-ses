@@ -47,7 +47,8 @@ export interface ShareService {
 export type SoundId = 'flip' | 'chain' | 'trump' | 'death' | 'clear';
 
 export interface SoundPort {
-  play(id: SoundId): void;
+  /** volume は倍率（中＝1） */
+  play(id: SoundId, volume?: number): void;
   /** ユーザー操作の中で呼ぶ（ブラウザの自動再生の制限のため、音を鳴らせる状態にする） */
   unlock(): void;
 }

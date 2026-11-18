@@ -22,6 +22,9 @@ import { TermsModal } from './screens/TermsModal';
 import { TitleScreen } from './screens/TitleScreen';
 import { ZukanModal } from './screens/ZukanModal';
 
+/** 音量の倍率（中＝今までの音量） */
+const VOLUME = { low: 0.4, mid: 1, high: 1.7 } as const;
+
 type Screen = 'title' | 'name' | 'style' | 'play' | 'result';
 type ModalId = 'zukan' | 'howto' | 'terms' | null;
 type EndEvent = Extract<GameEvent, { type: 'gameOver' | 'gameClear' }>;
@@ -128,7 +131,7 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
         }
       }
       if (s !== saveRef.current || persist) updateSave(s, persist);
-      if (saveRef.current.sound_enabled) for (const id of soundsFor(events)) sound.play(id);
+      if (saveRef.current.sound_enabled) for (const id of soundsFor(events)) sound.play(id, VOLUME[saveRef.current.sound_volume]);
       // 計測は記録の更新の後に送る（play_count などの共通パラメータを最新にするため）
       for (const a of toAnalyticsEvents(events, state, { isRetry, now: new Date(clock.now()) })) track(a.name, a.params, a.beacon ? { beacon: true } : undefined);
 
@@ -223,12 +226,12 @@ export function App({ content, ports }: { content: Content; ports: AppPorts }) {
           resumeWeek={resumable?.currentWeek}
           persistent={saves.persistent}
           soundEnabled={save.sound_enabled}
-          onToggleSound={() => {
-            const on = !saveRef.current.sound_enabled;
-            updateSave({ ...saveRef.current, sound_enabled: on }, true);
-            if (on) {
+          soundVolume={save.sound_volume}
+          onSoundChange={(enabled, volume) => {
+            updateSave({ ...saveRef.current, sound_enabled: enabled, sound_volume: volume }, true);
+            if (enabled) {
               sound.unlock(); // ユーザー操作の中で鳴らせる状態にする（自動再生の制限）
-              sound.play('flip');
+              sound.play('trump', VOLUME[volume]); // 試し音（めくり音は小さいので、聞き取りやすい切り札の音にする）
             }
           }}
           onStart={() => setScreen('name')}

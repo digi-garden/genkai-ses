@@ -1,11 +1,14 @@
-import { BookOpen, Volume2, VolumeX } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
+import type { SoundVolume } from '../../core/progress';
+import { SoundPanel } from '../components/SoundPanel';
 import { Button } from '../components/Button';
 
 interface Props {
   resumeWeek?: number | undefined;
   persistent: boolean;
   soundEnabled: boolean;
-  onToggleSound: () => void;
+  soundVolume: SoundVolume;
+  onSoundChange: (enabled: boolean, volume: SoundVolume) => void;
   onStart: () => void;
   onResume: () => void;
   onZukan: () => void;
@@ -16,20 +19,11 @@ interface Props {
 const CONTACT = 'https://promptlab-games.com/contact';
 
 /** S01 タイトル（効果音の ON / OFF は、効果音を入れる手順で追加する） */
-export function TitleScreen({ resumeWeek, persistent, soundEnabled, onToggleSound, onStart, onResume, onZukan, onHowTo, onTerms }: Props) {
+export function TitleScreen({ resumeWeek, persistent, soundEnabled, soundVolume, onSoundChange, onStart, onResume, onZukan, onHowTo, onTerms }: Props) {
   const link = 'min-h-11 px-2 text-[13px] text-text-muted underline underline-offset-4';
   return (
     <main className="relative mx-auto flex min-h-dvh max-w-[480px] flex-col items-center px-4 py-10 text-center">
-      <button
-        type="button"
-        onClick={onToggleSound}
-        aria-pressed={soundEnabled}
-        aria-label={soundEnabled ? '効果音：オン（押すとオフ）' : '効果音：オフ（押すとオン）'}
-        className={`absolute top-3 right-3 flex min-h-11 items-center gap-1.5 rounded-full border px-3 text-[13px] font-bold ${soundEnabled ? 'border-primary text-primary' : 'border-border-strong text-text-muted'}`}
-      >
-        {soundEnabled ? <Volume2 className="h-4 w-4" aria-hidden /> : <VolumeX className="h-4 w-4" aria-hidden />}
-        効果音 {soundEnabled ? 'オン' : 'オフ'}
-      </button>
+      <SoundPanel enabled={soundEnabled} volume={soundVolume} onChange={onSoundChange} />
       <div className="flex flex-1 flex-col items-center justify-center gap-8">
         <div>
           <p className="mb-3 text-[12px] text-text-subtle">PromptLab Games</p>

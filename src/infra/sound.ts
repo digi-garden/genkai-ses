@@ -130,7 +130,7 @@ export function createSound(win: Window): SoundPort {
         }
       }
     },
-    play(id) {
+    play(id, volume = 1) {
       const c = ensure();
       if (!c) return;
       const now = c.currentTime;
@@ -141,7 +141,7 @@ export function createSound(win: Window): SoundPort {
           osc.type = n.type ?? 'square';
           osc.frequency.setValueAtTime(n.f, now + n.t);
           if (n.slideTo) osc.frequency.exponentialRampToValueAtTime(n.slideTo, now + n.t + n.d);
-          const v = (n.gain ?? 0.05) * MASTER * (id === 'flip' ? FLIP_SCALE : 1);
+          const v = (n.gain ?? 0.05) * MASTER * volume * (id === 'flip' ? FLIP_SCALE : 1);
           g.gain.setValueAtTime(0.0001, now + n.t);
           g.gain.exponentialRampToValueAtTime(v, now + n.t + 0.01);
           g.gain.exponentialRampToValueAtTime(0.0001, now + n.t + n.d);
