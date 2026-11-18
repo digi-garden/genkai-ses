@@ -26,6 +26,8 @@ test('T1：キー操作だけで最後まで遊び、リザルトからもう1�
   await expect(report).toBeVisible({ timeout: 5000 });
   await expect(report).toContainText('テスト工業');
   await expect(report).toContainText(/倒産報告書|決算通知書/);
+  // スクロールしなくても次の行動ボタンが見える（2026-11-18 の指摘）
+  await expect(page.getByRole('button', { name: 'もう1期挑む' })).toBeInViewport();
   await page.getByRole('button', { name: 'もう1期挑む' }).click();
   // 前回の会社名が入った状態で戻る
   await expect(page.getByLabel(/会社名/)).toHaveValue('テスト工業');

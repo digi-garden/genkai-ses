@@ -40,6 +40,12 @@ body,
   height: 100%;
 }
 
+/* 画面の端で引っぱったときの跳ね返りと、引っぱって再読み込みを止める（2026-11-18、iPhone の指摘） */
+html,
+body {
+  overscroll-behavior: none;
+}
+
 body {
   margin: 0;
   background: var(--color-bg);
