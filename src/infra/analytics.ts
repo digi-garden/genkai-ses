@@ -43,6 +43,14 @@ export interface AnalyticsController extends AnalyticsPort {
   enable(): void;
 }
 
+/** GA4 に送るのは本番のホストだけ（2026-11-19）。ステージングとプレビューは同じビルドを配信するので、ホスト名で分ける */
+export const GA_PRODUCTION_HOST = 'promptlab-games.com';
+
+/** 本番のホストなら測定 ID を返し、それ以外は undefined（コンソールに出すだけになる） */
+export function measurementIdForHost(id: string | undefined, hostname: string): string | undefined {
+  return id && hostname === GA_PRODUCTION_HOST ? id : undefined;
+}
+
 export function createAnalytics(opts: { measurementId: string | undefined; doc: Document; win: Window }): AnalyticsController {
   const { measurementId, doc, win } = opts;
   let loaded = false;

@@ -5,7 +5,7 @@ import '../styles/theme.css';
 import { contentHash } from '../content/contentHash';
 import { gameContent } from '../content/game';
 import { needsConsent } from '../core/analytics';
-import { createAnalytics, createConsentRepository, ensureCfBeacon } from '../infra/analytics';
+import { createAnalytics, createConsentRepository, ensureCfBeacon, measurementIdForHost } from '../infra/analytics';
 import { createSaveRepository, createSessionRepository } from '../infra/storage';
 import { createShareService } from '../infra/share';
 import { createSound } from '../infra/sound';
@@ -23,7 +23,11 @@ const loadMotionFeatures = () => import('./motionFeatures').then((m) => m.defaul
 const now = () => new Date().toISOString();
 const cardIds = new Set(gameContent.cards.map((c) => c.id));
 const consent = createConsentRepository(() => window.localStorage, needsConsent(Intl.DateTimeFormat().resolvedOptions().timeZone));
-const analytics = createAnalytics({ measurementId: import.meta.env.VITE_GA_MEASUREMENT_ID || undefined, doc: document, win: window });
+const analytics = createAnalytics({
+  measurementId: measurementIdForHost(import.meta.env.VITE_GA_MEASUREMENT_ID || undefined, window.location.hostname),
+  doc: document,
+  win: window,
+});
 if (!consent.required || consent.get() === 'granted') analytics.enable();
 ensureCfBeacon(import.meta.env.VITE_CF_BEACON_TOKEN || undefined, document);
 

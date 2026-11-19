@@ -43,6 +43,7 @@ interface SessionRepository {
 - 日本の外部送信規律は「公表」で足りる（同意は不要）ので、プライバシーポリシーに送信先・情報・目的を書く（要件 7.2-5）。
 - バナーの選択は LocalStorage の `genkai_ses_consent_v1`（`'granted' | 'denied'`）に保存する。プライバシーポリシーのモーダルから、いつでも変更できる。
 - `VITE_GA_MEASUREMENT_ID` が未設定のとき（プレビュー環境・開発時）は GA4 を読み込まず、送るはずだったイベントを開発者ツールのコンソールに出す。
+- **本番のホスト（`promptlab-games.com`）以外では GA4 を読み込まない（2026-11-19）。** ステージング（`staging.promptlab-games.com`）とオリジン（`genkai-ses-origin.promptlab-games.com`）は本番と同じビルドを配信するので、測定 ID が入っていてもホスト名で分ける。そこではイベントをコンソールに出す（`measurementIdForHost`）。
 - 広告ブロッカーで GA4 が読み込めない場合は、何もしない（エラーにしない）。
 
 ### 2.2 イベント仕様

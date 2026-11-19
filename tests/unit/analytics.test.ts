@@ -3,7 +3,7 @@ import { gameContent } from '../../src/content/game';
 import { step } from '../../src/core';
 import { commonParams, daysBetween, needsConsent, toAnalyticsEvents } from '../../src/core/analytics';
 import { defaultSaveData } from '../../src/core/progress';
-import { createAnalytics, ensureCfBeacon } from '../../src/infra/analytics';
+import { createAnalytics, ensureCfBeacon, measurementIdForHost } from '../../src/infra/analytics';
 
 describe('needsConsent（06 の 2.1）', () => {
   it.each([
@@ -75,6 +75,21 @@ function fakeDom() {
   } as unknown as Document;
   return { doc, appended };
 }
+
+describe('measurementIdForHost（本番のホストだけ GA4 に送る）', () => {
+  it.each([
+    ['promptlab-games.com', 'G-TEST'],
+    ['staging.promptlab-games.com', undefined],
+    ['genkai-ses-origin.promptlab-games.com', undefined],
+    ['preview-phase1b.genkai-ses.pages.dev', undefined],
+    ['localhost', undefined],
+  ])('%s → %s', (host, expected) => {
+    expect(measurementIdForHost('G-TEST', host)).toBe(expected);
+  });
+  it('測定 ID がなければ本番でも undefined', () => {
+    expect(measurementIdForHost(undefined, 'promptlab-games.com')).toBeUndefined();
+  });
+});
 
 describe('createAnalytics', () => {
   it('測定 ID がなければコンソールに出すだけ', () => {
