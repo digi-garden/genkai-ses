@@ -8,16 +8,16 @@
     "choice_left": {
       "text": "平謝りで単価を下げる",
       "effects": {
-        "cash": -21,
+        "cash": -19,
         "client": -5
       }
     },
     "choice_right": {
       "text": "「本人の自己申告です」",
       "effects": {
-        "client": -17,
-        "dev": -8,
-        "legal": -10
+        "client": -15,
+        "dev": -7,
+        "legal": -9
       }
     }
   },
@@ -30,16 +30,16 @@
     "choice_left": {
       "text": "全面協力して改善する",
       "effects": {
-        "cash": -17,
+        "cash": -15,
         "dev": -4,
-        "legal": -11
+        "legal": -10
       }
     },
     "choice_right": {
       "text": "書類が見つからない",
       "effects": {
-        "client": -8,
-        "legal": -27
+        "client": -7,
+        "legal": -24
       }
     }
   },
@@ -52,15 +52,15 @@
     "choice_left": {
       "text": "正直に謝る",
       "effects": {
-        "cash": -11,
-        "client": -14
+        "cash": -10,
+        "client": -13
       }
     },
     "choice_right": {
       "text": "「分身できるんです」",
       "effects": {
-        "client": -19,
-        "legal": -10
+        "client": -17,
+        "legal": -9
       }
     }
   },
@@ -73,15 +73,15 @@
     "choice_left": {
       "text": "差額をまとめて払う",
       "effects": {
-        "cash": -25,
+        "cash": -23,
         "legal": -4
       }
     },
     "choice_right": {
       "text": "「よく分かりません」",
       "effects": {
-        "client": -6,
-        "legal": -25
+        "client": -5,
+        "legal": -23
       }
     }
   },
@@ -94,15 +94,15 @@
     "choice_left": {
       "text": "全額払って謝る",
       "effects": {
-        "cash": -25,
-        "dev": 6
+        "cash": -23,
+        "dev": 5
       }
     },
     "choice_right": {
       "text": "争う",
       "effects": {
-        "dev": -17,
-        "legal": -21
+        "dev": -15,
+        "legal": -19
       }
     }
   },
@@ -115,15 +115,15 @@
     "choice_left": {
       "text": "全部呑む",
       "effects": {
-        "cash": -8,
-        "client": 6,
-        "dev": -21
+        "cash": -7,
+        "client": 5,
+        "dev": -19
       }
     },
     "choice_right": {
       "text": "契約書を盾に断る",
       "effects": {
-        "client": -19,
+        "client": -17,
         "legal": 4
       }
     }

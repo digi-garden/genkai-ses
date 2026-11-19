@@ -9,19 +9,19 @@
     "choice_left": {
       "text": "正直に伝えて辞退",
       "effects": {
-        "cash": -10,
+        "cash": -9,
         "client": -5,
         "dev": 4,
-        "legal": 10
+        "legal": 9
       }
     },
     "choice_right": {
       "text": "経歴をプロデュース",
       "effects": {
-        "cash": 18,
+        "cash": 16,
         "client": 4,
-        "dev": -7,
-        "legal": -15
+        "dev": -6,
+        "legal": -14
       },
       "unethical": true,
       "inject_card_id": "c_resume_exposed",
@@ -42,16 +42,16 @@
     "choice_left": {
       "text": "受け入れる",
       "effects": {
-        "cash": -14,
-        "client": 13,
+        "cash": -13,
+        "client": 12,
         "dev": -5
       }
     },
     "choice_right": {
       "text": "粘って交渉する",
       "effects": {
-        "cash": 7,
-        "client": -15
+        "cash": 6,
+        "client": -14
       }
     }
   },
@@ -65,15 +65,15 @@
     "choice_left": {
       "text": "無償で受ける",
       "effects": {
-        "client": 23,
-        "dev": -17
+        "client": 21,
+        "dev": -15
       }
     },
     "choice_right": {
       "text": "追加見積を出す",
       "effects": {
-        "cash": 10,
-        "client": -15,
+        "cash": 9,
+        "client": -14,
         "dev": 4
       }
     }
@@ -89,15 +89,15 @@
       "text": "現場を替える交渉をする",
       "effects": {
         "cash": -4,
-        "client": -11,
-        "dev": 14
+        "client": -10,
+        "dev": 13
       }
     },
     "choice_right": {
       "text": "「若いうちは苦労しろ」",
       "effects": {
-        "client": -8,
-        "dev": -25
+        "client": -7,
+        "dev": -23
       }
     }
   },
@@ -111,16 +111,16 @@
     "choice_left": {
       "text": "社内研修で育てる",
       "effects": {
-        "cash": -13,
-        "dev": 10
+        "cash": -12,
+        "dev": 9
       }
     },
     "choice_right": {
       "text": "安くても現場に押し込む",
       "effects": {
-        "cash": 12,
+        "cash": 11,
         "client": -5,
-        "dev": -20
+        "dev": -18
       }
     }
   },
@@ -135,16 +135,16 @@
       "text": "代休を約束する",
       "effects": {
         "cash": -4,
-        "client": -8,
-        "dev": 12
+        "client": -7,
+        "dev": 11
       }
     },
     "choice_right": {
       "text": "ピザを差し入れる",
       "effects": {
         "cash": -2,
-        "client": 6,
-        "dev": -22
+        "client": 5,
+        "dev": -20
       }
     }
   },
@@ -158,17 +158,17 @@
     "choice_left": {
       "text": "素性の分かる人だけ",
       "effects": {
-        "cash": -10,
+        "cash": -9,
         "client": -5,
-        "legal": 16
+        "legal": 14
       }
     },
     "choice_right": {
       "text": "商流の深さは気にしない",
       "effects": {
-        "cash": 18,
+        "cash": 16,
         "client": 4,
-        "legal": -17
+        "legal": -15
       },
       "unethical": true,
       "inject_card_id": "c_audit_visit",
@@ -189,15 +189,15 @@
     "choice_left": {
       "text": "全員出す",
       "effects": {
-        "client": 13,
-        "dev": -15
+        "client": 12,
+        "dev": -14
       }
     },
     "choice_right": {
       "text": "代表者1人だけ出す",
       "effects": {
-        "client": -11,
-        "dev": 6
+        "client": -10,
+        "dev": 5
       }
     }
   },
@@ -211,15 +211,15 @@
     "choice_left": {
       "text": "黙って受け入れる",
       "effects": {
-        "cash": -13,
-        "client": 8
+        "cash": -12,
+        "client": 7
       }
     },
     "choice_right": {
       "text": "抗議する",
       "effects": {
-        "cash": 6,
-        "client": -17
+        "cash": 5,
+        "client": -15
       }
     }
   },
@@ -233,16 +233,16 @@
     "choice_left": {
       "text": "やってみる",
       "effects": {
-        "cash": 17,
-        "client": -9,
-        "dev": -15
+        "cash": 15,
+        "client": -8,
+        "dev": -14
       }
     },
     "choice_right": {
       "text": "育成に時間をかける",
       "effects": {
-        "cash": -14,
-        "dev": 8
+        "cash": -13,
+        "dev": 7
       }
     }
   },
@@ -255,17 +255,17 @@
     "choice_left": {
       "text": "実際の体制で出す",
       "effects": {
-        "cash": -8,
-        "client": -8,
-        "legal": 10
+        "cash": -7,
+        "client": -7,
+        "legal": 9
       }
     },
     "choice_right": {
       "text": "名前だけ載せる",
       "effects": {
-        "cash": 16,
-        "client": 6,
-        "legal": -12
+        "cash": 14,
+        "client": 5,
+        "legal": -11
       },
       "unethical": true,
       "inject_card_id": "c_ghost_member",
@@ -285,17 +285,17 @@
     "choice_left": {
       "text": "人数分買う",
       "effects": {
-        "cash": -14,
-        "dev": 6,
-        "legal": 10
+        "cash": -13,
+        "dev": 5,
+        "legal": 9
       }
     },
     "choice_right": {
       "text": "使い回させる",
       "effects": {
-        "cash": 9,
+        "cash": 8,
         "dev": -5,
-        "legal": -15
+        "legal": -14
       },
       "unethical": true,
       "inject_card_id": "c_license_audit",
@@ -315,17 +315,17 @@
     "choice_left": {
       "text": "実績どおり全額払う",
       "effects": {
-        "cash": -20,
-        "dev": 10,
-        "legal": 16
+        "cash": -18,
+        "dev": 9,
+        "legal": 14
       }
     },
     "choice_right": {
       "text": "見なしで押し通す",
       "effects": {
-        "cash": 14,
-        "dev": -12,
-        "legal": -12
+        "cash": 13,
+        "dev": -11,
+        "legal": -11
       },
       "unethical": true,
       "inject_card_id": "c_overtime_claim",
@@ -345,16 +345,16 @@
     "choice_left": {
       "text": "窓口を通すよう頼む",
       "effects": {
-        "client": -11,
-        "legal": 16
+        "client": -10,
+        "legal": 14
       }
     },
     "choice_right": {
       "text": "「どうぞどうぞ」",
       "effects": {
-        "client": 16,
+        "client": 14,
         "dev": -5,
-        "legal": -15
+        "legal": -14
       },
       "unethical": true,
       "inject_card_id": "c_audit_visit",
@@ -375,18 +375,18 @@
       "text": "案件から外して休ませる",
       "effects": {
         "cash": -5,
-        "client": -11,
-        "dev": 6,
-        "legal": 16
+        "client": -10,
+        "dev": 5,
+        "legal": 14
       }
     },
     "choice_right": {
       "text": "記録を整える",
       "effects": {
-        "cash": 14,
+        "cash": 13,
         "client": 4,
-        "dev": -10,
-        "legal": -15
+        "dev": -9,
+        "legal": -14
       },
       "unethical": true,
       "inject_card_id": "c_overtime_claim",
@@ -406,17 +406,17 @@
     "choice_left": {
       "text": "範囲を書面で確認する",
       "effects": {
-        "client": -9,
+        "client": -8,
         "dev": 4,
-        "legal": 10
+        "legal": 9
       }
     },
     "choice_right": {
       "text": "口約束のまま走る",
       "effects": {
-        "cash": 9,
-        "client": 18,
-        "dev": -7
+        "cash": 8,
+        "client": 16,
+        "dev": -6
       },
       "inject_card_id": "c_scope_bill",
       "inject_delay": [
@@ -435,15 +435,15 @@
     "choice_left": {
       "text": "出す",
       "effects": {
-        "cash": -10,
-        "dev": 12
+        "cash": -9,
+        "dev": 11
       }
     },
     "choice_right": {
       "text": "「自己研鑽で」",
       "effects": {
         "cash": 4,
-        "dev": -12
+        "dev": -11
       }
     }
   },
@@ -456,16 +456,16 @@
     "choice_left": {
       "text": "認める",
       "effects": {
-        "cash": -7,
+        "cash": -6,
         "client": -4,
-        "dev": 14
+        "dev": 13
       }
     },
     "choice_right": {
       "text": "業務時間外でやれ",
       "effects": {
-        "cash": 7,
-        "dev": -12
+        "cash": 6,
+        "dev": -11
       }
     }
   },
@@ -479,15 +479,15 @@
       "text": "好きにやらせる",
       "effects": {
         "cash": -3,
-        "client": -8,
-        "dev": 18
+        "client": -7,
+        "dev": 16
       }
     },
     "choice_right": {
       "text": "客先指定の古い技術で",
       "effects": {
-        "client": 8,
-        "dev": -12
+        "client": 7,
+        "dev": -11
       }
     }
   },
@@ -500,15 +500,15 @@
     "choice_left": {
       "text": "平謝りして元に戻させる",
       "effects": {
-        "client": 6,
-        "dev": -12
+        "client": 5,
+        "dev": -11
       }
     },
     "choice_right": {
       "text": "古田の判断を擁護する",
       "effects": {
-        "client": -13,
-        "dev": 20
+        "client": -12,
+        "dev": 18
       }
     }
   },
@@ -522,14 +522,14 @@
       "text": "最後まで付き合う",
       "effects": {
         "cash": -5,
-        "client": 34,
+        "client": 31,
         "dev": -5
       }
     },
     "choice_right": {
       "text": "一次会で帰る",
       "effects": {
-        "client": -9,
+        "client": -8,
         "dev": 2
       }
     }
@@ -543,15 +543,15 @@
     "choice_left": {
       "text": "6人分まとめて払う",
       "effects": {
-        "cash": -19,
-        "client": 36
+        "cash": -17,
+        "client": 32
       }
     },
     "choice_right": {
       "text": "割り勘を提案する",
       "effects": {
-        "client": -13,
-        "legal": 16
+        "client": -12,
+        "legal": 14
       }
     }
   },
@@ -564,16 +564,16 @@
     "choice_left": {
       "text": "かき集めて出す",
       "effects": {
-        "cash": 14,
-        "client": 23,
-        "dev": -17
+        "cash": 13,
+        "client": 21,
+        "dev": -15
       }
     },
     "choice_right": {
       "text": "今の体制を守る",
       "effects": {
-        "client": -9,
-        "dev": 6
+        "client": -8,
+        "dev": 5
       }
     }
   },
@@ -586,15 +586,15 @@
     "choice_left": {
       "text": "黙って受ける",
       "effects": {
-        "client": 6,
-        "dev": -15
+        "client": 5,
+        "dev": -14
       }
     },
     "choice_right": {
       "text": "環境の改善を求める",
       "effects": {
-        "client": -11,
-        "dev": 10
+        "client": -10,
+        "dev": 9
       }
     }
   },
@@ -607,15 +607,15 @@
     "choice_left": {
       "text": "引き受ける",
       "effects": {
-        "cash": 6,
-        "client": 13,
-        "dev": -17
+        "cash": 5,
+        "client": 12,
+        "dev": -15
       }
     },
     "choice_right": {
       "text": "手当がなければ断る",
       "effects": {
-        "client": -11,
+        "client": -10,
         "dev": 4
       }
     }
@@ -629,15 +629,15 @@
     "choice_left": {
       "text": "強気で行く",
       "effects": {
-        "cash": 19,
-        "client": -11
+        "cash": 17,
+        "client": -10
       }
     },
     "choice_right": {
       "text": "関係を優先する",
       "effects": {
         "cash": -2,
-        "client": 8
+        "client": 7
       }
     }
   },
@@ -650,17 +650,17 @@
     "choice_left": {
       "text": "受けて人をかき集める",
       "effects": {
-        "cash": 22,
-        "client": 6,
-        "dev": -22
+        "cash": 20,
+        "client": 5,
+        "dev": -20
       }
     },
     "choice_right": {
       "text": "身の丈で断る",
       "effects": {
-        "cash": -10,
+        "cash": -9,
         "client": -5,
-        "dev": 6
+        "dev": 5
       }
     }
   },
@@ -673,7 +673,7 @@
     "choice_left": {
       "text": "借りられるだけ借りる",
       "effects": {
-        "cash": 25,
+        "cash": 23,
         "legal": -5
       }
     },
@@ -694,9 +694,9 @@
     "choice_left": {
       "text": "一等地に移転する",
       "effects": {
-        "cash": -23,
-        "client": 6,
-        "dev": 6
+        "cash": -21,
+        "client": 5,
+        "dev": 5
       }
     },
     "choice_right": {
@@ -715,17 +715,17 @@
     "choice_left": {
       "text": "AIを封印して人月を守る",
       "effects": {
-        "cash": 13,
+        "cash": 12,
         "client": -4,
-        "dev": -15
+        "dev": -14
       }
     },
     "choice_right": {
       "text": "半額の請求を受け入れる",
       "effects": {
-        "cash": -14,
-        "client": 13,
-        "dev": 8
+        "cash": -13,
+        "client": 12,
+        "dev": 7
       }
     }
   },
@@ -739,15 +739,15 @@
       "text": "全項目きっちりやる",
       "effects": {
         "cash": -3,
-        "dev": -10,
-        "legal": 40
+        "dev": -9,
+        "legal": 36
       }
     },
     "choice_right": {
       "text": "最低限で済ませる",
       "effects": {
         "dev": 4,
-        "legal": -12
+        "legal": -11
       }
     }
   },
@@ -761,15 +761,15 @@
       "text": "年4回やる",
       "effects": {
         "cash": -2,
-        "dev": -7,
-        "legal": 40
+        "dev": -6,
+        "legal": 36
       }
     },
     "choice_right": {
       "text": "動画を流すだけ",
       "effects": {
         "dev": 2,
-        "legal": -10
+        "legal": -9
       }
     }
   },
@@ -782,16 +782,16 @@
     "choice_left": {
       "text": "7人に増やす",
       "effects": {
-        "client": -8,
-        "dev": -7,
-        "legal": 40
+        "client": -7,
+        "dev": -6,
+        "legal": 36
       }
     },
     "choice_right": {
       "text": "今の3人のまま",
       "effects": {
         "client": 2,
-        "legal": -7
+        "legal": -6
       }
     }
   },
@@ -804,10 +804,10 @@
     "choice_left": {
       "text": "認証を取る",
       "effects": {
-        "cash": -9,
-        "client": 6,
+        "cash": -8,
+        "client": 5,
         "dev": -5,
-        "legal": 40
+        "legal": 36
       }
     },
     "choice_right": {
@@ -827,16 +827,16 @@
     "choice_left": {
       "text": "発注書が出るまで待つ",
       "effects": {
-        "cash": -8,
+        "cash": -7,
         "client": -4,
-        "legal": 40
+        "legal": 36
       }
     },
     "choice_right": {
       "text": "信じて3人を入れる",
       "effects": {
-        "client": 8,
-        "legal": -12
+        "client": 7,
+        "legal": -11
       }
     }
   },
@@ -849,14 +849,14 @@
     "choice_left": {
       "text": "職場を見直す",
       "effects": {
-        "cash": -9,
-        "dev": 12
+        "cash": -8,
+        "dev": 11
       }
     },
     "choice_right": {
       "text": "削除依頼だけ出す",
       "effects": {
-        "dev": -12,
+        "dev": -11,
         "legal": -5
       }
     }
@@ -870,15 +870,15 @@
     "choice_left": {
       "text": "還元率を上げて引き止める",
       "effects": {
-        "cash": -13,
-        "dev": 14
+        "cash": -12,
+        "dev": 13
       }
     },
     "choice_right": {
       "text": "引き止めない",
       "effects": {
-        "client": -11,
-        "dev": -15
+        "client": -10,
+        "dev": -14
       }
     }
   },
@@ -891,17 +891,17 @@
     "choice_left": {
       "text": "早めて払う",
       "effects": {
-        "cash": -14,
+        "cash": -13,
         "dev": 2,
-        "legal": 16
+        "legal": 14
       }
     },
     "choice_right": {
       "text": "契約どおりで",
       "effects": {
-        "cash": 7,
+        "cash": 6,
         "client": -5,
-        "legal": -10
+        "legal": -9
       }
     }
   },
@@ -914,16 +914,16 @@
     "choice_left": {
       "text": "2割下げる",
       "effects": {
-        "cash": 18,
-        "client": -8,
-        "legal": -7
+        "cash": 16,
+        "client": -7,
+        "legal": -6
       }
     },
     "choice_right": {
       "text": "据え置く",
       "effects": {
-        "cash": -10,
-        "legal": 10
+        "cash": -9,
+        "legal": 9
       }
     }
   },
@@ -936,14 +936,14 @@
     "choice_left": {
       "text": "夜通し対応する",
       "effects": {
-        "client": 16,
-        "dev": -20
+        "client": 14,
+        "dev": -18
       }
     },
     "choice_right": {
       "text": "原因の調査を先に",
       "effects": {
-        "client": -13,
+        "client": -12,
         "dev": 4
       }
     }
@@ -957,15 +957,15 @@
     "choice_left": {
       "text": "従う",
       "effects": {
-        "client": 13,
-        "dev": -15
+        "client": 12,
+        "dev": -14
       }
     },
     "choice_right": {
       "text": "1日単位で交渉する",
       "effects": {
-        "client": -9,
-        "dev": 6
+        "client": -8,
+        "dev": 5
       }
     }
   },
@@ -978,16 +978,16 @@
     "choice_left": {
       "text": "元請けに正式に抗議する",
       "effects": {
-        "client": -15,
-        "dev": 16,
-        "legal": 10
+        "client": -14,
+        "dev": 14,
+        "legal": 9
       }
     },
     "choice_right": {
       "text": "見なかったことにする",
       "effects": {
         "client": 4,
-        "dev": -20,
+        "dev": -18,
         "legal": -5
       }
     }
@@ -1001,15 +1001,15 @@
     "choice_left": {
       "text": "即レス体制を組む",
       "effects": {
-        "client": 16,
-        "dev": -17
+        "client": 14,
+        "dev": -15
       }
     },
     "choice_right": {
       "text": "対応時間を決める",
       "effects": {
-        "client": -11,
-        "dev": 8
+        "client": -10,
+        "dev": 7
       }
     }
   },
@@ -1022,15 +1022,15 @@
     "choice_left": {
       "text": "無謀な案件をかき集める",
       "effects": {
-        "cash": 15,
-        "dev": -15
+        "cash": 14,
+        "dev": -14
       }
     },
     "choice_right": {
       "text": "現実的な目標にする",
       "effects": {
         "cash": -2,
-        "dev": 6
+        "dev": 5
       }
     }
   },
@@ -1043,15 +1043,15 @@
     "choice_left": {
       "text": "精算し直す",
       "effects": {
-        "cash": -10,
-        "legal": 31
+        "cash": -9,
+        "legal": 28
       }
     },
     "choice_right": {
       "text": "雑費で通す",
       "effects": {
-        "cash": 8,
-        "legal": -12
+        "cash": 7,
+        "legal": -11
       },
       "unethical": true,
       "inject_card_id": "c_audit_visit",
@@ -1071,17 +1071,17 @@
     "choice_left": {
       "text": "快く送り出す",
       "effects": {
-        "cash": -9,
-        "client": 34,
-        "dev": -7
+        "cash": -8,
+        "client": 31,
+        "dev": -6
       }
     },
     "choice_right": {
       "text": "契約違反だと抗議する",
       "effects": {
-        "client": -13,
+        "client": -12,
         "dev": 4,
-        "legal": 10
+        "legal": 9
       }
     }
   },
@@ -1094,16 +1094,16 @@
     "choice_left": {
       "text": "払い続ける",
       "effects": {
-        "cash": -15,
-        "dev": 8
+        "cash": -14,
+        "dev": 7
       }
     },
     "choice_right": {
       "text": "止めろ",
       "effects": {
-        "cash": 8,
+        "cash": 7,
         "client": -5,
-        "dev": -12
+        "dev": -11
       }
     }
   },
@@ -1116,15 +1116,15 @@
     "choice_left": {
       "text": "評価制度を作る",
       "effects": {
-        "cash": -9,
-        "dev": 10,
-        "legal": 16
+        "cash": -8,
+        "dev": 9,
+        "legal": 14
       }
     },
     "choice_right": {
       "text": "「そうだよ」",
       "effects": {
-        "dev": -20
+        "dev": -18
       }
     }
   },
@@ -1137,14 +1137,14 @@
     "choice_left": {
       "text": "徹夜で対応する",
       "effects": {
-        "client": 23,
-        "dev": -20
+        "client": 21,
+        "dev": -18
       }
     },
     "choice_right": {
       "text": "納期の延長を求める",
       "effects": {
-        "client": -13,
+        "client": -12,
         "dev": 4
       }
     }
@@ -1159,15 +1159,15 @@
       "text": "完璧に揃える",
       "effects": {
         "client": -5,
-        "dev": -7,
-        "legal": 40
+        "dev": -6,
+        "legal": 36
       }
     },
     "choice_right": {
       "text": "出せる分だけ出す",
       "effects": {
         "dev": 4,
-        "legal": -12
+        "legal": -11
       }
     }
   }

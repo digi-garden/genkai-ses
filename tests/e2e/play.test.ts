@@ -44,6 +44,7 @@ test('T3：切り札は2回押しで発動し、Esc で取り消せる', async (
   const trump = page.getByTestId('trump-button');
   await trump.click();
   await expect(page.getByRole('alert')).toContainText('取り返しがつきません');
+  await expect(page.getByTestId('trump-effects')).toHaveText(/[↑↓]/); // 中身を向きと大きさで見せる（R22）
   await page.keyboard.press('Escape');
   await expect(page.getByRole('alert')).toHaveCount(0);
   await expect(trump).toHaveText('社長の切り札（残り1回）');

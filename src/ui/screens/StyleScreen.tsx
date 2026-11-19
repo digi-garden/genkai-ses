@@ -1,7 +1,8 @@
 import { useState, type KeyboardEvent } from 'react';
 import type { Content } from '../../content';
-import { STYLE_IDS, type ChoiceEffect, type Passive, type StyleId } from '../../content/types';
+import { STYLE_IDS, type Passive, type StyleId } from '../../content/types';
 import { Button } from '../components/Button';
+import { trumpText } from '../trumpText';
 
 const PARAM_NAME = { cash: '資金', client: '顧客満足', dev: '現場メンタル', legal: 'コンプラ' } as const;
 
@@ -10,13 +11,6 @@ function passiveText(p: Passive): string {
   const n = PARAM_NAME[p.param];
   if (p.direction === 'loss') return p.factor < 1 ? `${n}が減りにくい` : `${n}の傷が深い`;
   return p.factor > 1 ? `${n}が上がりやすい` : `${n}が上がりにくい`;
-}
-
-function trumpText(e: ChoiceEffect): string {
-  return (Object.keys(PARAM_NAME) as (keyof ChoiceEffect)[])
-    .filter((k) => e[k] !== 0)
-    .map((k) => `${PARAM_NAME[k]}が${Math.abs(e[k]) >= 30 ? '大きく' : ''}${e[k] > 0 ? '上がる' : '下がる'}`)
-    .join('、');
 }
 
 /** S03 経営スタイル選択 */

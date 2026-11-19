@@ -165,6 +165,7 @@ export function PlayScreen({ state, content, dispatch, onFinished }: Props) {
           disabled={ended}
           trump={trump}
           trumpName={content.styles[state.styleId].trump.name.web}
+          trumpEffects={content.styles[state.styleId].trump.effects}
           showKeyHint
           onDecide={decide}
           onHover={setHover}
