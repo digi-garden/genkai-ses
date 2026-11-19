@@ -85,6 +85,17 @@ export function PlayScreen({ state, content, dispatch, onFinished }: Props) {
     return () => window.removeEventListener('keydown', onKey);
   }, [decide, pressTrump]);
 
+  // プレイ中は画面ごと動かさない（iPhone で下に引っぱると再読み込みされ、タイトルに戻ってしまう。2026-11-18）。
+  // カード本文とモーダルの中のスクロールは残す（カードの上の判定は EventCard 側）
+  useEffect(() => {
+    const onMove = (e: TouchEvent) => {
+      if (e.target instanceof Element && e.target.closest('[data-allow-scroll], dialog')) return;
+      e.preventDefault();
+    };
+    document.addEventListener('touchmove', onMove, { passive: false });
+    return () => document.removeEventListener('touchmove', onMove);
+  }, []);
+
   // 切り札の確認中に、ボタン以外をタップしたら取り消す
   useEffect(() => {
     if (!confirming) return;

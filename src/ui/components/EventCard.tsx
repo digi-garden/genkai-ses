@@ -44,6 +44,43 @@ export function EventCard({ card, isChain, isTutorial, reducedMotion, disabled, 
     };
   }, [card.id]);
 
+  // iPhone で縦の動きにスクロール（と引っぱって再読み込み）を取られ、左右に払えなくなる問題の対策（2026-11-18）。
+  // カードの上での指の動きは、本文がはみ出していて縦に動かしたときだけスクロールに使い、それ以外は止める。
+  const articleRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const el = articleRef.current;
+    if (!el) return;
+    let start: { x: number; y: number } | null = null;
+    let allowScroll: boolean | null = null;
+    const onStart = (e: TouchEvent) => {
+      const t = e.touches[0];
+      start = t ? { x: t.clientX, y: t.clientY } : null;
+      allowScroll = null;
+    };
+    const onMove = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (allowScroll === null && start && t) {
+        const dx = Math.abs(t.clientX - start.x);
+        const dy = Math.abs(t.clientY - start.y);
+        if (dx + dy < 6) {
+          e.preventDefault();
+          return;
+        }
+        const body = scrollRef.current;
+        const inBody = !!body && e.target instanceof Node && body.contains(e.target);
+        const overflowing = !!body && body.scrollHeight - body.clientHeight > 1;
+        allowScroll = inBody && overflowing && dy > dx;
+      }
+      if (!allowScroll) e.preventDefault();
+    };
+    el.addEventListener('touchstart', onStart, { passive: true });
+    el.addEventListener('touchmove', onMove, { passive: false });
+    return () => {
+      el.removeEventListener('touchstart', onStart);
+      el.removeEventListener('touchmove', onMove);
+    };
+  }, []);
+
   const setLean = (s: Side | null) => {
     if (lean.current !== s) {
       lean.current = s;
@@ -67,6 +104,7 @@ export function EventCard({ card, isChain, isTutorial, reducedMotion, disabled, 
 
   return (
     <m.article
+      ref={articleRef}
       data-testid="event-card"
       aria-labelledby="card-speaker"
       drag={disabled ? false : 'x'}
@@ -92,7 +130,7 @@ export function EventCard({ card, isChain, isTutorial, reducedMotion, disabled, 
         <img src={iconUrl(card.speaker_icon)} alt="" width={64} height={64} draggable={false} className="pixelated h-16 w-16 shrink-0 rounded-md bg-surface" />
         <p id="card-speaker" className="truncate text-[13px] font-bold">{card.speaker_name}</p>
       </div>
-      <div ref={scrollRef} className={`mt-3.5 min-h-0 overflow-y-auto ${fade ? 'card-body-fade' : ''}`}>
+      <div ref={scrollRef} data-allow-scroll className={`mt-3.5 min-h-0 overflow-y-auto overscroll-contain ${fade ? 'card-body-fade' : ''}`}>
         <p className="jp-pretty text-[17px] leading-[1.7] [overflow-wrap:anywhere] md:text-[18px]">{card.message}</p>
         {isTutorial && (
           <p className="mt-3 rounded-[10px] border border-dashed border-border-strong px-3 py-2 text-[12px] text-text-muted">
