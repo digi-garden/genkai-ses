@@ -12,4 +12,6 @@ export const balance: Balance = {
   bicycleMaxCash: 40,
   emperorMinSales: 10000,
   earlyDeathMaxWeek: 9,
+  trumpSafeMin: 1,
+  trumpSafeMax: 99,
 };

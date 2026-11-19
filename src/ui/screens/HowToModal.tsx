@@ -33,7 +33,7 @@ export function HowToModal({ onClose }: { onClose: () => void }) {
         </section>
         <section>
           <h3 className="mb-2 font-bold">社長の切り札</h3>
-          <p>経営スタイルごとに1つ、1期に1度だけ使える奥の手です。2回押すと発動します。発動しても週は進みません。</p>
+          <p>経営スタイルごとに1つ、1期に1度だけ使える奥の手です。2回押すと発動します。発動しても週は進みません。切り札だけで倒産することはありません（ゲージは限界の1歩手前で止まります）。ただし、その後の選択しだいでは危ないので注意。</p>
         </section>
         <section>
           <h3 className="mb-2 font-bold">因果応報</h3>
