@@ -8,8 +8,15 @@ import { appliedEffects, judgeEnding, type RuntimeGameState, type Side } from '.
 import { addClamped, trumpApplied } from '../../src/core/effects';
 import { nextFloat, type RngState } from '../../src/core/rng';
 
-export type BotId = 'random' | 'greedy' | 'gambler' | 'greedy:white' | 'greedy:bicycle';
-export const BOT_IDS: readonly BotId[] = ['random', 'greedy', 'gambler', 'greedy:white', 'greedy:bicycle'];
+export type BotId = 'random' | 'greedy' | 'gambler' | 'greedy:white' | 'greedy:bicycle' | 'human50' | 'human70';
+export const BOT_IDS: readonly BotId[] = ['random', 'greedy', 'gambler', 'greedy:white', 'greedy:bicycle', 'human50', 'human70'];
+
+/**
+ * 人間に近い Bot（2026-11-19 追加、A8）。各ターン、この確率で greedy と同じ選択をし、残りは左右を半々で選ぶ。
+ * 人間は増減の向きを選ぶまで知らず、カードの文から読むので、数値が全部見える greedy より当たりにくい。
+ * テストプレイで真剣に遊んで 15週前後 ＝ human50 に近かった。
+ */
+const HUMAN_HIT: Partial<Record<BotId, number>> = { human50: 0.5, human70: 0.7 };
 
 export interface Decision {
   useTrump: boolean;
@@ -17,7 +24,7 @@ export interface Decision {
 }
 
 type Target = Record<Param, number>;
-const TARGETS: Record<Exclude<BotId, 'random' | 'gambler'>, Target> & { gambler: Target } = {
+const TARGETS: Record<Exclude<BotId, 'random' | 'gambler' | 'human50' | 'human70'>, Target> & { gambler: Target } = {
   greedy: { cash: 50, client: 50, dev: 50, legal: 50 },
   gambler: { cash: 50, client: 50, dev: 50, legal: 50 },
   'greedy:white': { cash: 50, client: 50, dev: 50, legal: 80 },
@@ -47,7 +54,16 @@ export function decide(bot: BotId, s: RuntimeGameState, content: Content, rng: R
     return [{ useTrump, side: f < 0.5 ? 'left' : 'right' }, r];
   }
 
-  const target = TARGETS[bot];
+  const hit = HUMAN_HIT[bot];
+  if (hit !== undefined) {
+    const [d, r2] = decide('greedy', s, content, r);
+    [f, r] = nextFloat(r2);
+    if (f < hit) return [d, r];
+    [f, r] = nextFloat(r);
+    return [{ useTrump: d.useTrump, side: f < 0.5 ? 'left' : 'right' }, r]; // 切り札は中身が見える（R22）ので greedy と同じ判断
+  }
+
+  const target = TARGETS[bot as keyof typeof TARGETS];
   const now = distance(s.parameters, target);
 
   // 切り札：危険域に入っていて、使うと目標に近づき、即死しないなら使う

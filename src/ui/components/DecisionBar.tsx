@@ -1,5 +1,7 @@
 import type { EventCard } from '../../content/schema';
+import type { ChoiceEffect } from '../../content/types';
 import type { Side } from '../../core';
+import { trumpArrows } from '../trumpText';
 
 export type TrumpState = 'ready' | 'confirm' | 'used';
 
@@ -8,6 +10,7 @@ interface Props {
   disabled: boolean;
   trump: TrumpState;
   trumpName: string;
+  trumpEffects: ChoiceEffect;
   showKeyHint: boolean;
   onDecide: (side: Side) => void;
   onHover: (side: Side | null) => void;
@@ -15,7 +18,7 @@ interface Props {
 }
 
 /** 決断ボタン2つと切り札ボタン（02 の S04、03 の 5.4） */
-export function DecisionBar({ card, disabled, trump, trumpName, showKeyHint, onDecide, onHover, onTrump }: Props) {
+export function DecisionBar({ card, disabled, trump, trumpName, trumpEffects, showKeyHint, onDecide, onHover, onTrump }: Props) {
   const btn =
     'min-h-11 flex-1 rounded-[10px] border border-border-strong bg-card px-3 py-2 text-[14px] leading-snug sm:text-[15px] active:border-primary disabled:opacity-40 [overflow-wrap:anywhere]';
   return (
@@ -48,9 +51,11 @@ export function DecisionBar({ card, disabled, trump, trumpName, showKeyHint, onD
       </div>
       <div className="relative">
         {trump === 'confirm' && (
-          <p role="alert" className="absolute -top-2 left-1/2 w-max max-w-full -translate-x-1/2 -translate-y-full rounded-md bg-accent px-3 py-1.5 text-[12px] font-bold text-on-accent">
-            この決断は取り返しがつきません。もう一度押すと実行
-          </p>
+          <div role="alert" className="absolute -top-2 left-1/2 w-max max-w-full -translate-x-1/2 -translate-y-full rounded-md bg-accent px-3 py-1.5 text-center text-[12px] font-bold text-on-accent">
+            {/* 中身を見せる（R22）。上がるか下がるかと大きさだけ。数値は出さない */}
+            <p data-testid="trump-effects" className="text-[14px]">{trumpArrows(trumpEffects)}</p>
+            <p>取り返しがつきません。もう一度押すと発動</p>
+          </div>
         )}
         <button
           type="button"

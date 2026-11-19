@@ -98,7 +98,7 @@ export function summarize(groups: GroupStats[]): { text: string; checks: Check[]
     return g ? [{ st, rate: pct(g.clears, g.runs) }] : [];
   });
   for (const { st, rate } of greedyRates) {
-    checks.push({ id: 'A2', label: `greedy のクリア率が 15〜35%（${st}）`, ok: rate >= 15 && rate <= 35, value: f1(rate) });
+    checks.push({ id: 'A2', label: `greedy のクリア率が 30〜50%（${st}）`, ok: rate >= 30 && rate <= 50, value: f1(rate) });
   }
   if (deathPool && deaths > 0) {
     for (const e of LOWER) {
@@ -134,6 +134,18 @@ export function summarize(groups: GroupStats[]): { text: string; checks: Check[]
       const r = pct(random.achievements[ach], random.runs);
       checks.push({ id: 'A7', label: `${name}が random の全ランの 0.5% 以上`, ok: r >= 0.5, value: f1(r) });
     }
+  }
+
+  // A8・A9（2026-11-19、R23）：人間に近い Bot で、難しさを見る
+  const h50 = merge(by('human50'));
+  if (h50) {
+    const med = quantile([...h50.survived].sort((a, b) => a - b), 0.5);
+    checks.push({ id: 'A8', label: 'human50 の生存週の中央値が 18〜28', ok: med >= 18 && med <= 28, value: String(med) });
+  }
+  const h70 = merge(by('human70'));
+  if (h70) {
+    const r = pct(h70.clears, h70.runs);
+    checks.push({ id: 'A9', label: 'human70 のクリア率が 8〜20%', ok: r >= 8 && r <= 20, value: f1(r) });
   }
 
   lines.push('=== 合格判定 ===');
