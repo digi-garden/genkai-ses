@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import type { EventCard } from '../../content/schema';
 import type { ChoiceEffect } from '../../content/types';
 import type { Side } from '../../core';
@@ -19,12 +20,24 @@ interface Props {
 
 /** 決断ボタン2つと切り札ボタン（02 の S04、03 の 5.4） */
 export function DecisionBar({ card, disabled, trump, trumpName, trumpEffects, showKeyHint, onDecide, onHover, onTrump }: Props) {
+  // 次のカードに変わっても、カーソルが同じボタンの上にあれば予兆ドットを出し直す（2026-11-20 の指摘）。
+  // 選んだときに予兆を消すが、カーソルを動かさないと pointerenter が来ないため。キーボードで選んだときのフォーカスも同じ
+  const leftRef = useRef<HTMLButtonElement>(null);
+  const rightRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (disabled) return;
+    const on = (el: HTMLButtonElement | null) => !!el && (el.matches(':hover') || el.matches(':focus-visible'));
+    if (on(leftRef.current)) onHover('left');
+    else if (on(rightRef.current)) onHover('right');
+  }, [card.id, disabled, onHover]);
+
   const btn =
     'min-h-11 flex-1 rounded-[10px] border border-border-strong bg-card px-3 py-2 text-[14px] leading-snug sm:text-[15px] active:border-primary disabled:opacity-40 [overflow-wrap:anywhere]';
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-stretch gap-2">
         <button
+          ref={leftRef}
           type="button"
           className={`${btn} text-left`}
           disabled={disabled}
@@ -37,6 +50,7 @@ export function DecisionBar({ card, disabled, trump, trumpName, trumpEffects, sh
           ← {card.choice_left.text}
         </button>
         <button
+          ref={rightRef}
           type="button"
           className={`${btn} text-right`}
           disabled={disabled}
