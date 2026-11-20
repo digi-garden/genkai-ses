@@ -61,6 +61,16 @@ test('決断ボタンにフォーカスすると予兆ドットが出る', async
   await expect(page.locator('[data-testid^="hint-"]').first()).toBeVisible();
 });
 
+test('ボタンで選んだ後、カーソルを動かさなくても次のカードの予兆ドットが出る', async ({ page }) => {
+  await startRun(page);
+  const left = page.getByRole('button', { name: /^← / });
+  await left.hover();
+  await expect(page.locator('[data-testid^="hint-"]').first()).toBeVisible();
+  await left.click(); // マウスはそのまま
+  await expect(page.getByTestId('week')).toHaveText('Week 2/52');
+  await expect(page.locator('[data-testid^="hint-"]').first()).toBeVisible();
+});
+
 test('会社名：実在の企業名と URL は使えない。空なら既定の名前', async ({ page }) => {
   await page.goto(TOP);
   await page.getByRole('button', { name: '経営を始める' }).click();
