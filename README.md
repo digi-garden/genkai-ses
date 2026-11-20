@@ -3,16 +3,19 @@
 SES 企業の社長として、資金・顧客・現場・コンプラの4つのバランスを取りながら1期（52週）を生き延びる、2択の風刺経営ゲーム。
 PromptLab Games のタイトルとして `https://promptlab-games.com/genkai-ses/` で公開する（ブランド共通の Router Worker 経由）。
 
-> 現在：**Phase 0（準備）**。ひな形・CI・公開パスの検証の土台と、確定した画像素材18枚が入っている。ゲーム本体は Phase 1 で実装する。
+> 現在：**Phase 1（MVP）を公開済み**（2026-11-20）。カード60枚（ほかに導入カード2枚）、経営スタイル3種、結末9種、称号6種、図鑑、効果音、［Xでポスト］。次は Phase 2（コンテンツの拡充と画像付きシェア）。
 
 ## ドキュメント
 
 | 資料 | 内容 |
 |---|---|
-| [`docs/requirements_v1.14.md`](docs/requirements_v1.14.md) | 要件定義書（最新版。過去の版と改訂履歴も `docs/` にある） |
+| [`docs/requirements_v1.15.md`](docs/requirements_v1.15.md) | 要件定義書（最新版。過去の版と改訂履歴も `docs/` にある） |
 | [`docs/design/00_index.md`](docs/design/00_index.md) | 基本設計の目次と、要件からの変更点の一覧 |
 | [`docs/implementation/01_phase_plan.md`](docs/implementation/01_phase_plan.md) | 実装のフェーズ計画（担当・完了条件・工数・削減ライン） |
 | [`docs/implementation/02_cloudflare_setup.md`](docs/implementation/02_cloudflare_setup.md) | Cloudflare Pages・GA4・Web Analytics の設定手順 |
+| [`docs/implementation/03_ga4_custom_definitions.md`](docs/implementation/03_ga4_custom_definitions.md) | GA4 に登録するカスタム定義の一覧と手順 |
+| [`docs/release-runbook.md`](docs/release-runbook.md) | 公開と更新の手順、初回公開の確認結果、戻し方 |
+| [`docs/balance/`](docs/balance/) | シミュレータによるバランス調整の記録 |
 | [`docs/asset_log.md`](docs/asset_log.md) | 画像素材の生成と権利確認の記録 |
 
 ## 開発
@@ -58,7 +61,7 @@ tests/       unit（Vitest）／ e2e（Playwright）
 
 ## ブランチと公開
 
-- `develop`：本番（Cloudflare Pages の本番ブランチ）。プルリクエストのマージでだけ更新する。マージはオーナーが行う。
+- `develop`：本番（Cloudflare Pages の本番ブランチ）。プルリクエストのマージでだけ更新する。マージはオーナーが行う。マージすると数分で `promptlab-games.com/genkai-ses/` に反映される（手順は [`docs/release-runbook.md`](docs/release-runbook.md)）。
 - `feature/〇〇`：作業ブランチ。Pages はビルドしない。
 - `preview/〇〇`：Pages のプレビューを作りたいときだけ使う（ビルド回数の節約。`docs/design/08_nonfunctional_ops.md` 6.1）。
 - `docs/` だけの変更では Pages はビルドしない（ビルドの対象パスの設定）。
