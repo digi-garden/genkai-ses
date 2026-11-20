@@ -105,18 +105,18 @@ flowchart LR
 | 1B-11 | **［Xでポスト］（Web Intent）とシェア文の組み立て（5段階の調整）、`share_intent_success`**。2026-11-16 に Phase 2-B から前倒し（KPI のシェア率を Phase 1 の公開から測るため。オーナー判断） | AI | ― |
 | | **小計** | | **6.0h** |
 
-### Phase 1-C：公開（Week 4）
+### Phase 1-C：公開（Week 4）— 完了（2026-11-20）
 
 | # | 作業 | 担当 | オーナーの時間 |
 |---|---|---|---|
-| 1C-1 | Router に `genkai-ses` を追加するプルリクエスト（設定、テスト8本、README）。既存のテストがすべて通ることを確認 | AI | ― |
-| 1C-2 | Portal のプルリクエスト（ゲーム一覧に `coming-soon` で追加、プライバシーポリシーへの計測の追記、テストの更新） | AI | ― |
-| 1C-3 | プルリクエストの確認とマージ（ゲーム、Router、Portal） | オーナー | 1.0h |
-| 1C-4 | オリジンのカスタムドメイン（`genkai-ses-origin.promptlab-games.com`）の設定、Router のデプロイ | オーナー | 0.5h |
-| 1C-5 | **ステージングでの確認**（`staging.promptlab-games.com/genkai-ses/`）。要件 8.6 のチェックリスト。AI が URL の取得とヘッダーを確認し、オーナーはブラウザで遊んで確かめる | オーナー＋AI | 1.0h |
-| 1C-6 | Portal の掲載を `live` にする（プルリクエストは AI、マージはオーナー） | オーナー | 0.2h |
-| 1C-7 | 本番での確認（8.6 のチェックリスト）、GA4 の DebugView でイベントが届くことの確認 | オーナー＋AI | 0.8h |
-| 1C-8 | リリース手順書（`docs/release-runbook.md`）と README に、手順と確認結果を記録 | AI | ― |
+| 1C-1 | Router に `genkai-ses` を追加するプルリクエスト（設定、テスト8本、README）。既存のテストがすべて通ることを確認。**済（router #1）** | AI | ― |
+| 1C-2 | Portal のプルリクエスト（ゲーム一覧に `coming-soon` で追加、プライバシーポリシーへの計測の追記、テストの更新）。**済（portal #1）** | AI | ― |
+| 1C-3 | プルリクエストの確認とマージ（ゲーム、Router、Portal）。**済** | オーナー | 1.0h |
+| 1C-4 | オリジンのカスタムドメイン（`genkai-ses-origin.promptlab-games.com`）の設定、Router のデプロイ。**済** | オーナー | 0.5h |
+| 1C-5 | **ステージングでの確認**（`staging.promptlab-games.com/genkai-ses/`）。要件 8.6 のチェックリスト。AI が URL の取得とヘッダーを確認し、オーナーはブラウザで遊んで確かめる。**済（指摘2件を #14・#15 で修正）** | オーナー＋AI | 1.0h |
+| 1C-6 | Portal の掲載を `live` にする（プルリクエストは AI、マージはオーナー）。**済（portal #2）** | オーナー | 0.2h |
+| 1C-7 | 本番での確認（8.6 のチェックリスト）、GA4 の DebugView でイベントが届くことの確認。**済（2026-11-20。DebugView の代わりにリアルタイムの概要で確認）** | オーナー＋AI | 0.8h |
+| 1C-8 | リリース手順書（`docs/release-runbook.md`）と README に、手順と確認結果を記録。**済（`docs/release-runbook.md`、GA4 のカスタム定義の一覧）** | AI | ― |
 | | **小計** | | **3.5h** |
 
 ### Phase 2-A：コンテンツ拡充（Week 5〜6）
